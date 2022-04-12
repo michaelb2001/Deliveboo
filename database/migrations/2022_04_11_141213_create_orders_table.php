@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('email')->unique();
-            $table->integer('phone');
+            $table->string('phone');
             $table->string('address');
             $table->boolean('status');
             $table->float('total');

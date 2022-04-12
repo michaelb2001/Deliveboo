@@ -19,7 +19,7 @@ class CreatePlatesTable extends Migration
             $table->string('ingredients');
             $table->float('price');
             $table->boolean('visible')->default(true);
-            $table->string('img');
+            $table->string('img')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

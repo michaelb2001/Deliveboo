@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,18 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
-});*/
-
-Auth::routes();
-Route::middleware('auth')
-->namespace('Admin')
-->name('admin.')
-->prefix('admin')
-->group(function () {
-    Route::get('/', "HomeController@index")->name('home');
 });
 
+Auth::routes();
+Route::middleware('auth')->namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
+    Route::get('/', "HomeController@index");
+    Route::post('/homepage', "HomeController@form_checkbox")->name('homepage');
+});
 
 //Route::get('/home', 'HomeController@index')->name('home');

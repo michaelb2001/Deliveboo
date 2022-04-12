@@ -10962,3 +10962,24 @@ a.text-dark:focus {
   }
 }
 
+.card {
+  max-height: 700px;
+  height: 70vh;
+}
+
+.card .checkbox_list {
+  height: 80%;
+  overflow-y: scroll;
+  padding-top: 15px;
+}
+
+.card .checkbox_list ::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 50%;
+}
+
+.card .checkbox_list label {
+  margin-bottom: 0px !important;
+  margin-left: 5px !important;
+}
+
