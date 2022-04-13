@@ -9,6 +9,13 @@
                     <i class="fa-solid fa-house"></i>
                     <a href="{{route("admin.types")}}"><button type="button" class="btn btn-primary m-3">show categories</button></a> 
                 </li>
+
+                <li>
+                    <i class="fa-solid fa-house"></i>
+                    <h2 class="mt-0"><a href="{{route("admin.plate.create")}}">New Plate</a></h2>
+                </li>
+
+                
             </ul>
         </div>
 
