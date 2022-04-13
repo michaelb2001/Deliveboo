@@ -21,7 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::middleware('auth')->namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', "HomeController@index");
-    Route::post('/homepage', "HomeController@form_checkbox")->name('homepage');
+    Route::post('/types', "HomeController@form_checkbox")->name('types');
 });
 
 //Route::get('/home', 'HomeController@index')->name('home');

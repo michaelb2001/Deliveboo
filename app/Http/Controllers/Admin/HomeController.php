@@ -30,14 +30,27 @@ class HomeController extends Controller
     public function index()
     {
         $types = Type::all();
-        return view('admin.home',compact("types"));
+        $LoggedUser = User::where('id',Auth::user()->id)->first();
+        $typeChoice = $LoggedUser->types;
+        return view('admin.types',compact("types","typeChoice"));
     }
 
     public function form_checkbox(Request $request){
         
+        $types = Type::all();
         $checked = $request->all();
+        $checked = $checked['check'];
         $LoggedUser = User::where('id',Auth::user()->id)->first();
-        $LoggedUser->types()->sync($checked['check']);
-        return view('admin.homepage',compact('checked','LoggedUser'));
+        $typeChoice = $LoggedUser->types->toArray();
+                
+        if(isset($checked)){
+            foreach($typeChoice as $type){
+                array_push($checked,$type['id']) ;
+            }
+            //$checked = array_merge($checked,$typeChoice);
+        };
+        $LoggedUser->types()->sync($checked);
+
+        return view('admin.types',compact("types",'typeChoice'));
     }
 }
