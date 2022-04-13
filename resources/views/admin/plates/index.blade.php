@@ -32,6 +32,13 @@
                 <li>
                     {{$plate->price}}
                 </li>
+                <li>
+                    @if($plate->visible)
+                        <h3>Il piatto è visibile</h3>
+                        @else
+                            <h3>Il piatto NON è visibile</h3>
+                    @endif
+                </li>
                 <img src="{{asset('storage/'.$plate->img)}}" alt="{{$plate->name}}">
             </ul>
             <div class="d-flex">
