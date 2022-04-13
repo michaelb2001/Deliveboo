@@ -5,9 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Plate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PlatesController extends Controller
 {
+    protected $validation = [
+        "name" => "required",
+        "ingredients" => "required",
+        "visible" => "required",
+        "price" => "min : 1",
+        "img" => "image",
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +35,7 @@ class PlatesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.plates.create');
     }
 
     /**
@@ -37,7 +46,24 @@ class PlatesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate($this->validation);
+        $data = $request->all();
+
+        $new_plate = new Plate();
+        if(isset($data['img'])){
+            $path = Storage::put('uploads' , $data['img']);
+            $new_plate->img = $path;
+        }
+
+        if($data["visible"] == 'no')
+            $new_plate->visible = false;
+
+        $new_plate->user_id = Auth::user()->id;
+
+        $new_plate->fill($data);
+        $new_plate->save();
+
+        return redirect()->Route('admin.plate.index');
     }
 
     /**
@@ -80,8 +106,9 @@ class PlatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Plate $plate)
     {
-        //
+        $plate->delete();
+        return redirect()->route('admin.plate.index');
     }
 }
