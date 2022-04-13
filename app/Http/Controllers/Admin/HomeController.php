@@ -53,7 +53,7 @@ class HomeController extends Controller
         if(isset($checked)){
             
             foreach($typeChoice as $type){
-                array_push($checked,$type['id']) ;
+                array_push($checked,$type['id']);
             }
             //$checked = array_merge($checked,$typeChoice);
             $LoggedUser->types()->sync($checked);
