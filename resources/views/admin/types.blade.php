@@ -1,5 +1,5 @@
 
-@extends('layouts.app')
+@extends('layouts.navbar_admin')
 
 @section('content')
 <div class="container">
@@ -7,7 +7,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
-                <a href="{{route("admin.plate.index")}}"><button type="button" class="btn btn-primary m-3">show plates</button></a>
                 <div class="card-body">
                     @if(session('status'))
                         <div class="alert alert-success" role="alert">
@@ -16,7 +15,7 @@
                     @endif
                     benvenuto {{Auth::user()->name}}!
                     {{ __(' You are logged in!')}}
-                    <form method="POST" class="form_box" action="{{route('admin.types')}}">
+                    <form method="GET" class="form_box" action="{{route('admin.types')}}">
                         @csrf
 
                         <ul>

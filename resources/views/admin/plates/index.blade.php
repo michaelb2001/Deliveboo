@@ -1,8 +1,5 @@
 
-@extends('layouts.app')
-
-@section('content')
-@extends('layouts.app')
+@extends('layouts.navbar_admin')
 
 @section('content')
     <div class="container-fluid d-flex">
@@ -10,7 +7,7 @@
             <ul>
                 <li>
                     <i class="fa-solid fa-house"></i>
-                    <a href="{{route('admin.types')}}">categories</a> 
+                    <a href="{{route("admin.types")}}"><button type="button" class="btn btn-primary m-3">show categories</button></a> 
                 </li>
             </ul>
         </div>
@@ -40,10 +37,12 @@
                     <button type="submit" class="btn btn-danger m-3">Delete</button>
                 </form>
             </div>
+            
         </div>
-        <hr>
 
+        <hr>
+            @endforeach
         </div>
-        @endforeach
+  
     </div>
 @endsection
