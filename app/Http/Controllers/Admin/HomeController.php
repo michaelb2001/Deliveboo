@@ -38,18 +38,29 @@ class HomeController extends Controller
     public function form_checkbox(Request $request){
         
         $types = Type::all();
+        $LoggedUser = User::where('id',Auth::user()->id)->first();
+        $typeChoice = $LoggedUser->types;
         $checked = $request->all();
-        $checked = $checked['check'];
+        if(isset($checked['check'])){
+            $checked = $checked['check'];
+        }else{
+            echo '<script>alert("inserire almeno una categoria")</script>';
+            return view('admin.types',compact("types","typeChoice"));
+        }
         $LoggedUser = User::where('id',Auth::user()->id)->first();
         $typeChoice = $LoggedUser->types->toArray();
                 
         if(isset($checked)){
+            
             foreach($typeChoice as $type){
                 array_push($checked,$type['id']) ;
             }
             //$checked = array_merge($checked,$typeChoice);
-        };
-        $LoggedUser->types()->sync($checked);
+            $LoggedUser->types()->sync($checked);
+        }else {
+            echo '<script>alert("Welcome to Geeks for Geeks")</script>';
+        }
+        
 
         return view('admin.types',compact("types",'typeChoice'));
     }
