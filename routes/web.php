@@ -23,7 +23,7 @@ Route::middleware('auth')->namespace('Admin')->name('admin.')->prefix('admin')->
     Route::get('/', "HomeController@index");
     Route::get('/types', "HomeController@form_checkbox")->name('types');
     Route::resource('/plate',"PlatesController");
-    Route::get('/recap', "HomeController@form_checkbox")->name("recap");
+    Route::get('/recap', "HomeController@recap")->name("recap");
 });
 
 //Route::get('/home', 'HomeController@index')->name('home');

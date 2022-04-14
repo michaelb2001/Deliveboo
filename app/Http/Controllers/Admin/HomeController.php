@@ -64,7 +64,11 @@ class HomeController extends Controller
             return view('admin.types',compact("types","typeChoice"));
             echo '<script>alert("inserire almeno una categoria")</script>';
         }
-        
+    }
+
+    public function recap(){
+        $LoggedUser = User::where('id',Auth::user()->id)->first();
+        return view('admin.recap',compact("LoggedUser"));
     }
 
 }

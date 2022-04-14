@@ -17,9 +17,7 @@
                     Questi sono i tuoi dati : 
                     {{ __(' You are logged in!')}}
                         <ul>
-                            <li>profile : 
                                 <img src="{{ asset("storage/".$LoggedUser->img) }}">
-                            </li>
                             <li>
                                 name: {{$LoggedUser->name}};
                             </li>

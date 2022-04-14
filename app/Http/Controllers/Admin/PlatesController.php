@@ -91,9 +91,17 @@ class PlatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Plate $plate)
     {
-        //
+        if($plate->user_id != Auth::user()->id){
+            $plates = Plate::where("user_id",Auth::user()->id)->get();
+            echo '<script>alert("piatto non disponibile. Ecco i tuoi piatti")</script>';
+            return view('admin.plates.index',compact('plates'));
+            
+        }else{
+            return view('admin.plates.edit',compact('plate'));
+        }
+        
     }
 
     /**

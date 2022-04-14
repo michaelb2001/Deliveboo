@@ -28,7 +28,7 @@
 
     <div class="mb-0 form-group">
         <label for="price">price</label>
-        <input type="number" name="price" class="p-1 form-control @error('price') is-invalid @enderror ">
+        <input type="number" step="0.01" name="price" class="p-1 form-control @error('price') is-invalid @enderror ">
     </div>
     @error('price')
     <div class="mt-0 alert alert-danger">

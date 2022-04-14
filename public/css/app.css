@@ -10978,3 +10978,8 @@ a.text-dark:focus {
   margin-left: 5px !important;
 }
 
+img {
+  width: 80%;
+  border-radius: 10px;
+}
+

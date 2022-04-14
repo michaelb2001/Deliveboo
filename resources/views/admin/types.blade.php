@@ -31,7 +31,7 @@
                             
                         </ul>
 
-                        Aggiungi categoria ristorante:
+                    Aggiungi categoria ristorante:
                         <div class="checkbox_list">
                         @foreach ($types as $type)
                             <div class="d-flex flex-column my-2 ms-1"> 
