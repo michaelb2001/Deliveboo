@@ -1,9 +1,10 @@
 @extends('layouts.navbar_admin')
 
 @section('content')
-    <h1>Crea un nuovo Piatto!</h1>
-    <form action="{{route("admin.plate.store")}}" enctype="multipart/form-data" method="POST">
+    <h1>Stai modificando <strong>{{$plate->name}}</strong></h1>
+    <form action="{{route("admin.plate.update" , $plate->id)}}" enctype="multipart/form-data" method="POST">
     @csrf
+    @method('PUT')
     <div class="form-group">
         <label for="name">Titolo</label>
         <input value="{{old("name") ? old("name") : $plate->name}}" type="text" class="form-control @error('name') is-invalid @enderror " id="name" name="name" placeholder="titolo">
@@ -13,6 +14,16 @@
             </div>
         @enderror
     </div>
+
+    <div class="mb-0 form-group">
+        <label for="img">Aggiungi Foto</label>
+        <input type="file" name="img" class="p-1 form-control @error('img') is-invalid @enderror ">
+    </div>
+    @error('img')
+    <div class="mt-0 alert alert-danger">
+        {{$message}}
+    </div>
+    @enderror
 
     <div class="form-group">
         <label for="ingredients">Contenuto</label>
@@ -32,16 +43,6 @@
         value="{{old("price") ? old("price") : $plate->price}}">
     </div>
     @error('price')
-    <div class="mt-0 alert alert-danger">
-        {{$message}}
-    </div>
-    @enderror
-
-    <div class="mb-0 form-group">
-        <label for="img">Aggiungi Foto</label>
-        <input type="file" name="img" class="p-1 form-control @error('img') is-invalid @enderror ">
-    </div>
-    @error('img')
     <div class="mt-0 alert alert-danger">
         {{$message}}
     </div>

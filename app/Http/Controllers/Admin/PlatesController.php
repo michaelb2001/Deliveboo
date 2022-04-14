@@ -111,9 +111,25 @@ class PlatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Plate $plate)
     {
-        //
+        $request->validate($this->validation);
+        $data = $request->all();
+
+        if(isset($data['img'])){
+            $path = Storage::put('uploads' , $data['img']);
+            $plate->img = $path;
+        }
+
+        if($data["visible"] == 'no')
+            $plate->visible = false;
+
+        $plate->user_id = Auth::user()->id;
+
+        $plate->fill($data);
+        $plate->save();
+
+        return redirect()->Route('admin.plate.index');
     }
 
     /**
