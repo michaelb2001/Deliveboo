@@ -39,7 +39,11 @@
                             <h3>Il piatto NON è visibile</h3>
                     @endif
                 </li>
-                <img src="{{asset('storage/'.$plate->img)}}" alt="{{$plate->name}}">
+                @if(isset($plate->img))
+                <img src="{{asset('storage/'.$plate->img) }}" class="img_plate" alt="{{$plate->name}}">
+                @else
+                <div class="img_404"></div>
+                @endif
             </ul>
             <div class="d-flex">
                 <a href="{{route("admin.plate.show", $plate->id)}}"><button type="button" class="btn btn-primary m-3">See More</button></a>  <!--con questo bottone richiamo la rotta plates/show dove show sarà il numero id del mio elemento.Quindi verrò indirizzato alla vista show.blade.php-->

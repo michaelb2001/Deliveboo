@@ -10983,3 +10983,31 @@ img {
   border-radius: 10px;
 }
 
+.img_profile {
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  width: 150px;
+  height: 150px;
+}
+
+.img_plate {
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  width: 100px;
+  height: 100px;
+}
+
+.img_404 {
+  background-image: url(https://consumer-component-library.roocdn.com/25.27.6/static/images/placeholder.svg);
+  background-position: center center;
+  background-size: cover;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  width: 100px;
+  height: 100px;
+}
+

@@ -2,7 +2,11 @@
 
 @section('content')
         <div class="card">
-            <img style="width: 100px" src="{{asset('storage/'.$plate->img)}}" alt="{{$plate->name}}">
+            @if(isset($plate->img))
+            <img src="{{asset('storage/'.$plate->img) }}" class="img_plate" alt="{{$plate->name}}">
+            @else
+            <div class="img_404"></div>
+            @endif
             <h1> {{$plate->name}} </h1>
             <p> {{$plate->ingredients}} </p>
             <strong>price:</strong> 
