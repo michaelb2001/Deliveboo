@@ -23,10 +23,9 @@
                                 Le tue categorie:
                             </div>
                             @foreach ($typeChoice as $type)
-                                <li>
+                                <li class="d-flex">
                                     {{$type['name']}}
                                 </li>
-                                
                             @endforeach
 
                             

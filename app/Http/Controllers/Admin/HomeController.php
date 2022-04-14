@@ -65,6 +65,6 @@ class HomeController extends Controller
             echo '<script>alert("inserire almeno una categoria")</script>';
         }
         
-
     }
+
 }
