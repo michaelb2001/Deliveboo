@@ -16,33 +16,38 @@
                         <ul>
                             <img src="{{ asset("storage/".$LoggedUser->img) }}" class="img_profile">
                             <li>
-                                nome: {{$LoggedUser->name}};
+                                nome: {{$LoggedUser->name}}
                             </li>
 
                             <li>
-                                email: {{$LoggedUser->email}};
+                                email: {{$LoggedUser->email}}
                             </li>
 
                             <li>
                                 nome attività : {{$LoggedUser->activity}}
                             </li>
                             <li>
-                                p. iva: {{$LoggedUser->p_iva}};
+                                p. iva: {{$LoggedUser->p_iva}}
                             </li>
                             <li>
-                                indirizzo: {{$LoggedUser->address}};
+                                indirizzo: {{$LoggedUser->address}}
                             </li>
-                            <div class="text-center">
+                            <h3 class="mt-3 text-center">
                                 LE TUE CATEGORIE
-                            </div>
-                            <div class="d-flex flex-wrap">
-                                @foreach ($LoggedUser->types as $type)
-                                <li>
-                                    {{$type['name']}}
-                                </li>
-                                
-                            @endforeach  
-                            </div>
+                            </h3>
+                            @if(count($LoggedUser->types) > 0)
+                                <div class="d-flex flex-wrap">
+                                    @foreach ($LoggedUser->types as $type)
+                                    <li>
+                                        {{$type['name']}}
+                                    </li>
+                                    
+                                @endforeach  
+                                </div>
+                            @else
+                            <h3>Attualmente il tuo ristorante non ha categorie !</h3>
+                                <h4><a href="types">Aggiungine almeno una</a></h4>
+                            @endif
     
                         </ul>
                     </div>
