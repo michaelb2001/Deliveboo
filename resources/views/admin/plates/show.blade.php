@@ -16,7 +16,7 @@
                 }
                 $plate->ingredients = implode(',',$temp);
             ?>
-            <p class="ingredients">{{$plate->ingredients}}</p>
+            <p class="ingredients text-center">{{$plate->ingredients}}</p>
             <p>{{$plate->price}} € 
                 @if($plate->visible)
                     <h3 class="visible">Il piatto è visibile</h3>

@@ -12,17 +12,11 @@
     margin-top: 30px;
 }
 
-@media screen and (max-width: 576px) {
-    .img_single_plate{
-        width: 150px;
-        height: auto;
-        border-radius: 20px;
-    }
-}
+
 
 .ingredients{
-    overflow-wrap: break-word;
-    width: 50%;
+    width: 80%;
+    overflow-x: scroll;
 }
 
 #no_image{
@@ -50,3 +44,11 @@
         }
 }
 
+@media screen and (max-width: 576px) {
+    .img_single_plate,#no_image{
+        width: 150px;
+        min-height: 100px;
+        height: auto;
+        border-radius: 20px;
+    }
+}
