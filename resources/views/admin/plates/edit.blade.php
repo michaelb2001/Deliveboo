@@ -1,67 +1,64 @@
 @extends('layouts.navbar_admin')
 
 @section('content')
-    <h1>Stai modificando <strong>{{$plate->name}}</strong></h1>
-    <form action="{{route("admin.plate.update" , $plate->id)}}" enctype="multipart/form-data" method="POST">
+    <form class="form-edit-box" action="{{route("admin.plate.update" , $plate->id)}}" enctype="multipart/form-data" method="POST">
     @csrf
     @method('PUT')
-    <div class="form-group">
-        <label for="name">Titolo</label>
-        <input value="{{old("name") ? old("name") : $plate->name}}" type="text" class="form-control @error('name') is-invalid @enderror " id="name" name="name" placeholder="titolo">
-        @error('name')
-            <div class="alert alert-danger">
-                {{$message}}
+    <h1>
+        Stai modificando <strong>{{$plate->name}}</strong>
+        <button type="submit" class="btn btn-primary">Modifica!</button>
+    </h1>
+    
+    <div class="main-box">
+        <div class="main-form-box">
+            <div class="form-group">
+                <label for="name">Nome Piatto</label>
+                <input value="{{old("name") ? old("name") : $plate->name}}" type="text" class="form-control @error('name') is-invalid @enderror " id="name" name="name" placeholder="titolo">
             </div>
-        @enderror
-    </div>
-
-    <div class="mb-0 form-group">
-        <label for="img">Aggiungi Foto</label>
-        <input type="file" name="img" class="p-1 form-control @error('img') is-invalid @enderror ">
-    </div>
-    @error('img')
-    <div class="mt-0 alert alert-danger">
-        {{$message}}
-    </div>
-    @enderror
-
-    <div class="form-group">
-        <label for="ingredients">Contenuto</label>
-        <div class="form-floating">
-            <textarea class="form-control" id="ingredients" name="ingredients" placeholder="Descrizione" style="height: 100px">{{old("ingredients") ? old("ingredients") : $plate->ingredients}}</textarea>
-        </div>
-        @error('ingredients')
-            <div class="alert alert-danger">
-                {{$message}}
-            </div>
-        @enderror
-    </div>
-
-    <div class="mb-0 form-group">
-        <label for="price">price</label>
-        <input type="number" step="0.01" name="price" class="p-1 form-control @error('price') is-invalid @enderror  " 
-        value="{{old("price") ? old("price") : $plate->price}}">
-    </div>
-    @error('price')
-    <div class="mt-0 alert alert-danger">
-        {{$message}}
-    </div>
-    @enderror
-
-    <div class="mt-4 mb-1 form-group">
-        <label for="visible"> <u>Pubblicare alla creazione ?</u> </label>
-        SI <input {{(old("visible") == "yes") ? "checked" : ""}} value="yes" type="radio" name="visible" id="visible">
-        NO <input {{(old("visible") == "no") ? "checked" : ""}} value="no" type="radio" name="visible" id="visible">
-        @error('visible')
-        <div class="alert alert-danger">
-            {{$message}}
-        </div>
-        @enderror
-    </div>
-
-    <button type="submit" class="btn btn-primary">CREA</button>
-    </form>
         
+            <div class="form-group">
+                <label for="ingredients">Ingredienti</label>
+                <div class="form-floating">
+                    <textarea class="form-control @error('ingredients') is-invalid @enderror" id="ingredients" name="ingredients" placeholder="Descrizione" style="height: 50px">{{old("ingredients") ? old("ingredients") : $plate->ingredients}}</textarea>
+                </div>
+            </div>
+        
+            <div class="mb-0 form-group">
+                <label for="price">Prezzo</label>
+                <input type="number" step="0.01" name="price" class="p-1 form-control @error('price') is-invalid @enderror  " 
+                value="{{old("price") ? old("price") : $plate->price}}">
+            </div>
+        
+            <div class="mt-4 mb-1 form-group">
+                <label for="visible"> <u>Rendere visibile alla creazione ?</u> </label>
+                SI <input {{(old("visible") == "yes") ? "checked" : ""}} value="yes" type="radio" name="visible" id="visible">
+                NO <input {{(!old("visible") || old("visible") == "no")  ? "checked" : ""}} value="no" type="radio" name="visible" id="visible">
+            </div>
+        
+            
+        </div>
+
+        <div class="form-image-box">
+            <div class="mb-0 form-group h-100 w-100">
+                <div class="image-preview">
+                    @if(isset($plate->img))
+                    <img src="{{asset('storage/'.$plate->img) }}" class="" alt="{{$plate->name}}">
+                    @else
+                    <div class="img_404"></div>
+                    @endif
+                    <h2>Modifica Immagine</h2>
+                    <input type="file" name="img" class="p-1 form-control @error('img') is-invalid @enderror ">
+                </div>
+            </div>
+            @error('img')
+            <div class="mt-0 alert alert-danger">
+                {{$message}}
+            </div>
+            @enderror
+        </div>
+    </div>
+    </form>
+
     @if ($errors->any())
         <div class="alert alert-danger mt-4">
             <ul>
