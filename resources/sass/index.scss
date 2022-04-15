@@ -2,43 +2,55 @@
     list-style-type: none;
 }
 
-
 .btn_color{
     .view{
-        background-color: #440063;
-        border-color: #440063;
+        background-color: $primary-color;
+        border-color: $primary-color;
         &:hover{
-            background-color: $primary-color;
-            border-color: $primary-color;
+            background-color: $third-color;
+            border-color: $third-color;
         }
     }
     .edit{
-        background-color: #440063;
-        border-color: #440063;
+        background-color: $primary-color;
+        border-color: $primary-color;
         &:hover{
-            background-color: #fabd01;
-            border-color: #fabd01;
+            background-color: $secondary-color;
+            border-color: $secondary-color;
         }
     }
     .delete{
-        background-color: #440063;
-        border-color: #440063;
+        background-color: $primary-color;
+        border-color: $primary-color;
         &:hover{
             background-color:red;
             border-color:red;
+            color: white;
         }
     }
 }
 
 .btn_color_add{
     .make_view_category{
-        background-color: $primary-color;
-        border-color: $primary-color;
+        background-color: $third-color;
+        border-color: $third-color;
+        color: $primary-color;
         &:hover{
-            background-color: #440063;
-            border-color: #440063;
+            background-color: $primary-color;
+            border-color: $primary-color;
+            color: $third-color;
         }
     }
+
+}
+
+.li_ing_set{
+    overflow-x: auto;
+    width: auto;
+}
+
+.li_ingredient{
+    overflow-wrap: anywhere;
 }
 
 .border_edit_plate{

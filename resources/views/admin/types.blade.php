@@ -45,8 +45,8 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" onsubmit="aggiungiCategoria()" class="btn btn-primary">
-                                    {{ __('submit') }}
+                                <button type="submit" onsubmit="aggiungiCategoria()" class="btn btn-primary standard-button">
+                                    {{ __('Conferma') }}
                                 </button>
                             </div>
                         </div>

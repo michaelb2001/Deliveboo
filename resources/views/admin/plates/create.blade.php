@@ -73,7 +73,7 @@
         </div>
 
         {{-- bottone per aggiungere il piatto --}}
-        <button type="submit" class="btn ms_button_create">CREA</button>
+        <button type="submit" class="btn ms_button_create standard-button">CREA</button>
         </form>
         
         @if ($errors->any())
