@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container-fluid d-flex flex-wrap justify-content-around">
-        <div class="col col-sm-6 col-md-6 col-lg-2 bordered">
+        <div class="col col-sm-12 col-md-10 col-lg-2 bordered text-center">
             <ul class="ul_style btn_color_add">
 
                 <li>
@@ -17,7 +17,7 @@
             </ul>
         </div>
 
-        <div class="col col-sm-6 col-md-6 col-lg-8 p-3">
+        <div class="col col-sm-12 col-md-10 col-lg-8 p-3">
             @foreach($plates as $plate)
             <div class="container d-flex flex-column justify-content-between align-items-center border_edit_plate mb-5 p-2">
                 <ul class="p-0 ul_style d-flex flex-wrap justify-content-between align-items-center w-100">
