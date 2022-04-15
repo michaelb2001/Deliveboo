@@ -3,8 +3,8 @@
 
 @section('content')
 <div class="container recap-container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row justify-content-center p-1">
+        <div class="col-12 col-sm 12 col-md-8">
             <div class="card">
                 <div class="card-header text-center">{{ __('I TUOI DATI') }}</div>
                 <div class="card-body">
@@ -14,7 +14,7 @@
                         </div>
                     @endif
                         <ul>
-                                <img src="{{ asset("storage/".$LoggedUser->img) }}" class="img_profile">
+                            <img src="{{ asset("storage/".$LoggedUser->img) }}" class="img_profile">
                             <li>
                                 nome: {{$LoggedUser->name}};
                             </li>
@@ -35,7 +35,7 @@
                             <div class="text-center">
                                 LE TUE CATEGORIE
                             </div>
-                            <div class="d-flex felx-wrap">
+                            <div class="d-flex flex-wrap">
                                 @foreach ($LoggedUser->types as $type)
                                 <li>
                                     {{$type['name']}}

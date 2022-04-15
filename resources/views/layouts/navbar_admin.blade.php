@@ -27,15 +27,15 @@
                     HomePage
                 </a>-->
 
-                <a class="navbar-brand" href="{{ url('/admin/recap') }}">
+                <a class="d-none d-xs-none d-sm-none d-md-block d-xl-block navbar-brand " href="{{ url('/admin/recap') }}">
                     Recap
                 </a>
 
-                <a class="navbar-brand" href="{{ url('/admin/types') }}">
-                    Cateogories
+                <a class="d-none d-xs-none d-sm-none d-md-block d-xl-block navbar-brand " href="{{ url('/admin/types') }}">
+                    Categories
                 </a>
                 
-                <a class="navbar-brand" href="{{ url('/admin/plate') }}">
+                <a class="d-none d-xs-none d-sm-none d-md-block d-xl-block navbar-brand " href="{{ url('/admin/plate') }}">
                     Plates
                 </a>
 
@@ -46,7 +46,17 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <a class="d-sm-block d-md-none d-lg-none navbar-link " href="{{ url('/admin/recap') }}">
+                            Recap
+                        </a>
+        
+                        <a class="d-sm-block d-md-none d-lg-none navbar-link " href="{{ url('/admin/types') }}">
+                            Cateogories
+                        </a>
+                        
+                        <a class="d-sm-block d-md-none d-lg-none navbar-link " href="{{ url('/admin/plate') }}">
+                            Plates
+                        </a>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
