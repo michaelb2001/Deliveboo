@@ -1,0 +1,51 @@
+.ul_style{
+    list-style-type: none;
+}
+
+
+.btn_color{
+    .view{
+        background-color: #440063;
+        border-color: #440063;
+        &:hover{
+            background-color: $primary-color;
+            border-color: $primary-color;
+        }
+    }
+    .edit{
+        background-color: #440063;
+        border-color: #440063;
+        &:hover{
+            background-color: #fabd01;
+            border-color: #fabd01;
+        }
+    }
+    .delete{
+        background-color: #440063;
+        border-color: #440063;
+        &:hover{
+            background-color:red;
+            border-color:red;
+        }
+    }
+}
+
+.btn_color_add{
+    .make_view_category{
+        background-color: $primary-color;
+        border-color: $primary-color;
+        &:hover{
+            background-color: #440063;
+            border-color: #440063;
+        }
+    }
+}
+
+.border_edit_plate{
+    border: 1px solid $primary-color;
+    border-radius: 25px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 $dark-color;
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+}
