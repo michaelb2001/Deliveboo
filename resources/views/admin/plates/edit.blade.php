@@ -29,33 +29,31 @@
             </div>
         
             <div class="mt-4 mb-1 form-group">
-                <label for="visible"> <u>Rendere visibile alla creazione ?</u> </label>
+                <label for="visible"> <u>Rendere visibile alla creazione ?</u> </label><br>
                 SI <input {{(old("visible") == "yes") ? "checked" : ""}} value="yes" type="radio" name="visible" id="visible">
                 NO <input {{(!old("visible") || old("visible") == "no")  ? "checked" : ""}} value="no" type="radio" name="visible" id="visible">
             </div>
         
-            <button type="submit" class="btn btn-primary w-25">Modifica!</button>
+            <button type="submit" class="btn">Modifica!</button>
             
         </div>
 
-        <div class="form-image-box">
-            <div class="mb-0 form-group h-100 w-100">
-                <div class="image-preview">
-                    @if(isset($plate->img))
-                    <img src="{{asset('storage/'.$plate->img) }}" class="" alt="{{$plate->name}}">
-                    @else
-                    <div class="img_404"></div>
-                    @endif
-                    <h2>Modifica Immagine</h2>
-                    <input type="file" name="img" class="p-1 form-control @error('img') is-invalid @enderror ">
-                </div>
+        <div class="form-image-box mb-0">
+            <div class="image-preview">
+                @if(isset($plate->img))
+                <img src="{{asset('storage/'.$plate->img) }}" class="" alt="{{$plate->name}}">
+                @else
+                <div class="img_404"></div>
+                @endif
+                <h2>Modifica Immagine</h2>
+                <input type="file" name="img" class="p-1 form-control @error('img') is-invalid @enderror ">
             </div>
-            @error('img')
-            <div class="mt-0 alert alert-danger">
-                {{$message}}
-            </div>
-            @enderror
         </div>
+        @error('img')
+        <div class="mt-0 alert alert-danger">
+            {{$message}}
+        </div>
+        @enderror
     </div>
     </form>
 
