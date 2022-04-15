@@ -21,11 +21,12 @@
                 @if($plate->visible)
                     <h3 class="visible">Il piatto è visibile</h3>
                     @else
-                        <h3 class="not_visible">Il piatto NON è visibile</h3>
+                    <h3 class="not_visible">Il piatto NON è visibile</h3>
                 @endif
+                <a href="{{route("admin.plate.edit", $plate->id)}}"><button type="button" class="btn btn-primary m-3 edit">Modifica</button></a> 
+                <a href="{{route("admin.plate.index")}}"><button type="button" class="btn btn-primary m-3 edit">Torna ai piatti</button></a> 
             </p>
         </div>
-        <a href="/admin/plate">
-            <h3 class="mt-2">Torna ai piatti</h3>
-        </a>
+       
+
 @endsection

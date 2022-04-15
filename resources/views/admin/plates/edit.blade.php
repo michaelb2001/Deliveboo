@@ -6,7 +6,6 @@
     @method('PUT')
     <h1>
         Stai modificando <strong>{{$plate->name}}</strong>
-        <button type="submit" class="btn btn-primary">Modifica!</button>
     </h1>
     
     <div class="main-box">
@@ -35,6 +34,7 @@
                 NO <input {{(!old("visible") || old("visible") == "no")  ? "checked" : ""}} value="no" type="radio" name="visible" id="visible">
             </div>
         
+            <button type="submit" class="btn btn-primary w-25">Modifica!</button>
             
         </div>
 
