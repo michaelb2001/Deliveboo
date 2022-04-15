@@ -11,7 +11,7 @@
         {{-- nome del piatto --}}
         <div class="form-group">
             <label for="name" class="ms_title_plate">Nome del piatto</label>
-            <input value="{{old("name")}}" type="text" class="form-control col-7 col-md-5 col-lg-4 ms_form_plate @error('name') is-invalid @enderror " id="name" name="name" placeholder="Titolo">
+            <input value="{{old("name")}}" type="text" class="form-control col-12 col-sm-9 col-md-5 col-lg-5 ms_form_plate @error('name') is-invalid @enderror " id="name" name="name" placeholder="Titolo">
             @error('name')
                 <div class="alert alert-danger">
                     {{$message}}
@@ -23,7 +23,7 @@
         <div class="form-group">
             <label for="ingredients" class="ms_title_ingredients">Ingredienti</label>
             <div class="form-floating">
-                <textarea class="form-control col-9 col-md-9 col-lg-5 ms_form_ingredients" id="ingredients" name="ingredients" placeholder="Descrizione" style="height: 100px">{{old('ingredients')}}</textarea>
+                <textarea class="form-control col-12 col-sm-10 col-md-9 col-lg-6 ms_form_ingredients" id="ingredients" name="ingredients" placeholder="Descrizione" style="height: 100px">{{old('ingredients')}}</textarea>
             </div>
             @error('ingredients')
                 <div class="alert alert-danger">
@@ -46,7 +46,7 @@
         {{-- immagine --}}
         <div class="mb-0 form-group">
             <label for="img" class="ms_title_img">Aggiungi immagine del piatto</label>
-            <input type="file" name="img" class="p-1 form-control col-7 col-md-5 col-lg-3 ms_form_img @error('img') is-invalid @enderror ">
+            <input type="file" name="img" class="p-1 form-control col-9 col-sm-7 col-md-5 col-lg-4 ms_form_img @error('img') is-invalid @enderror ">
         </div>
         @error('img')
         <div class="mt-0 alert alert-danger">
