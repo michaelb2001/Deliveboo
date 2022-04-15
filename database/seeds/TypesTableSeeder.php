@@ -15,10 +15,10 @@ class TypesTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $types = ['italiano','sushi','giapponese',
-                'internazionale','cinese','americano','hawaiano',
-                'arabo','turco','brasiliano','tedesco','francese',
-                'vegan','gluten free','vegetariano','celiaci'];
+        $types = ['Italiano','Sushi','Giapponese',
+                'Internazionale','Cinese','Americano','Hawaiano',
+                'Arabo','Turco','Brasiliano','Tedesco','Francese',
+                'Vegan','Gluten free','Vegetariano','Celiaci'];
 
         for($i = 0 ; $i <count($types) ; $i++){
             $newType = new Type();

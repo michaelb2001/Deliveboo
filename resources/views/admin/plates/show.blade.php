@@ -1,23 +1,31 @@
 @extends('layouts.navbar_admin')
 
 @section('content')
-        <div class="card">
+        <div class="card_plate">
             @if(isset($plate->img))
-            <img src="{{asset('storage/'.$plate->img) }}" class="img_plate" alt="{{$plate->name}}">
+            <img src="{{asset('storage/'.$plate->img) }}" class="img_single_plate" alt="{{$plate->name}}">
             @else
-            <div class="img_404"></div>
+            <div class="img_404" id="no_image"></div>
             @endif
-            <h1> {{$plate->name}} </h1>
-            <p> {{$plate->ingredients}} </p>
-            <strong>price:</strong> 
-            {{$plate->price}}
+            <h1 class="name_plate"> {{$plate->name}} </h1>
+            <?php
+                $temp = explode(',',$plate->ingredients);
+                for($i=0 ; $i<count($temp) ; $i++) {
+                    $temp[$i] = trim($temp[$i], " ");
+                    $temp[$i] = Str::ucfirst($temp[$i]);
+                }
+                $plate->ingredients = implode(',',$temp);
+            ?>
+            <p>{{$plate->ingredients}} </p>
+            <p>{{$plate->price}} € 
                 @if($plate->visible)
-                    <h3>Il piatto è visibile</h3>
+                    <h3 class="visible">Il piatto è visibile</h3>
                     @else
-                        <h3>Il piatto NON è visibile</h3>
+                        <h3 class="not_visible">Il piatto NON è visibile</h3>
                 @endif
+            </p>
         </div>
         <a href="/admin/plate">
-            <h3 class="mt-2">Torna ai plate</h3>
+            <h3 class="mt-2">Torna ai piatti</h3>
         </a>
 @endsection

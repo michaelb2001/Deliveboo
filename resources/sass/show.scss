@@ -1,0 +1,30 @@
+.card_plate{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.img_single_plate{
+    width: 500px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+#no_image{
+    width: 500px;
+    height: 300px;
+    border-radius: 20px;
+}
+
+.name_plate{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.visible, .not_visible{
+    font-size: 15px;
+    font-style: italic;
+}
+
