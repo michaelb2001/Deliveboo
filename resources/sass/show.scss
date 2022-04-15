@@ -12,6 +12,19 @@
     margin-top: 30px;
 }
 
+@media screen and (max-width: 576px) {
+    .img_single_plate{
+        width: 150px;
+        height: auto;
+        border-radius: 20px;
+    }
+}
+
+.ingredients{
+    overflow-wrap: break-word;
+    width: 50%;
+}
+
 #no_image{
     width: 500px;
     height: 300px;
@@ -26,5 +39,14 @@
 .visible, .not_visible{
     font-size: 15px;
     font-style: italic;
+}
+
+.edit_button{
+    background-color: #440063;
+        border-color: #440063;
+        &:hover{
+            background-color: #fabd01;
+            border-color: #fabd01;
+        }
 }
 

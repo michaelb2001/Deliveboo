@@ -16,14 +16,14 @@
                 }
                 $plate->ingredients = implode(',',$temp);
             ?>
-            <p>{{$plate->ingredients}} </p>
+            <p class="ingredients">{{$plate->ingredients}}</p>
             <p>{{$plate->price}} € 
                 @if($plate->visible)
                     <h3 class="visible">Il piatto è visibile</h3>
                     @else
                     <h3 class="not_visible">Il piatto NON è visibile</h3>
                 @endif
-                <a href="{{route("admin.plate.edit", $plate->id)}}"><button type="button" class="btn btn-primary m-3 edit">Modifica</button></a> 
+                <a href="{{route("admin.plate.edit", $plate->id)}}"><button type="button" class="btn btn-primary m-3 edit_button">Modifica</button></a> 
                 <a href="{{route("admin.plate.index")}}"><button type="button" class="btn btn-primary m-3 edit">Torna ai piatti</button></a> 
             </p>
         </div>
