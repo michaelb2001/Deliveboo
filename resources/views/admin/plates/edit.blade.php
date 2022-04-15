@@ -34,7 +34,7 @@
                 NO <input {{(!old("visible") || old("visible") == "no")  ? "checked" : ""}} value="no" type="radio" name="visible" id="visible">
             </div>
         
-            <button type="submit" class="btn">Modifica!</button>
+            <button type="submit" class="btn standard-button">Modifica!</button>
             
         </div>
 
