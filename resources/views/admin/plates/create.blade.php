@@ -35,7 +35,7 @@
         {{-- prezzo --}}
         <div class="mb-3 form-group">
             <label for="price" class="ms_title_price">Prezzo</label>
-            <input type="number" step="0.01" name="prezzo" class="p-1 form-control col-2 col-md-1 col-lg-1 ms_form_price @error('price') is-invalid @enderror ">
+            <input type="number" step="0.01" name="price" class="p-1 form-control col-2 col-md-1 col-lg-1 ms_form_price @error('price') is-invalid @enderror ">
         </div>
         @error('price')
         <div class="mt-0 alert alert-danger">
