@@ -17,11 +17,6 @@ import Vue from "vue";
                     name: "home",
                     component: Home
                 },
-                {
-                    path: "*",
-                    name: "page-404",
-                    component: NotFound
-                },
             ]
         });
 
