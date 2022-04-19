@@ -33,7 +33,7 @@
         </div>
 
         {{-- prezzo --}}
-        <div class="mb-3 form-group">
+        <div class="mb-0 form-group">
             <label for="price" class="ms_title_price">Prezzo</label>
             <input value="{{old("price")}}" type="number" step="0.01" name="price" class="p-1 form-control col-3 col-md-2 col-lg-2 ms_form_price @error('price') is-invalid @enderror ">
         </div>

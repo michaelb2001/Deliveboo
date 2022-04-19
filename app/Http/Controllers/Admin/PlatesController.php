@@ -75,13 +75,10 @@ class PlatesController extends Controller
     public function show(Plate $plate)
     {
         if($plate->user_id != Auth::user()->id){
-            $plates = Plate::where("user_id",Auth::user()->id)->get();
             echo '<script>alert("piatto non disponibile. Ecco i tuoi piatti")</script>';
-            return view('admin.plates.index',compact('plates'));
-        }else{
+            return redirect()->Route('admin.plate.index');
+        }else
             return view('admin.plates.show' , compact('plate'));
-        }
-        
     }
 
     /**
@@ -93,14 +90,10 @@ class PlatesController extends Controller
     public function edit(Plate $plate)
     {
         if($plate->user_id != Auth::user()->id){
-            $plates = Plate::where("user_id",Auth::user()->id)->get();
             echo '<script>alert("piatto non disponibile. Ecco i tuoi piatti")</script>';
-            return view('admin.plates.index',compact('plates'));
-            
-        }else{
+            return redirect()->Route('admin.plate.index');
+        }else
             return view('admin.plates.edit',compact('plate'));
-        }
-        
     }
 
     /**

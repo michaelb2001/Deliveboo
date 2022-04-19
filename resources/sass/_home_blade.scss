@@ -1,7 +1,7 @@
 
     .checkbox_list{
         height: 150px;
-        overflow-y: scroll;
+        overflow-y: auto;
         padding-top: 15px;
     
         ::-webkit-scrollbar {

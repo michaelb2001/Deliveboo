@@ -102,3 +102,41 @@
     </div>
 </body>
 </html>
+
+<script>
+    let count = 0;
+    let start = 0;
+    let types = document.getElementsByClassName('type-button-all');
+    function countType(startUp , check){
+        start = startUp;
+
+        if(start >= 4){
+            for (let i = 0; i < types.length; i++){ 
+                types[i].checked = false;
+                types[i].setAttribute("disabled", "disabled");
+                types[i].className += " are-disabled";
+            }
+            return;
+        }
+
+        if(check.checked == true)
+            count ++;
+        else
+            count --;
+
+        if(count < 0)
+            count = 0;
+
+        if(count+start >= 4){
+            for (let i = 0; i < types.length; i++) 
+                if(types[i].checked == false){
+                    types[i].setAttribute("disabled", "disabled");
+                    types[i].className += " are-disabled";
+                }
+        }else
+            for (let i = 0; i < types.length; i++){ 
+                types[i].removeAttribute("disabled");
+                types[i].classList.remove("are-disabled");
+            }
+    }
+</script>

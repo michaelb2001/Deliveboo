@@ -38,12 +38,12 @@
                     
                     <form method="GET" class="form_box" action="{{route('admin.types')}}">
                         @csrf
-                    <h3>Aggiungi categoria ristorante:</h3>
+                    <h3>Aggiungi categoria ristorante: solo 4</h3>
                         <div class="checkbox_list d-flex flex-wrap justify-content-start p-2">
-                        @foreach ($types as $type)
+                        @foreach ($types as $index => $type)
                             <div class="my-2 ms-1 input-type-box"> 
                                 <div class="">
-                                    <input type="checkbox" class="test d-none btn-check" name="check[]" value="{{$type->id}}" id="{{$type->name}}">
+                                    <input onclick="countType({{count($typeChoice)}} , this)" type="checkbox" class="test type-button-all d-none btn-check" name="check[]" value="{{$type->id}}" id="{{$type->name}}">
                                     <label class="p-2 test" for="{{$type->name}}">{{$type->name}}</label>
                                 </div>
                             </div> 
@@ -65,3 +65,5 @@
     </div>
 </div>
 @endsection
+
+

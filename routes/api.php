@@ -19,5 +19,6 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Route::get("/plates","Api\PlatesController@index");
-
 Route::get("/users","Api\PlatesController@users");
+Route::get("/type/{type_id}","Api\PlatesController@users_type");
+Route::get("/user/{id}","Api\PlatesController@user");
