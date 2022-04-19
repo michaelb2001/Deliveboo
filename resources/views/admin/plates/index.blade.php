@@ -4,7 +4,7 @@
 @section('content')
     <div class="container-fluid d-flex flex-wrap justify-content-around">
         <div class="col col-sm-12 col-md-10 col-lg-2 bordered text-center">
-            <ul class="ul_style btn_color_add">
+            <ul class="p-0 ul_style btn_color_add">
 
                 <li>
                     <a href="{{route("admin.plate.create")}}"><button type="button" class="btn btn-primary m-3 make_view_category standard-button">Crea piatto</button></a>
@@ -47,7 +47,7 @@
                         <div class="d-flex">
                             <strong>Prezzo:</strong> 
                             <li class="mx-2">
-                                {{$plate->price}}
+                                {{number_format(round($plate->price, 2), 2)}} €
                             </li>
                         </div>
                         <li>
@@ -58,7 +58,7 @@
                             @endif
                         </li>
                     </div>
-                    <div class="col-12 col-sm-8 col-md-6 d-flex justify-content-center">
+                    <div class="m-0-auto col-12 col-sm-8 col-md-6 d-flex justify-content-center">
                         @if(isset($plate->img))
                             <img src="{{asset('storage/'.$plate->img) }}" class="img_plate" alt="{{$plate->name}}">
                         @else
@@ -67,12 +67,11 @@
                     </div>
                 </ul>
 
-                <div class="d-flex flex-wrap btn_color">
+                <div class="d-flex justify-content-center align-items-center flex-wrap btn_color">
                     <a href="{{route("admin.plate.show", $plate->id)}}"><button type="button" class="btn btn-primary m-3 view standard-button">Visualizza</button></a>  <!--con questo bottone richiamo la rotta plates/show dove show sarà il numero id del mio elemento.Quindi verrò indirizzato alla vista show.blade.php-->
                     <a href="{{route("admin.plate.edit", $plate->id)}}"><button type="button" class="btn btn-primary m-3 edit standard-button">Modifica</button></a>  <!--con questo bottone richiamo la rotta plates/edit dove potrò modificare il mio elemento.Quindi verrò indirizzato alla vista edit.blade.php-->
-                    <form action="{{route("admin.plate.destroy", $plate->id)}}" method="POST" onsubmit="return confirm('sicuro?')">
+                    <form action="{{route("admin.plate.destroy", $plate->id)}}" method="POST" onsubmit="return confirm('ATTENZIONE! \nStai per cancellare {{$plate->name}}')">
                         @csrf
-                        
                         @method("DELETE")
                         <button type="submit" class="btn btn-danger m-3 delete standard-button">Elimina</button>
                     </form>

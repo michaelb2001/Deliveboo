@@ -21,22 +21,22 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="main-navbar navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <!--<a class="navbar-brand" href="{{ url('/') }}">
                     HomePage
                 </a>-->
 
-                <a class="d-none d-xs-none d-sm-none d-md-block d-xl-block navbar-brand " href="{{ url('/admin/recap') }}">
-                    Recap
+                <a class="navbar-hover d-none d-xs-none d-sm-none d-md-block d-xl-block navbar-brand " href="{{ url('/admin/recap') }}">
+                    Profilo
                 </a>
 
-                <a class="d-none d-xs-none d-sm-none d-md-block d-xl-block navbar-brand " href="{{ url('/admin/types') }}">
-                    Categories
+                <a class="navbar-hover d-none d-xs-none d-sm-none d-md-block d-xl-block navbar-brand " href="{{ url('/admin/types') }}">
+                    Categorie
                 </a>
                 
-                <a class="d-none d-xs-none d-sm-none d-md-block d-xl-block navbar-brand " href="{{ url('/admin/plate') }}">
-                    Plates
+                <a class="navbar-hover d-none d-xs-none d-sm-none d-md-block d-xl-block navbar-brand " href="{{ url('/admin/plate') }}">
+                    Piatti
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -81,7 +81,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Esci') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -94,8 +94,9 @@
                 </div>
             </div>
         </nav>
+        <div class="space-after-navbar"></div> <!-- css in globals.scss -->
 
-        <main class="py-4">
+        <main class="py-3">
             @yield('content')
         </main>
     </div>

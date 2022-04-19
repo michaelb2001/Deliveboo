@@ -22,7 +22,6 @@ class TypesTableSeeder extends Seeder
 
         for($i = 0 ; $i <count($types) ; $i++){
             $newType = new Type();
-            //$newType->name = implode(",",$faker->randomElements(['italiano','sushi','giapponese','internazionale','cinese','americano'],1));
             $newType->name = $types[$i];
             $newType->save();
     

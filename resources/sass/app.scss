@@ -8,51 +8,10 @@
 @import '~bootstrap/scss/bootstrap';
 
 @import 'home_blade';
-
+@import 'globals';
 @import 'index';
 @import 'create';
 @import 'edit';
 @import 'show';
 @import 'recap';
-
-a.navbar-link{
-    color:rgba(0, 0, 0, 0.9)!important;
-}
-img{
-    width: 80%;
-    border-radius:10px;
-}
-
-.img_profile{
-    object-fit: cover;
-    border-radius: 50%;
-    border: 1px solid $light-color;
-    width: 150px;
-    height: 150px;
-}
-.img_plate{
-    object-fit: cover;
-    border-radius: 50%;
-    border: 1px solid $light-color;
-    width: 100px;
-    height: 100px;
-}
-
-
-.img_404{
-    background-image: url(https://consumer-component-library.roocdn.com/25.27.6/static/images/placeholder.svg);
-    background-position: center center;
-    background-size: cover;
-    border-radius: 50%;
-    border: 1px solid $light-color;
-    width: 100px;
-    height: 100px;
-}
-
-@media screen and ( max-width:280px) {
-    img{
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-    }
-}
+@import 'types';

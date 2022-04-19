@@ -24,7 +24,7 @@
                 </li>
                 @endforeach
             </ul>
-            <p>{{$plate->price}} € 
+            <p>{{number_format(round($plate->price, 2), 2)}} € 
                 @if($plate->visible)
                     <h3 class="visible">Il piatto è visibile</h3>
                     @else

@@ -11,7 +11,7 @@
         {{-- nome del piatto --}}
         <div class="form-group">
             <label for="name" class="ms_title_plate">Nome del piatto</label>
-            <input value="{{old("name")}}" type="text" class="form-control col-12 col-sm-9 col-md-5 col-lg-5 ms_form_plate @error('name') is-invalid @enderror " id="name" name="name" placeholder="Titolo">
+            <input value="{{old("name")}}" type="text" class="form-control col-12 col-sm-9 col-md-5 col-lg-5 ms_form_plate @error('name') is-invalid @enderror " id="name" name="name" placeholder="Nome">
             @error('name')
                 <div class="alert alert-danger">
                     {{$message}}
@@ -23,7 +23,7 @@
         <div class="form-group">
             <label for="ingredients" class="ms_title_ingredients">Ingredienti</label>
             <div class="form-floating">
-                <textarea class="form-control col-12 col-sm-10 col-md-9 col-lg-6 ms_form_ingredients" id="ingredients" name="ingredients" placeholder="Descrizione" style="height: 100px">{{old('ingredients')}}</textarea>
+                <textarea class="form-control col-12 col-sm-10 col-md-9 col-lg-6 ms_form_ingredients" id="ingredients" name="ingredients" placeholder="Aggiungi Ingredienti" style="height: 100px">{{old('ingredients')}}</textarea>
             </div>
             @error('ingredients')
                 <div class="alert alert-danger">
@@ -35,7 +35,7 @@
         {{-- prezzo --}}
         <div class="mb-3 form-group">
             <label for="price" class="ms_title_price">Prezzo</label>
-            <input value="{{old("price")}}" type="number" step="0.01" name="price" class="p-1 form-control col-3 col-md-1 col-lg-1 ms_form_price @error('price') is-invalid @enderror ">
+            <input value="{{old("price")}}" type="number" step="0.01" name="price" class="p-1 form-control col-3 col-md-2 col-lg-2 ms_form_price @error('price') is-invalid @enderror ">
         </div>
         @error('price')
         <div class="mt-0 alert alert-danger">

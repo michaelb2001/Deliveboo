@@ -12,11 +12,12 @@ class PlatesTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for($i = 0 ; $i <10; $i++){
+        $name = ['Margherita','Diavola','Capricciosa','Mimosa'];
+        for($i = 0 ; $i <4; $i++){
             $newPlate = new Plate();
-            $newPlate->name = $faker->firstName(20);
-            $newPlate->ingredients = implode(",",$faker->randomElements(['pomodoro','basilico','aglio','acciughe','cipolla'],3));
-            $newPlate->price = $faker->randomFloat(2,0,300);
+            $newPlate->name = $name[$i];
+            $newPlate->ingredients = implode(",",$faker->randomElements(['pomodoro','basilico','aglio','acciughe','cipolla','salsa','mozzarella','salame','mais','panna'],3));
+            $newPlate->price = $faker->randomFloat(2,0,100);
             $newPlate->visible = $faker->boolean();
             $newPlate->img = NULL;
             $newPlate->user_id = 1;

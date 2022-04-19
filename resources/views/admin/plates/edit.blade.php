@@ -12,13 +12,13 @@
         <div class="main-form-box">
             <div class="form-group">
                 <label for="name">Nome Piatto</label>
-                <input value="{{old("name") ? old("name") : $plate->name}}" type="text" class="form-control @error('name') is-invalid @enderror " id="name" name="name" placeholder="titolo">
+                <input value="{{old("name") ? old("name") : $plate->name}}" type="text" class="form-control @error('name') is-invalid @enderror " id="name" name="name" placeholder="Nome">
             </div>
         
             <div class="form-group">
                 <label for="ingredients">Ingredienti</label>
                 <div class="form-floating">
-                    <textarea class="form-control @error('ingredients') is-invalid @enderror" id="ingredients" name="ingredients" placeholder="Descrizione" style="height: 50px">{{old("ingredients") ? old("ingredients") : $plate->ingredients}}</textarea>
+                    <textarea class="form-control @error('ingredients') is-invalid @enderror" id="ingredients" name="ingredients" placeholder="Aggiungi Ingredienti" style="height: 50px">{{old("ingredients") ? old("ingredients") : $plate->ingredients}}</textarea>
                 </div>
             </div>
         
@@ -30,6 +30,7 @@
         
             <div class="mt-4 mb-1 form-group">
                 <u>Rendere visibile alla creazione ?</u>
+                <br class="d-sm-none">
                 <span class="ms_input_yes">
                     <input class="d-none" {{((old("visible") == null) ? ($plate->visible == 1) ? "checked" : "" : (old("visible") == "yes")) ? "checked" : ""}} value="yes" type="radio" name="visible" id="visible">
                     <label class="visible" for="visible">
@@ -52,10 +53,11 @@
             <div class="image-preview">
                 @if(isset($plate->img))
                 <img src="{{asset('storage/'.$plate->img) }}" class="" alt="{{$plate->name}}">
+                <h2>Modifica Immagine</h2>
                 @else
                 <div class="img_404"></div>
+                <h2>Aggiungi Immagine</h2>
                 @endif
-                <h2>Modifica Immagine</h2>
                 <input type="file" name="img" class="p-1 form-control @error('img') is-invalid @enderror ">
             </div>
         </div>

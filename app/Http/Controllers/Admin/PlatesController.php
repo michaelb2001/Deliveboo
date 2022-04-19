@@ -14,7 +14,7 @@ class PlatesController extends Controller
         "name" => "required",
         "ingredients" => "required",
         "visible" => "required",
-        "price" => "min : 1",
+        "price" => "numeric|min : 0.20",
         "img" => "image",
     ];
     /**
@@ -78,7 +78,6 @@ class PlatesController extends Controller
             $plates = Plate::where("user_id",Auth::user()->id)->get();
             echo '<script>alert("piatto non disponibile. Ecco i tuoi piatti")</script>';
             return view('admin.plates.index',compact('plates'));
-            
         }else{
             return view('admin.plates.show' , compact('plate'));
         }
@@ -123,6 +122,8 @@ class PlatesController extends Controller
 
         if($data["visible"] == 'no')
             $plate->visible = false;
+        else
+            $plate->visible = true;
 
         $plate->user_id = Auth::user()->id;
 
