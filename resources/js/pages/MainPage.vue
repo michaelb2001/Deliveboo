@@ -1,12 +1,12 @@
 <template>
-<div class="container">
-  <router-view :key="$route.path"></router-view>
-</div>
+  <div class="container">
+      sono la main page
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'Main'
+    name:"MainPage",
 }
 </script>
 

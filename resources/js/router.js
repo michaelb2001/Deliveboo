@@ -4,10 +4,7 @@ import Vue from "vue";
         Vue.use(VueRouter);
 
         import Home from "./pages/Home";
-        /*import SinglePost from "./pages/SinglePost";
-        import SearchedUser from "./pages/SearchedUser";
-        import SearchTag from "./pages/SearchTag";
-        import NotFound from "./pages/NotFound";*/
+        import MainPage from "./pages/MainPage";
 
         const router = new VueRouter({
             mode: "history",
@@ -16,6 +13,11 @@ import Vue from "vue";
                     path: "/",
                     name: "home",
                     component: Home
+                },
+                {
+                    path: "/main",
+                    name: "MainPage",
+                    component: MainPage
                 },
             ]
         });
