@@ -8,6 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
+                    <h1>Diventa subito partner di Deliveboo</h1>
                     <form method="POST" enctype="multipart/form-data" action="{{ route('register') }}">
                         @csrf
 

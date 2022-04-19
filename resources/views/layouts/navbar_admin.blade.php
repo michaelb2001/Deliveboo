@@ -10,14 +10,14 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/admin.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -26,6 +26,9 @@
                 <!--<a class="navbar-brand" href="{{ url('/') }}">
                     HomePage
                 </a>-->
+                <a class="navbar-hover d-none d-xs-none d-sm-none d-md-block d-xl-block navbar-brand " href="{{ url('/') }}">
+                    Homepage
+                </a>
 
                 <a class="navbar-hover d-none d-xs-none d-sm-none d-md-block d-xl-block navbar-brand " href="{{ url('/admin/recap') }}">
                     Profilo
