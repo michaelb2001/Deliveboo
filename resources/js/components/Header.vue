@@ -28,7 +28,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/admin" class="nav-link"> 
+          <a href="/admin/recap" class="nav-link"> 
             <i class="fa-solid fa-house"></i> Registrati o Accedi
           </a>
         </li>
