@@ -26,3 +26,6 @@ Route::get("/user/{id}","Api\PlatesController@user");
 
 Route::get("/searcht/{name}","Api\PlatesController@searchTypes");
 Route::get("/searchu/{id}","Api\PlatesController@searchUsers");
+
+Route::get("/allUsers","Api\PlatesController@getUsers");
+Route::get("/allTypes","Api\PlatesController@getAllTypes");

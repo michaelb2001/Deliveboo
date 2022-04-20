@@ -3,7 +3,6 @@ import Vue from "vue";
 
         Vue.use(VueRouter);
 
-        import Home from "./pages/Home";
         import MainPage from "./pages/MainPage";
 
         const router = new VueRouter({
@@ -11,14 +10,9 @@ import Vue from "vue";
             routes: [
                 {
                     path: "/",
-                    name: "home",
-                    component: Home
-                },
-                {
-                    path: "/main",
-                    name: "MainPage",
+                    name: "main",
                     component: MainPage
-                },
+                }
             ]
         });
 

@@ -58,4 +58,9 @@ class PlatesController extends Controller
         }
         return response()->json($users);
     }
+
+    public function getAllTypes(){
+        $types = Type::all();
+        return response()->json($types);
+    }
 }
