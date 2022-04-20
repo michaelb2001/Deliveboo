@@ -44,13 +44,23 @@ export default {
   data(){
     return{
       inputText: "",
+      urlTypes : '/api/searcht/'+this.inputText
     }
   },
   methods: {
     search(){
       console.log(this.inputText);
+      axios.get(this.urlTypes)
+        .then(function (response) {
+      // handle success
+        console.log(this.urlTypes);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
     },
-  },
+  }
 }
 </script>
 

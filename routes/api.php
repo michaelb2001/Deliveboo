@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\PlatesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,6 @@ Route::get("/plates","Api\PlatesController@index");
 Route::get("/users","Api\PlatesController@users");
 Route::get("/type/{type_id}","Api\PlatesController@users_type");
 Route::get("/user/{id}","Api\PlatesController@user");
+
+Route::get("/searcht/{name}","Api\PlatesController@searchTypes");
+Route::get("/searchu/{id}","Api\PlatesController@searchUsers");
