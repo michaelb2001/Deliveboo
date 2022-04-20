@@ -1,12 +1,17 @@
 <template>
   <div class="container">
-      <div class="address">
-        main page
+      <div class="cards">
+        <div v-for="(user,index) in usersArr" :key="index" class="card">
+           <Card :user="user"/>
+        </div>
+       
       </div>
   </div>
 </template>
 
 <script>
+import Card from "../common/Card.vue";
+
 export default {
     name:"MainPage",
     data(){
@@ -40,6 +45,10 @@ export default {
         // handle error
         console.log(error);
       });
+    },
+
+    components:{
+      Card
     }
 
 }
