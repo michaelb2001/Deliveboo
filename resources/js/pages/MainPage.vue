@@ -2,9 +2,10 @@
   <div class="container">
       <div class="cards">
         <div v-for="(user,index) in usersArr" :key="index" class="card">
-           <Card :user="user"/>
+          <router-link class="" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
+             <Card :user="user"/>
+          </router-link>
         </div>
-       
       </div>
   </div>
 </template>

@@ -20,12 +20,13 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Route::get("/plates","Api\PlatesController@index");
-Route::get("/users","Api\PlatesController@users");
+Route::get("/users","Api\PlatesController@users"); //prende tutti i ristoranti
 Route::get("/type/{type_id}","Api\PlatesController@users_type");
 Route::get("/user/{id}","Api\PlatesController@user");
 
 Route::get("/searcht/{name}","Api\PlatesController@searchTypes");
 Route::get("/searchu/{id}","Api\PlatesController@searchUsers");
 
-Route::get("/allUsers","Api\PlatesController@getUsers");
 Route::get("/allTypes","Api\PlatesController@getAllTypes");
+
+Route::get("/card-user/{activity}","Api\PlatesController@getUser"); //prende lo specifico ristorante

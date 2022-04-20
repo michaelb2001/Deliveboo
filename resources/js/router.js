@@ -4,6 +4,8 @@ import Vue from "vue";
         Vue.use(VueRouter);
 
         import MainPage from "./pages/MainPage";
+        import CardUser from "./pages/CardUser";
+        import NotFound from "./pages/NotFound";
 
         const router = new VueRouter({
             mode: "history",
@@ -12,7 +14,17 @@ import Vue from "vue";
                     path: "/",
                     name: "main",
                     component: MainPage
-                }
+                },
+                {
+                    path: "/card-user/:activity",
+                    name: "CardUser",
+                    component: CardUser
+                },
+				{
+		            path: "*",
+		            name: "page-404",
+		            component: NotFound
+		        },
             ]
         });
 

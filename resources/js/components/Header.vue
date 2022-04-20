@@ -11,6 +11,7 @@
         <div class="input-form">
           <input @keyup="search()" v-model="inputText" class="form-control" type="text" placeholder="Ristoranti, Tipologie" aria-label="Search">
           <div v-show="inputText != null && inputText != '' " class="input-toggle">
+            
           </div>
       </div>
       </div>
@@ -203,6 +204,7 @@ export default {
     // animation: toggle 500ms linear forwards;
     left: 0;
     position: absolute;
+    z-index: 999;
     width: 100%;
     background-color: #EFF0F2;
 }

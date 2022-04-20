@@ -63,4 +63,11 @@ class PlatesController extends Controller
         $types = Type::all();
         return response()->json($types);
     }
+
+    public function getUser($activity = null){
+        $user = User::all()->where('activity',$activity)->first();
+        $user->plates;
+        $user->types;
+        return response()->json($user);
+    }
 }
