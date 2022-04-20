@@ -10,6 +10,12 @@
         <i class="fa-solid fa-magnifying-glass"></i>
         <form class="input-form">
           <input @keyup="search()" v-model="inputText" class="form-control" type="search" placeholder="Ristoranti, Tipologie" aria-label="Search">
+          <div v-show="inputText != null && inputText != '' " class="input-toggle">
+            ciao
+            ciao
+            ciao
+            ciao
+          </div>
       </form>
       </div>
     <!--<router-link class="title" :to="{name : 'home'}">Isntagram</router-link>-->
@@ -44,16 +50,45 @@ export default {
   data(){
     return{
       inputText: "",
-      urlTypes : '/api/searcht/'+this.inputText
+      urlTypes : '/api/searcht/',
+      urlUsers : '/api/searchu/',
+      typesArr: [],
+      usersArr: []
     }
   },
   methods: {
     search(){
-      console.log(this.inputText);
-      axios.get(this.urlTypes)
-        .then(function (response) {
+      this.searchT();
+      this.searchU();
+    },
+    searchT(){
+      let adaptText = this.inputText.replace(/\s+/g, '');
+      adaptText = adaptText.toLowerCase();
+      if(adaptText == ''){
+        return 0;
+      }
+      axios.get(this.urlTypes+adaptText)
+        .then((response) => {
       // handle success
-        console.log(this.urlTypes);
+        this.typesArr.push (...response.data);
+        console.log(this.typesArr);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+    },
+    searchU(){
+      let adaptText = this.inputText.replace(/\s+/g, '');
+      adaptText = adaptText.toLowerCase();
+      if(adaptText == ''){
+        return 0;
+      }
+      axios.get(this.urlUsers+adaptText)
+        .then((response) => {
+      // handle success
+        this.usersArr.push (...response.data);
+        console.log(this.usersArr);
       })
       .catch(function (error) {
         // handle error
@@ -117,6 +152,7 @@ export default {
 
     .input-form{
       width: 100%;
+      position: relative;
 
       input{
         width: 100%;
@@ -163,6 +199,20 @@ export default {
       margin: 10px 20px!important;
       width: 60%;
     }
+  }
+}
+
+.input-toggle{
+    height: 0px;
+    // animation: toggle 500ms linear forwards;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    background-color: #EFF0F2;
+}
+@keyframes toggle {
+  to {min-height: 10px;
+    height: unset;
   }
 }
 </style>
