@@ -37,10 +37,16 @@ body{
     background-color: $primary-color;
     color: white;
     font-weight: bold;
+    width: 130px;
 }
 
 .ms_button_create:hover{
     background-color:rgba(0, 204, 188, 0.7); 
     color: white;
+}
+
+// immagine logo
+.img_create_logo{
+    width: 100%;
 }
 
