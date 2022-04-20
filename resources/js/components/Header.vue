@@ -8,15 +8,11 @@
 
       <div class="input-box d-flex justify-content-center align-items-center">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <form class="input-form">
-          <input @keyup="search()" v-model="inputText" class="form-control" type="search" placeholder="Ristoranti, Tipologie" aria-label="Search">
+        <div class="input-form">
+          <input @keyup="search()" v-model="inputText" class="form-control" type="text" placeholder="Ristoranti, Tipologie" aria-label="Search">
           <div v-show="inputText != null && inputText != '' " class="input-toggle">
-            ciao
-            ciao
-            ciao
-            ciao
           </div>
-      </form>
+      </div>
       </div>
     <!--<router-link class="title" :to="{name : 'home'}">Isntagram</router-link>-->
 
@@ -57,7 +53,7 @@ export default {
     }
   },
   methods: {
-    search(){
+    search(e){
       this.searchT();
       this.searchU();
     },
