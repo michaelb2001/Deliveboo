@@ -57,6 +57,7 @@ class PlatesController extends Controller
             $users = User::whereRaw("REPLACE(activity, ' ' ,'') LIKE ?", $input.'%')->get();
             foreach($users as $user){
                 $user->plates;
+                $user->types;
             }
         }
         return response()->json($users);
