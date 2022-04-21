@@ -40,8 +40,11 @@ export default {
         height: 300px;
         border-radius: 15px;
         .bg_image{
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            
             img{
-                flex-shrink: 0;
                 height:172px;
                 border-radius: 15px 15px 0px 0px;
             }
