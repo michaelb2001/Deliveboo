@@ -21,7 +21,17 @@
               </div>
             </div>
             <div class="col">
-              <button type="button" class="btn btn-primary">{{plate.price}}€</button>
+              <div class="row flex-column">
+                <div class="col">
+                  <button type="button" class="btn btn-primary">-</button>
+                  
+                  <button type="button" class="btn btn-primary">+</button>
+                </div>
+                <div class="col">
+                  <button type="button" class="btn btn-primary">{{plate.price}}€</button>
+                </div>
+              </div>
+              
             </div>
           </div>
         </div>
