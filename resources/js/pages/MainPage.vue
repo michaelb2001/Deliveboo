@@ -34,7 +34,7 @@
           </div>
       </div>
         <div class="w-100 flex-wrap d-flex justify-content-start" v-if="usersArr.length > 0" >
-          <div v-for="(user,index) in usersArr" :key="'users'+index" class="m-3 card">
+          <div v-for="(user,index) in usersArr" :key="'users'+index" class="m-3">
             <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
               <Card :user="user"/>
             </router-link>
