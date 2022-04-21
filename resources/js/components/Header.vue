@@ -10,9 +10,22 @@
         <i class="fa-solid fa-magnifying-glass"></i>
         <div class="input-form">
           <input @keyup="search()" v-model="inputText" class="form-control" type="text" placeholder="Ristoranti, Tipologie" aria-label="Search">
-          <div v-show="inputText != null && inputText != '' " class="input-toggle">
-            
+          
+          <div v-show="load" class="input-toggle">
+            <div class="users">
+              <div class="user" v-for="(user,index) in usersArr"  :key="'userSearched'+index">
+                <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
+                  <div class="image">
+                    <img v-if="user.img" :src="`../storage/${user.img}`">
+                  </div>
+                  <div class="name">
+                    {{user.activity}}
+                  </div>
+                </router-link>
+              </div>
+            </div>
           </div>
+
       </div>
       </div>
     <!--<router-link class="title" :to="{name : 'home'}">Isntagram</router-link>-->
@@ -50,7 +63,8 @@ export default {
       urlTypes : '/api/searcht/',
       urlUsers : '/api/searchu/',
       typesArr: [],
-      usersArr: []
+      usersArr: [],
+      load: false,
     }
   },
   methods: {
@@ -67,8 +81,9 @@ export default {
       axios.get(this.urlTypes+adaptText)
         .then((response) => {
       // handle success
+        this.usersArr = [];
         this.typesArr.push (...response.data);
-        console.log(this.typesArr);
+        this.load = true;
       })
       .catch(function (error) {
         // handle error
@@ -98,7 +113,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../sass/front.scss';
-
 .navbar-light .navbar-toggler {
     margin: 0 20px;
 }
@@ -162,6 +176,7 @@ export default {
 
         &:focus{
           color: #495057;
+          background-color: white;
           outline: 2px solid black;
           box-shadow: unset;
         }
@@ -203,13 +218,55 @@ export default {
 }
 
 .input-toggle{
-    height: 0px;
+  min-height: 0;
+    //height: 0px;
     // animation: toggle 500ms linear forwards;
     left: 0;
+    top: 50px;
     position: absolute;
     z-index: 999;
     width: 100%;
-    background-color: #EFF0F2;
+    padding: 0 15px;
+    background-color: white;
+    //background-color: #EFF0F2;
+    
+    .user{
+      height: 70px;
+      margin: 10px 0;
+    }
+
+    .link-card{
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      height: 100%;
+
+      &:hover{
+        background-color: #EFF0F2;
+      }
+
+      .image{
+        height: 70px;
+        border-radius: 8px;
+        width: 70px;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+
+        img{
+          min-width: 100%;
+          min-height: 100%;
+          flex-shrink: 0;
+        }
+      }
+
+      .name{
+        margin: 0 15px;
+        font-weight: bold;
+        color: black;
+        font-size: 1.2em;
+      }
+    }
 }
 @keyframes toggle {
   to {min-height: 10px;
