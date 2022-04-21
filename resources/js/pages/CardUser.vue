@@ -1,11 +1,16 @@
 <template>
   <div v-if="user" class="container">
-      <h1>Nome</h1>
-      {{user.activity}}
-      <h1>tipi</h1>
-      <div v-for="(type,index) in user.types" :key="'type'+index" class="type">
-          {{type.name}}
+      <div class="image-info">
+          <div class="image">
+            <img v-if="user.img" :src="`../storage/${user.img}`">
+        </div>
+      <div class="info-user">
+          <h1>{{user.activity}}</h1>
+          <span v-for="(type,index) in user.types" :key="'type'+index" class="type">{{type.name}} <span v-if="index != user.types.length - 1"> · </span></span>
+        <p>Chiude alle 22:00·Consegna gratuita·Minimo d'ordine: 8,00 €</p>
       </div>
+      
+    </div>
 
     <h1>piatti</h1>
     <div v-for="(plate,index) in user.plates" :key="'plate'+index">
@@ -62,6 +67,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.image-info{
+    display: flex;
+    margin-top: 30px;
+    border-bottom: 1px solid lightgray;
+    padding: 33px;
+
+    .image{
+        margin-right: 30px;
+    }
+
+    img{
+        width: 380px;
+        border-radius: 6px;
+    }
+
+    .info-user{
+        width: 30%;
+
+        h1{
+        font-weight: bold;
+
+        .type{
+            margin-bottom: 10px;
+        }
+    }
+}
+}
+
+
 .card-plate-box{
     cursor: pointer;
 }
