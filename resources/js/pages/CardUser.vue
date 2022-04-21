@@ -15,7 +15,7 @@
     <hr>
 
     <h1>piatti</h1>
-    <div class="d-flex">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 ms_row_plate">
         <div v-for="(plate,index) in user.plates" :key="'plate'+index">
             <div @click="showFocusCard(plate)" class="card-plate-box">
                 <CardPlate :plate="plate"/>
