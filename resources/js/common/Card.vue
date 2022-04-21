@@ -37,17 +37,12 @@ export default {
             text-decoration: none;
         }
         width: 260px;
-        min-height: 280px;
+        height: 300px;
         border-radius: 15px;
         .bg_image{
-            display: flex;
-            justify-content: center;
-            overflow: hidden;
-            height: 258px;
             img{
                 flex-shrink: 0;
-                min-width: 100%;
-                min-width: 258px;
+                height:172px;
                 border-radius: 15px 15px 0px 0px;
             }
         }
