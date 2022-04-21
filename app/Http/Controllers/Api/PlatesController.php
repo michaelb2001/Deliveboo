@@ -55,6 +55,9 @@ class PlatesController extends Controller
             $new_str = preg_replace("/\s+/", "*", $input);
             $input = $new_str;
             $users = User::whereRaw("REPLACE(activity, ' ' ,'') LIKE ?", $input.'%')->get();
+            foreach($users as $user){
+                $user->plates;
+            }
         }
         return response()->json($users);
     }
