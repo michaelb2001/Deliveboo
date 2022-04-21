@@ -117,4 +117,15 @@ class PlatesController extends Controller
         
         return response()->json($finalArray);
     }
+
+    public function userExist($id = null){
+        $user = User::all()->where('id',$id)->first();
+        if(isset($user))
+            if($user)
+                return response()->json(true);
+            else    
+                return response()->json(false);
+        else    
+            return response()->json(false);
+    }
 }

@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="quantity">
-                      {{quantity}}s
+                      {{quantity}}
                     </div>
 
                     <div @click="quantity++" class="btn btn-three">
@@ -42,11 +42,9 @@
                   <button @click="add()" type="button" class="btn btn-price">{{plate.price * quantity}}€</button>
                 </div>
               </div>
-              
             </div>
           </div>
         </div>
-        
       </div>
   </div>
 </template>
@@ -62,6 +60,9 @@ export default {
     },
     props:{
         plate: Object,
+        prevOrder: Array,
+        prevUser: Object,
+        user: Object,
     },
     methods:{
       add(){
@@ -69,6 +70,13 @@ export default {
           plate: this.plate,
           quantity: this.quantity,
         });
+
+    if(this.prevUser && this.user)
+      if(this.prevUser.name == this.user.name)
+        if(this.prevOrder)
+          if(this.prevOrder.length > 0)
+            for (let i = 0; i < this.prevOrder.length; i++)
+              this.order.push(this.prevOrder[i]);
 
         console.log('provo a fare emit',this.order);
         this.$emit('add',this.order);

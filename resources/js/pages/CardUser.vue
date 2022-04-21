@@ -23,15 +23,18 @@
         </div>
     </div>
 
-    <FocusCard @add="add" v-if="focusVisibility" :plate="focusVisibility"/>
+    <FocusCard @add="add" v-if="focusVisibility" :user="user" :prevUser="prevUser" :prevOrder="prevOrder" :plate="focusVisibility"/>
 
         <div class="temporaneo">
+            <h2>qua andrà messo il carrello (sulla destra in fixed)</h2>
+            <!-- lo z-index non deve superare quella della focusCard -->
         <div v-for="(item,index) in cart" :key="index">
            piatto : {{item.plate.name}} 
            quantità : {{item.quantity}}
         </div>
-        IL TOTALE : {{tot}}
-        dal ristorante {{user.activity}}
+        <div v-if="(user && prevUser) ? user.id == prevUser.id : false">
+            IL TOTALE : {{tot}}
+        </div>
       </div>
 
   </div>
@@ -50,6 +53,10 @@ export default {
           tot: null,
       }
     },
+    props:{
+        prevOrder: Array,
+        prevUser: Object,
+    },
     components: { 
         FocusCard,
         CardPlate,
@@ -59,35 +66,25 @@ export default {
             this.user = this.$route.params.user;
         else
             this.getUser();
+
+        if(this.prevOrder)
+            if(this.user && this.prevUser)
+                if(this.user.id == this.prevUser.id){
+                    this.cart = this.prevOrder;
+                    this.tot = JSON.parse(localStorage.getItem('storedData1'));
+                }
     },
-    /*mounted() {
-        if(localStorage.user) this.user = localStorage.user;
-        if(localStorage.tot){
-          this.tot = localStorage.tot;
-          this.$emit('add',this.tot , this.user);
-         }
-    },
-    watch:{
-    tot(newName) {
-        this.tot = this.tot;
-        localStorage.tot = newName;
-        },
-    user(newName) {
-        this.user = this.user;
-        localStorage.user = newName;
-        },
-    },*/
     methods:{
         add(order){
             this.cart = order;
-            console.log('emit funziona',order);
-
             this.tot = null;
+
             for(let i=0; i < order.length; i++){
                 this.tot += order[i].plate.price * order[i].quantity;
             }
             
-            this.$emit('add',this.tot , this.user);
+            this.$emit('add',this.tot , this.user , order);
+
             this.focusVisibility = null;
         },
         showFocusCard(plate){
@@ -101,6 +98,14 @@ export default {
                 this.user = response.data;
                 console.log(response.data);
                 this.load=true;
+                if(this.user && this.prevUser){
+                    if(this.user.id == this.prevUser.id){
+                        this.user = JSON.parse(localStorage.getItem('storedData2'));
+                        this.cart = JSON.parse(localStorage.getItem('storedData3'));
+                        this.tot = JSON.parse(localStorage.getItem('storedData1'));
+                        console.log('ciao');
+                    }
+                }
             })
             .catch(function (error) {
                 // handle error
