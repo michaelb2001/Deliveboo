@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="quantity">
-                      {{quantity}}
+                      {{quantity}}s
                     </div>
 
                     <div @click="quantity++" class="btn btn-three">
