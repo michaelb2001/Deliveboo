@@ -23,8 +23,16 @@
         </div>
     </div>
 
-    <FocusCard v-if="focusVisibility" :plate="focusVisibility"/>
+    <FocusCard @add="add" v-if="focusVisibility" :plate="focusVisibility"/>
 
+        <div class="temporaneo">
+        <div v-for="(item,index) in cart" :key="index">
+           piatto : {{item.plate.name}} 
+           quantità : {{item.quantity}}
+        </div>
+        IL TOTALE : {{tot}}
+        dal ristorante {{user.activity}}
+      </div>
 
   </div>
 </template>
@@ -38,6 +46,8 @@ export default {
       return{
           user : null,
           focusVisibility : null,
+          cart: null,
+          tot: null,
       }
     },
     components: { 
@@ -50,7 +60,36 @@ export default {
         else
             this.getUser();
     },
+    /*mounted() {
+        if(localStorage.user) this.user = localStorage.user;
+        if(localStorage.tot){
+          this.tot = localStorage.tot;
+          this.$emit('add',this.tot , this.user);
+         }
+    },
+    watch:{
+    tot(newName) {
+        this.tot = this.tot;
+        localStorage.tot = newName;
+        },
+    user(newName) {
+        this.user = this.user;
+        localStorage.user = newName;
+        },
+    },*/
     methods:{
+        add(order){
+            this.cart = order;
+            console.log('emit funziona',order);
+
+            this.tot = null;
+            for(let i=0; i < order.length; i++){
+                this.tot += order[i].plate.price * order[i].quantity;
+            }
+            
+            this.$emit('add',this.tot , this.user);
+            this.focusVisibility = null;
+        },
         showFocusCard(plate){
             this.focusVisibility = plate;
         },
@@ -114,8 +153,6 @@ export default {
     }
 
 }
-
-
 
 .card-plate-box{
     cursor: pointer;

@@ -1,12 +1,17 @@
 <template>
 <div class="">
-  <router-view :key="$route.path"></router-view>
+  <router-view @add="add" :key="$route.path"></router-view>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'Main'
+  name: 'Main',
+  methods:{
+    add(tot,user){        
+        this.$emit('add',tot , user);
+    },
+  },
 }
 </script>
 

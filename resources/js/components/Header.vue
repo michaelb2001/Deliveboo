@@ -38,10 +38,16 @@
     <div class="nav-item-box collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="d-flex justify-content-center navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="#">
+
+          <a v-if="!user" class="nav-link" href="">
             <i class="fa-solid fa-basket-shopping"></i> 
-            <span class="price"> 0.00 </span> €
+            <span class="price"> 0.00 {{tot}} </span> €
           </a>
+
+  <router-link v-else class="nav-link" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
+           <i class="fa-solid fa-basket-shopping"></i> 
+            <span class="price"> {{tot}} </span> €
+            </router-link>
         </li>
         <li class="nav-item">
           <a href="/admin/recap" class="nav-link"> 
@@ -66,6 +72,10 @@ export default {
       usersArr: [],
       load: false,
     }
+  },
+  props:{
+    tot: Number,
+    user: Object,
   },
   methods: {
     clean(){
@@ -161,6 +171,7 @@ export default {
     border-radius: 5px;
 
     .fa-magnifying-glass{
+      z-index: 1;
       color: #bfbfbf;
       font-size: 1.3em;
       position: absolute;

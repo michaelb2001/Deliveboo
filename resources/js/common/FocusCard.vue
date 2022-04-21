@@ -25,16 +25,21 @@
               <div class="row flex-column text-center">
                 <div class="col btn-add-remove">
 
-                    <div class="btn btn-three">
+                    <div @click="(quantity - 1 >= 1 ) ? quantity-- : null" class="btn btn-three">
                       <span>-</span>
                     </div>
-                    <div class="btn btn-three">
+
+                    <div class="quantity">
+                      {{quantity}}
+                    </div>
+
+                    <div @click="quantity++" class="btn btn-three">
                       <span>+</span>
                     </div>
                 
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-price">{{plate.price}}€</button>
+                  <button @click="add()" type="button" class="btn btn-price">{{plate.price * quantity}}€</button>
                 </div>
               </div>
               
@@ -49,9 +54,26 @@
 <script>
 export default {
     name:"FocusCard",
+    data(){
+      return{
+        quantity: 1,
+        order: [], 
+      }
+    },
     props:{
-        plate: Object
-    }
+        plate: Object,
+    },
+    methods:{
+      add(){
+        this.order.push({
+          plate: this.plate,
+          quantity: this.quantity,
+        });
+
+        console.log('provo a fare emit',this.order);
+        this.$emit('add',this.order);
+      },
+    },
 }
 </script>
 
