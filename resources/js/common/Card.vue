@@ -40,8 +40,14 @@ export default {
         min-height: 280px;
         border-radius: 15px;
         .bg_image{
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            height: 258px;
             img{
-                width: 100%;
+                flex-shrink: 0;
+                min-width: 100%;
+                min-width: 258px;
                 border-radius: 15px 15px 0px 0px;
             }
         }
