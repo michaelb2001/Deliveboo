@@ -13,7 +13,7 @@
           
           <div v-show="load" class="input-toggle">
             <div class="users">
-              <div class="user" v-for="(user,index) in usersArr"  :key="'userSearched'+index">
+              <div @click="clean()" class="user" v-for="(user,index) in usersArr"  :key="'userSearched'+index">
                 <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
                   <div class="image">
                     <img v-if="user.img" :src="`../storage/${user.img}`">
@@ -68,6 +68,10 @@ export default {
     }
   },
   methods: {
+    clean(){
+      this.usersArr = [],
+      this.inputText = "";
+    },
     search(){
       this.searchT();
       this.searchU();
