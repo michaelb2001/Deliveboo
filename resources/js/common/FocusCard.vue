@@ -1,5 +1,5 @@
 <template>
-  <div class="position-relative w-100">
+  <div>
       <div class="focus-cards">
 
         <div class="container">
@@ -12,7 +12,7 @@
               </div>
 
             </div>
-            <div class="col">
+            <div class="col mt-3">
                <div>
                 <h4>{{plate.name}}</h4>
               </div>
@@ -20,15 +20,21 @@
                 <p>{{plate.ingredients}}</p>
               </div>
             </div>
+
             <div class="col">
-              <div class="row flex-column">
-                <div class="col">
-                  <button type="button" class="btn btn-primary">-</button>
-                  
-                  <button type="button" class="btn btn-primary">+</button>
+              <div class="row flex-column text-center">
+                <div class="col btn-add-remove">
+
+                    <div class="btn btn-three">
+                      <span>-</span>
+                    </div>
+                    <div class="btn btn-three">
+                      <span>+</span>
+                    </div>
+                
                 </div>
                 <div class="col">
-                  <button type="button" class="btn btn-primary">{{plate.price}}€</button>
+                  <button type="button" class="btn btn-price">{{plate.price}}€</button>
                 </div>
               </div>
               
@@ -50,21 +56,81 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../sass/variables.scss";
 
 .focus-cards{
-  position: fixed;
-  top: 500px;
-  left: 500px;
-  background-color: red;
-  height: 600px;
+  background-color: $light-color;
+  max-height: 950px;
   width: 560px;
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  border-radius: 5%;
 
   .img-class{
     width: 560px;
     height: 315px;
     object-fit: cover;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;  
+    }
+
+  .btn-three {
+	color: $third-color;
+	transition: all 0.5s;
+	position: relative;
+  font-size: 25px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background-color: rgba(255,255,255,0.1);
+      transition: all 0.3s;
+    }
+    &:hover:before{
+      opacity: 0 ;
+      transform: scale(0.5,0.5);
+    }
+    &:after{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0;
+      transition: all 0.3s;
+      border: 2px solid $third-color;
+      transform: scale(1.2,1.2);
+    }
+    &:hover::after{
+      opacity: 1;
+      transform: scale(1,1);
+    }
   }
 
+  .btn-add-remove{
+    margin-bottom: 25px;
+  }
+
+  .btn-price{
+    width: 100%;
+    margin-bottom: 15px;
+    color: $light-color;
+    background-color: $third-color;
+    border: 1px solid $third-color;
+    &:hover{
+      background-color: #8f3d82;
+      border: 1px solid #8f3d82 ;
+    }
+  }
 }
 
 </style>
