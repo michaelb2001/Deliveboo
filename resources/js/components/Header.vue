@@ -97,11 +97,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../sass/front.scss';
+
 .navbar-light .navbar-toggler {
     margin: 0 20px;
 }
 
 .main-nav{
+  border-bottom: 1px solid $grey-color;
 
   .nav-item-box{
     width: 60%;

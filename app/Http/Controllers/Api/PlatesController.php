@@ -70,4 +70,47 @@ class PlatesController extends Controller
         $user->types;
         return response()->json($user);
     }
+
+    public function getUserFromType($typeArr = null){
+        $typeArr = explode(',',$typeArr);
+
+        foreach($typeArr as $type)
+            $convert[] = (int)$type;
+        
+        foreach($convert as $type_id)
+            $users[] = Type::all()->where('id',$type_id)->first()->users;
+
+       foreach($users as $index=>$user)
+            if(count($user) <= 0)
+                unset($users[$index]);
+
+        if(count($users) <= 0)
+            return response()->json([]);
+
+        foreach($users as $index=>$user)
+            foreach($user as $controlId)
+                $control[] = $controlId->id;
+
+       $control = array_unique($control);
+
+        $finalArray = [];
+
+        foreach($control as $toPush){
+            $pushed = false;
+            foreach($users as $user){
+                foreach($user as $test){
+                    if($toPush == $test->id){
+                        $test->plates;
+                        $test->types;
+                        $finalArray[] = $test;
+                        $pushed = true;
+                    }
+                }
+                if($pushed)
+                break;
+            }
+        }
+        
+        return response()->json($finalArray);
+    }
 }
