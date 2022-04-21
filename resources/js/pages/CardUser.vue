@@ -24,13 +24,14 @@
     </div>
 
     <FocusCard v-if="focusVisibility" :plate="focusVisibility"/>
+
+
   </div>
 </template>
 
 <script>
 import CardPlate from '../common/CardPlate.vue';
 import FocusCard from '../common/FocusCard.vue';
-
 export default {
     name:"MainPage",
     data(){
@@ -60,6 +61,7 @@ export default {
             // handle success
                 this.user = response.data;
                 console.log(response.data);
+                this.load=true;
             })
             .catch(function (error) {
                 // handle error
