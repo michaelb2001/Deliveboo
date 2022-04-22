@@ -23,7 +23,7 @@
 
             <div class="col">
               <div class="row flex-column text-center">
-                <div class="col btn-add-remove">
+                <div class="col btn-add-remove d-flex align-items-center justify-content-center">
 
                     <div @click="(quantity - 1 >= 1 ) ? quantity-- : null" class="btn btn-three">
                       <span>-</span>
@@ -43,6 +43,7 @@
                 </div>
               </div>
             </div>
+            
           </div>
         </div>
       </div>
@@ -106,7 +107,11 @@ export default {
     border-top-right-radius: 25px;  
     }
 
-  .btn-three {
+
+
+  .btn-add-remove{
+    margin-bottom: 25px;
+      .btn-three {
 	color: $third-color;
 	transition: all 0.5s;
 	position: relative;
@@ -144,10 +149,7 @@ export default {
       opacity: 1;
       transform: scale(1,1);
     }
-  }
-
-  .btn-add-remove{
-    margin-bottom: 25px;
+    }
   }
 
   .btn-price{

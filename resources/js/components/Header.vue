@@ -57,12 +57,37 @@
             </router-link>
         </li>
 
+        <!-- Visualizza ordini -->
         <li>
           <button @click="open()" class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">IL MIO ORDINE</button>
           <div class="d-none offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">
-              <h5 id="offcanvasRightLabel">Offcanvas right</h5>
-              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              <div class="text-center mt-3">
+                <h5 id="offcanvasRightLabel ">IL MIO ORDINE</h5>
+              </div>
+              <div class="d-flex justify-content-around">
+                <p>Margherita (esempio)</p>
+                
+                <div class="col btn-add-remove d-flex align-items-center">
+                  <div @click="(quantity - 1 >= 1 ) ? quantity-- : null" class="btn btn-three">
+                    <span>-</span>
+                  </div>
+
+                  <div class="quantity">
+                    {{quantity}}
+                  </div>
+
+                  <div @click="quantity++" class="btn btn-three">
+                    <span>+</span>
+                  </div>
+                </div>
+
+                <span>4,50 €</span>
+              </div>
+              <div class="box-btn-close text-center p-3">
+                <button type="button" class="btn-close btn-close-option text-reset" data-bs-dismiss="offcanvas" aria-label="Close">Chiudi</button>
+              </div>
+              
             </div>
             <div class="offcanvas-body">
               
@@ -87,6 +112,7 @@ export default {
       typesArr: [],
       usersArr: [],
       load: false,
+      quantity: 1,
     }
   },
   props:{
@@ -139,7 +165,7 @@ export default {
     },
     open(){
     document.getElementById("offcanvasRight").classList.remove("d-none");
-  }
+    }
   }
 
 }
@@ -147,15 +173,19 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../sass/front.scss';
+
 .offcanvas{
   position:absolute;
   top:75px;
   right:0px;
   height:90vh;
-  border: 2px solid $dark-color;
+  min-width: 16%;
+  box-shadow: 0 8px 32px 0 rgb(31 38 135 / 20%);
+  border-radius: 5px;
   z-index:1500;
   background: $light-color;
 }
+
 .navbar-light .navbar-toggler {
     margin: 0 20px;
 }
@@ -317,4 +347,66 @@ export default {
     height: unset;
   }
 }
+
+.box-btn-close{
+  color: $light-color;
+
+  .btn-close-option{
+    width: 100%;
+    margin-bottom: 15px;
+    background-color: $third-color;
+    border: 1px solid $third-color;
+    border-radius: 5px;
+
+    &:hover{
+      background-color: #8f3d82;
+      border: 1px solid #8f3d82 ;
+    }
+}
+}
+
+.btn-add-remove{
+  margin-bottom: 25px;
+  .btn-three {
+    color: $third-color;
+    transition: all 0.5s;
+    position: relative;
+    font-size: 25px;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background-color: rgba(255,255,255,0.1);
+        transition: all 0.3s;
+      }
+      &:hover:before{
+        opacity: 0 ;
+        transform: scale(0.5,0.5);
+      }
+      &:after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0;
+        transition: all 0.3s;
+        border: 2px solid $third-color;
+        transform: scale(1.2,1.2);
+      }
+      &:hover::after{
+        opacity: 1;
+        transform: scale(1,1);
+      }
+  }
+}
+
+
 </style>
