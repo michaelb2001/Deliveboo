@@ -167,4 +167,29 @@ export default {
 .card-plate-box{
     cursor: pointer;
 }
+
+@media screen and (max-width: 576px) {
+    .img{
+        width: 80%;
+        min-height: 250px;
+        height: auto;
+        border-radius: 20px;
+    }
+    
+    .image-info{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        .image{
+            margin-right: 0!important;
+        }
+    }
+
+    .info-user{
+        width: 70%!important;
+        margin-top: 20px;
+    }
+}
+
 </style>
