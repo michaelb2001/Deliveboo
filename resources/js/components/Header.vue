@@ -37,22 +37,37 @@
 
     <div class="nav-item-box collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="d-flex justify-content-center navbar-nav me-auto mb-2 mb-lg-0">
+
         <li class="nav-item">
+          <a href="/admin/recap" class="nav-link"> 
+            <i class="fa-solid fa-house"></i> Registrati o Accedi
+          </a>
+        </li>
+
+                <li class="nav-item">
 
           <a v-if="!user" class="nav-link" href="">
             <i class="fa-solid fa-basket-shopping"></i> 
             <span class="price"> 0.00 {{tot}} </span> €
           </a>
 
-  <router-link v-else class="nav-link" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
+          <router-link v-else class="nav-link" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
            <i class="fa-solid fa-basket-shopping"></i> 
             <span class="price"> {{tot}} </span> €
             </router-link>
         </li>
-        <li class="nav-item">
-          <a href="/admin/recap" class="nav-link"> 
-            <i class="fa-solid fa-house"></i> Registrati o Accedi
-          </a>
+
+        <li>
+<button @click="open()" class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">IL MIO ORDINE</button>
+<div class="d-none offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    
+  </div>
+</div>
         </li>
       </ul>
     </div>
@@ -121,12 +136,25 @@ export default {
         console.log(error);
       });
     },
+    open(){
+    document.getElementById("offcanvasRight").classList.remove("d-none");
   }
+  }
+
 }
 </script>
 
 <style lang="scss" scoped>
 @import '../../sass/front.scss';
+.offcanvas{
+  position:absolute;
+  top:75px;
+  right:0px;
+  height:90vh;
+  border: 2px solid $dark-color;
+  z-index:1500;
+  background: $light-color;
+}
 .navbar-light .navbar-toggler {
     margin: 0 20px;
 }
