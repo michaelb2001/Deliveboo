@@ -82,8 +82,12 @@ export default {
             for(let i=0; i < order.length; i++){
                 this.tot += order[i].plate.price * order[i].quantity;
             }
-            alert("sei sicuro di volere cancellare il vecchio ordine?");
-            
+
+            if(this.prevUser.id!= this.user.id){
+
+                alert("sei sicuro di volere cancellare il vecchio ordine?");
+            }
+
             this.$emit('add',this.tot , this.user , order);
 
             this.focusVisibility = null;
