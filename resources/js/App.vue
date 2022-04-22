@@ -41,15 +41,21 @@ export default{
                     this.order = null;
                     this.tot = null;
                 }
-        });
+            });
+        else{
+            this.user = null;
+            this.order = null;
+            this.tot = null;
+        }
     },
     watch:{
     tot(newName) {
-        console.log('salvo',newName);
+        console.log('salvo tot',newName);
     let convert = JSON.stringify(newName);
         localStorage.setItem('storedData1', convert);
     },
     user(newName) {
+        console.log('salvo user',newName);
         let convert = JSON.stringify(newName);
         localStorage.setItem('storedData2', convert);
     },
@@ -63,6 +69,8 @@ export default{
             this.tot = tot;
             this.user = user;
             this.order = order;
+            let convert = JSON.stringify(order);
+            localStorage.setItem('storedData3', convert);
         },
     },
 }

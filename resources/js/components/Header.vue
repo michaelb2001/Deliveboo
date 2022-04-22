@@ -58,7 +58,7 @@
         </li>
 
         <!-- Visualizza ordini -->
-        <li>
+        <!--<li>
           <button @click="open()" class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">IL MIO ORDINE</button>
           <div class="d-none offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">
@@ -93,7 +93,7 @@
               
             </div>
           </div>
-        </li>
+        </li>-->
         
       </ul>
     </div>

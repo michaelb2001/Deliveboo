@@ -15,28 +15,57 @@
     <hr>
 
     <h1>piatti</h1>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 ms_row_plate">
-        <div v-for="(plate,index) in user.plates" :key="'plate'+index">
-            <div @click="showFocusCard(plate)" class="card-plate-box">
-                <CardPlate :plate="plate"/>
+    <div class="d-flex justify-content-between plates-and-cart">
+        <div class="w-50 row row-cols-1 row-cols-sm-2 row-cols-md-2 ms_row_plate">
+            <div v-for="(plate,index) in user.plates" :key="'plate'+index">
+                <div @click="showFocusCard(plate)" class="card-plate-box">
+                    <CardPlate :plate="plate"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="cart-box">
+            <div v-if="cart ? cart.length <= 0 : !prevUser" class="h-100 d-flex flex-column justify-content-around align-items-center empty">
+                <div class="d-flex flex-column align-items-center">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <p class="my-2">Il carrello è vuoto</p>
+                </div>
+                <button disabled type="button">
+                    Vai al pagamento
+                </button>
+            </div>
+
+            <div v-else-if="cart && cart.length > 0" class="h-100 d-flex flex-column justify-content-around align-items-center no-empty">
+                <div class="w-100 d-flex flex-column align-items-center">
+                    <h2 class="ml-5 mb-3" style="color:black; align-self:flex-start;">Il Tuo Ordine</h2>
+                    <div v-for="(item,index) in cart" :key="index">
+                        img : {{item.plate.name}} 
+                        <div>
+                            quantità : 
+                            <i @click="oneMore(index)" class="fa-solid fa-plus"></i>
+                            {{item.quantity}}
+                            <i @click="oneLess(index)" class="fa-solid fa-minus"></i>
+                        </div>
+                    </div>
+                </div>
+                <button type="button">
+                    Vai al pagamento
+                </button>
+            </div>
+
+            <div v-else class="h-100 d-flex flex-column justify-content-around align-items-center no-empty">
+                <div class="d-flex flex-column align-items-center">
+                    <i class="fa-solid fa-exclamation"></i>
+                    <p class="my-2">Attenzione, non puoi ordinare da due ristoranti diversi!</p>
+                </div>
+                <button disabled type="button">
+                    Vai al pagamento
+                </button>
             </div>
         </div>
     </div>
 
-    <FocusCard @add="add" v-if="focusVisibility" :user="user" :prevUser="prevUser" :prevOrder="prevOrder" :plate="focusVisibility"/>
-
-        <div class="temporaneo">
-            <h2>qua andrà messo il carrello (sulla destra in fixed)</h2>
-            <!-- lo z-index non deve superare quella della focusCard -->
-        <div v-for="(item,index) in cart" :key="index">
-           piatto : {{item.plate.name}} 
-           quantità : {{item.quantity}}
-        </div>
-        <div v-if="(user && prevUser) ? user.id == prevUser.id : false">
-            IL TOTALE : {{tot}}
-        </div>
-      </div>
-
+<FocusCard @add="add" v-if="focusVisibility" :user="user" :prevUser="prevUser" :prevOrder="prevOrder" :plate="focusVisibility"/>
   </div>
 </template>
 
@@ -75,20 +104,54 @@ export default {
                 }
     },
     methods:{
-        add(order){
-            this.cart = order;
-            this.tot = null;
+        oneMore(i){
+            console.log('sono in onemore');
+            this.cart[i].quantity++;
+            this.add(this.cart , true);
+        },
+        oneLess(i){
+            console.log('sono in oneless');
+            this.cart[i].quantity--;
+            if(this.cart[i].quantity == 0)
+                this.cart.splice(i,1);
 
-            for(let i=0; i < order.length; i++){
-                this.tot += order[i].plate.price * order[i].quantity;
+            if(this.cart.length <= 0){
+               // this.user = null;
+                this.cart = null;
+                this.tot = null;
             }
+                this.add(this.cart , true);
+        },
+        add(order , noEmit){
+            if(!noEmit){
+                this.cart = order;
+                this.tot = null;
 
-            if(this.prevUser.id!= this.user.id){
+                for(let i=0; i < order.length; i++)
+                    this.tot += order[i].plate.price * order[i].quantity;
 
-                alert("sei sicuro di volere cancellare il vecchio ordine?");
+            if(this.user && this.prevUser)
+                if(this.prevUser.id!= this.user.id)
+                    alert("sei sicuro di volere cancellare il vecchio ordine?");
+
+                this.$emit('add',this.tot , this.user , order);
+            } else{
+                console.log('sono in add ma in else');
+                this.tot = null;
+
+            if(this.cart)
+                for(let i=0; i < this.cart.length; i++)
+                    this.tot += this.cart[i].plate.price * this.cart[i].quantity;
+
+            if(this.user && this.prevUser)
+                if(this.prevUser.id!= this.user.id)
+                    alert("sei sicuro di volere cancellare il vecchio ordine?");
+
+                if(this.user && this.tot)
+                    this.$emit('add',this.tot , this.user , this.cart);
+                else
+                    this.$emit('add',this.tot , null , this.cart);
             }
-
-            this.$emit('add',this.tot , this.user , order);
 
             this.focusVisibility = null;
         },
@@ -122,6 +185,48 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../sass/front.scss';
+
+.cart-box{
+    width: 480px;
+    height: 230px;
+    background-color: white;
+    color: $darkgrey-color;
+    border: 1px solid $grey-color;
+    border-radius: 5px;
+
+    button{
+        border: unset;
+        width: 90%;
+        height: 55px;
+        border-radius: 5px;
+        background-color: $primary-color;
+        color: white;
+    }
+
+    button:disabled{
+        cursor: no-drop;
+        color: unset;
+        background-color: $grey-color!important;
+    }
+
+    .fa-basket-shopping,.fa-exclamation{
+        font-size: 2.5em;
+    }
+
+    .not-empty{
+
+    }
+}
+
+.plates-and-cart{
+    min-height: 300px;
+}
+
+.w-50.row.row-cols-1.row-cols-sm-2.row-cols-md-2.ms_row_plate {
+    height: 300px;
+    overflow-y: auto;
+}
 
 .image-info{
     display: flex;
