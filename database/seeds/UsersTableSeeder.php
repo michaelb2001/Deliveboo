@@ -30,6 +30,8 @@ class UsersTableSeeder extends Seeder
         $newUser->activity = "tigella bella";
         $newUser->p_iva = "12345678934";
         $newUser->address = "Via nuova casa , 32";
+        $newUser->save();
+
 
         $newUser = new User();
         $newUser->name = "Francesco Grassi";
@@ -57,6 +59,7 @@ class UsersTableSeeder extends Seeder
         $newUser->activity = "sushi wow";
         $newUser->p_iva = "12345678934";
         $newUser->address = "Via nuova casa , 32";
+        $newUser->save();
 
         $newUser = new User();
         $newUser->name = "Ciruzzu il Grande";
