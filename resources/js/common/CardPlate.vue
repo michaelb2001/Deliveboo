@@ -1,9 +1,11 @@
 <template>
   <div class="card_container">
       <div class="col">
-        <p class="ms_name_plate">{{plate.name}}</p>
-        <p class="ms_ingredients">{{plate.ingredients}}</p>
-        <p>{{plate.price}}€</p>
+        <div class="m-2 ms_margin">
+          <p class="ms_name_plate">{{plate.name}}</p>
+          <p class="ms_ingredients">{{plate.ingredients}}</p>
+          <p class="ms_price">{{plate.price}}€</p>
+        </div>
       </div>
   </div>
 </template>
@@ -27,13 +29,30 @@ export default {
   margin-bottom: 0;
 }
 
-.col{
-  padding: 10px;
-  background: rgba( 255, 255, 255, 0.9 );
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-  backdrop-filter: blur( 20px );
-  -webkit-backdrop-filter: blur( 20px );
-  border-radius: 10px;
+.ms_price{
+  margin-bottom: 0;
 }
 
+.ms_margin{
+  padding: 10px;
+  background: rgba( 255, 255, 255, 0.9 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.2 );
+  border-radius: 5px;
+  transition: all 0.7s ease;
+  cursor: pointer;
+}
+
+
+.ms_margin:hover{
+    transform: scale(1);
+}
+
+.ms_margin:active{
+    transform: scale(.8);
+}
+
+
+.col{
+  padding: 0;
+}
 </style>
