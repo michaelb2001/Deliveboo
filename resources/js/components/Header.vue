@@ -48,12 +48,12 @@
 
           <a v-if="!user" class="nav-link" href="">
             <i class="fa-solid fa-basket-shopping"></i> 
-            <span class="price"> 0.00 {{tot}} </span> €
+            <span class="price"> 0.00 </span> €
           </a>
 
           <router-link v-else class="nav-link" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
            <i class="fa-solid fa-basket-shopping"></i> 
-            <span class="price"> {{tot}} </span> €
+            <span class="price"> {{(tot.toFixed(2))}} </span> €
             </router-link>
         </li>
 

@@ -33,7 +33,7 @@ export default{
 
         //da fixare qua, esce l'html se cerchi da URL
         if(this.user)
-            axios.get(`api/exist/${this.user.id}`)
+            axios.get(`../api/exist/${this.user.id}`)
             .then((response)=> {
                 console.log(response.data,'esiste?');
                 if(response.data == false){
@@ -77,4 +77,10 @@ export default{
 </script>
 
 <style lang="scss" scoped>
+* {
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          /* Likely future */    
+}
 </style>

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>DeliveBoo</title>
 </head>
-<body>
+<body id="remove-all-scroll">
     <div id="app"></div>
     <script src="https://kit.fontawesome.com/8f1b5398cd.js" crossorigin="anonymous"></script>
     <script src="{{asset('js/front.js')}}"></script>

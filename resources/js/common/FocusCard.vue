@@ -39,7 +39,7 @@
                 
                 </div>
                 <div class="col">
-                  <button @click="add()" type="button" class="btn btn-price">{{plate.price * quantity}}€</button>
+                  <button @click="add()" type="button" class="btn btn-price">{{(plate.price * quantity).toFixed(2)}}€</button>
                 </div>
               </div>
             </div>
@@ -93,6 +93,7 @@ export default {
   background-color: $light-color;
   max-height: 950px;
   width: 560px;
+  z-index: 9999;
   top: 50%;
   left: 50%;
   position: fixed;

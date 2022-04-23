@@ -38,13 +38,13 @@
             <div v-else-if="cart && cart.length > 0" class="h-100 d-flex flex-column justify-content-around align-items-center no-empty">
                 <div class="w-100 d-flex flex-column align-items-center">
                     <h2 class="ml-5 mb-3" style="color:black; align-self:flex-start;">Il Tuo Ordine</h2>
-                    <div v-for="(item,index) in cart" :key="index">
-                        img : {{item.plate.name}} 
-                        <div>
-                            quantità : 
-                            <i @click="oneMore(index)" class="fa-solid fa-plus"></i>
-                            {{item.quantity}}
-                            <i @click="oneLess(index)" class="fa-solid fa-minus"></i>
+                    <div class="px-5 w-100 d-flex justify-content-between" v-for="(item,index) in cart" :key="index">
+                        <p class="order-plate-name">{{item.plate.name}}</p> 
+                        <div class="quantity-box">
+                            <i @click="oneLess(index)" class="quantity-num fa-solid fa-minus"></i>
+                            <span class="mx-1">{{item.quantity}}</span>
+                            <i @click="oneMore(index)" class="quantity-num fa-solid fa-plus"></i>
+                            <span class="mx-1">{{(item.plate.price * item.quantity).toFixed(2)}} €</span>
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,8 @@
         </div>
     </div>
 
-<FocusCard @add="add" v-if="focusVisibility" :user="user" :prevUser="prevUser" :prevOrder="prevOrder" :plate="focusVisibility"/>
+    <div @click="focusVisibility = null" v-show="focusVisibility" class="hidden-close-sub create"></div>   
+    <FocusCard @add="add" v-if="focusVisibility" :user="user" :prevUser="prevUser" :prevOrder="prevOrder" :plate="focusVisibility"/>
   </div>
 </template>
 
@@ -102,6 +103,15 @@ export default {
                     this.cart = this.prevOrder;
                     this.tot = JSON.parse(localStorage.getItem('storedData1'));
                 }
+    },
+    watch:{
+        focusVisibility(test){
+            console.log(this.focusVisibility,'qua');
+            if(this.focusVisibility)
+                document.getElementById('remove-all-scroll').style.overflow="hidden";
+            else
+                document.getElementById('remove-all-scroll').style.overflow="unset";
+        }
     },
     methods:{
         oneMore(i){
@@ -186,6 +196,42 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../sass/front.scss';
+.hidden-close-sub{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.hidden-close-sub.create{
+  z-index: 9998;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.plates-and-cart{
+    min-height: 300px;
+    .order-plate-name{
+        font-size: 1.1em;
+        color: black;
+    }
+
+    .quantity-box{
+        
+        .quantity-num{
+            cursor: pointer;
+            color: $primary_color;
+            border: 1px solid $primary_color;
+            border-radius: 50%;
+            padding: 1px;
+
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+    }
+
+}
 
 .cart-box{
     width: 480px;
@@ -213,14 +259,6 @@ export default {
     .fa-basket-shopping,.fa-exclamation{
         font-size: 2.5em;
     }
-
-    .not-empty{
-
-    }
-}
-
-.plates-and-cart{
-    min-height: 300px;
 }
 
 .w-50.row.row-cols-1.row-cols-sm-2.row-cols-md-2.ms_row_plate {
