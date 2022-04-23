@@ -18,6 +18,7 @@ export default{
             tot: null,
             user: null,
             order: null,
+            exist: false,
         }
     },
     components: {
@@ -27,15 +28,18 @@ export default{
     },
     mounted() {
         console.log('what');
-        this.user = JSON.parse(localStorage.getItem('storedData2'));
-        this.order = JSON.parse(localStorage.getItem('storedData3'));
-        this.tot = JSON.parse(localStorage.getItem('storedData1'));
+     //   if(this.exist){
+            this.user = JSON.parse(localStorage.getItem('storedData2'));
+            this.order = JSON.parse(localStorage.getItem('storedData3'));
+            this.tot = JSON.parse(localStorage.getItem('storedData1'));
+    //    }
 
         //da fixare qua, esce l'html se cerchi da URL
         if(this.user)
-            axios.get(`../api/exist/${this.user.id}`)
+            axios.get(`../api/exist/${this.user.id}/${this.order[0].plate.name}`)
             .then((response)=> {
                 console.log(response.data,'esiste?');
+                this.exist = response.data;
                 if(response.data == false){
                     this.user = null;
                     this.order = null;

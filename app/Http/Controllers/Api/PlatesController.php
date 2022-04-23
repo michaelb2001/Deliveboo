@@ -118,14 +118,21 @@ class PlatesController extends Controller
         return response()->json($finalArray);
     }
 
-    public function userExist($id = null){
+    public function userExist($id = null , $order = null){
         $user = User::all()->where('id',$id)->first();
         if(isset($user))
-            if($user)
-                return response()->json(true);
+            if($user){
+                $plates = $user->plates;
+                foreach($plates as $plate)
+                    if($order == $plate->name)
+                        return response()->json(true);
+                    else
+                        continue;
+            } else    
+                return response()->json(false);
             else    
                 return response()->json(false);
-        else    
-            return response()->json(false);
+        
+        return response()->json(false);
     }
 }
