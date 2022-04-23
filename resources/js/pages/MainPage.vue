@@ -78,6 +78,11 @@ export default {
     },
     methods:{
       getAllUsers(){
+        if(this.typesArr && this.typesArr.length > 0)
+          this.loadAxios = 1;
+        else  
+          this.loadAxios = 0;
+          
         axios.get(this.urlAllUsers)
           .then((response) => {
         // handle success

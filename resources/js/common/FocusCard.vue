@@ -1,7 +1,6 @@
 <template>
   <div>
-      <div class="focus-cards">
-
+      <div v-if="!createNewCartShow" class="focus-cards">
         <div class="container">
           <div class="row flex-column">
             <div class="col p-0">
@@ -39,12 +38,20 @@
                 
                 </div>
                 <div class="col">
-                  <button @click="add()" type="button" class="btn btn-price">{{(plate.price * quantity).toFixed(2)}}€</button>
+                  <button @click="(prevUser) ? (prevUser.id == user.id) ? add() : createNewCartShow = true : add()" type="button" class="btn btn-price">{{(plate.price * quantity).toFixed(2)}}€</button>
                 </div>
               </div>
             </div>
-            
           </div>
+        </div>
+      </div>
+
+      <div class="d-flex flex-column justify-content-center align-items-center focus-new-cart" v-else-if="createNewCartShow && user && prevUser.id != user.id">
+        <h1> Attenzione! </h1>
+        <p>Vuoi svuotare il carrello e crearne uno nuovo? </p>
+        <div class="w-75 d-flex justify-content-around">
+          <button class="btn btn-price" @click="add()"> SI </button>
+          <button class="btn btn-price" @click="createNewCartShow = false"> NO </button>
         </div>
       </div>
   </div>
@@ -57,6 +64,7 @@ export default {
       return{
         quantity: 1,
         order: [], 
+        createNewCartShow: false,
       }
     },
     props:{
@@ -87,7 +95,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../sass/variables.scss";
+@import '../../sass/front.scss';
+.focus-new-cart{
+  background-color: $light-color;
+  height: 300px;
+  width: 400px;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  border-radius: 5%;
+
+ .btn-price{
+    width: 45%;
+    margin-bottom: 15px;
+    color: $light-color;
+    background-color: $third-color;
+    border: 1px solid $third-color;
+    &:hover{
+      background-color: #8f3d82;
+      border: 1px solid #8f3d82;
+    }
+  }
+
+  p{
+    font-size: 1.2em;
+  }
+}
 
 .focus-cards{
   background-color: $light-color;

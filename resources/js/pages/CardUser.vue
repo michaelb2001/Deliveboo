@@ -140,9 +140,9 @@ export default {
                 for(let i=0; i < order.length; i++)
                     this.tot += order[i].plate.price * order[i].quantity;
 
-            if(this.user && this.prevUser)
-                if(this.prevUser.id!= this.user.id)
-                    alert("sei sicuro di volere cancellare il vecchio ordine?");
+            /*if(this.user && this.prevUser)
+                if(this.prevUser.id!= this.user.id)*/
+                    //alert("sei sicuro di volere cancellare il vecchio ordine?");
 
                 this.$emit('add',this.tot , this.user , order);
             } else{
@@ -153,9 +153,10 @@ export default {
                 for(let i=0; i < this.cart.length; i++)
                     this.tot += this.cart[i].plate.price * this.cart[i].quantity;
 
-            if(this.user && this.prevUser)
+            /*if(this.user && this.prevUser)
                 if(this.prevUser.id!= this.user.id)
-                    alert("sei sicuro di volere cancellare il vecchio ordine?");
+                    this.createNewCartShow = true;*/
+                    //alert("sei sicuro di volere cancellare il vecchio ordine?");
 
                 if(this.user && this.tot)
                     this.$emit('add',this.tot , this.user , this.cart);
@@ -181,7 +182,6 @@ export default {
                         this.user = JSON.parse(localStorage.getItem('storedData2'));
                         this.cart = JSON.parse(localStorage.getItem('storedData3'));
                         this.tot = JSON.parse(localStorage.getItem('storedData1'));
-                        console.log('ciao');
                     }
                 }
             })
