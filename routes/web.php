@@ -23,6 +23,7 @@ Auth::routes();
 Route::middleware('auth')->namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', "HomeController@index");
     Route::get('/types', "HomeController@form_checkbox")->name('types');
+    Route::get('/order', "HomeController@order")->name('order');
     Route::delete('/d_type/{id}/{where}', "HomeController@delete_type")->name('delete_type');
     Route::resource('/plate',"PlatesController");
     Route::get('/recap', "HomeController@recap")->name("recap");

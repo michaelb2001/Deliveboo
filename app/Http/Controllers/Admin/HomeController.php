@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Type;
 use App\Http\Controllers\Controller;
+use App\Order;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -86,6 +87,14 @@ class HomeController extends Controller
             return redirect()->route('admin.recap');
         else
             return redirect()->route('admin.');
+    }
+
+    public function order(){
+        $LoggedUser = User::where('id',Auth::user()->id)->first();
+        $orders = Order::where('user_id',$LoggedUser->id)->get();
+        foreach($orders as $order)
+            $order->plates;
+        return view('admin.order',compact("orders"));
     }
 
 }

@@ -21,8 +21,7 @@ class UsersTableSeeder extends Seeder
         $newUser->p_iva = "12345678912";
         $newUser->address = "Via nuova perla , 92";
         $newUser->save();
-
-
+        
         $newUser = new User();
         $newUser->name = "Francesco Celso";
         $newUser->email = "tigellabella@gmail.com";

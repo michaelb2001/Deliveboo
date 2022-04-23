@@ -5,6 +5,7 @@ import Vue from "vue";
 
         import MainPage from "./pages/MainPage";
         import CardUser from "./pages/CardUser";
+        import Payment from "./pages/Payment";
         import NotFound from "./pages/NotFound";
 
         const router = new VueRouter({
@@ -19,6 +20,11 @@ import Vue from "vue";
                     path: "/card-user/:activity",
                     name: "CardUser",
                     component: CardUser
+                },
+                {
+                    path: "/payment",
+                    name: "Payment",
+                    component: Payment
                 },
 				{
 		            path: "*",

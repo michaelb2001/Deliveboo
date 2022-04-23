@@ -29,6 +29,7 @@ Route::get("/searchu/{id}","Api\PlatesController@searchUsers");
 
 Route::get("/allTypes","Api\PlatesController@getAllTypes");
 Route::get("/exist/{id}/{order}","Api\PlatesController@userExist");
+Route::post("/payment","Api\PlatesController@payment");
 
 Route::get("/card-user/{activity}","Api\PlatesController@getUser"); //prende lo specifico ristorante
 

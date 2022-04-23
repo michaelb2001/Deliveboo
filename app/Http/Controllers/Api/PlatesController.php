@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Order;
 use App\Plate;
 use App\Type;
 use App\User;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class PlatesController extends Controller
@@ -134,5 +136,56 @@ class PlatesController extends Controller
                 return response()->json(false);
         
         return response()->json(false);
+    }
+
+    public function payment(Request $request){
+        $data = $request->all();
+
+        $validator = Validator::make($data , [
+            'name' => 'required',
+            'surname' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'status' => 'required',
+            'total' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return response()->json([
+                "mess" => 'ERRORE MADORNALE',
+                "old" => $data,
+                "status" => false,
+            ]);
+        }
+
+        $order = new Order();
+        $order->name = $data['name'];
+        $order->surname = $data['surname'];
+        $order->email = $data['email'];
+        $order->phone = $data['phone'];
+        $order->address = $data['address'];
+        $order->status = $data['status'];
+        $order->total = $data['total'];
+        $order->user_id = $data['user_id'];
+        $order->save();
+
+        $plates_id = [];
+        $plates_quantity = [];
+        foreach($data['plates'] as $plate){
+            $plates_id[] = $plate['plate']['id'];
+            $plates_quantity[] = $plate['quantity'];
+        }
+
+        $sync_data = [];
+        for($i = 0; $i < count($plates_id); $i++)
+            $sync_data[$plates_id[$i]] = ['quantity' => $plates_quantity[$i]];
+
+        $order->plates()->sync($sync_data);
+
+        return response()->json([
+            "mess" => 'creato',
+            "status" => true,
+        ]);
     }
 }

@@ -49,7 +49,9 @@
                     </div>
                 </div>
                 <button type="button">
-                    Vai al pagamento
+                    <router-link class="nav-link" :to="{name : 'Payment' , params:{cart:cart,tot:tot,user:user} }">
+                        Vai al pagamento
+                    </router-link>
                 </button>
             </div>
 
