@@ -44,7 +44,7 @@ export default {
 
 
 .ms_margin:hover{
-    transform: scale(1);
+    transform: scale(.9);
 }
 
 .ms_margin:active{

@@ -6,6 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>DeliveBoo</title>
+    <style>
+        /* width */
+        ::-webkit-scrollbar {
+          width: 7px;
+        }
+        
+        /* Track */
+        ::-webkit-scrollbar-track {
+          background: #f1f1f1; 
+        }
+         
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+          background: rgb(204, 204, 204); 
+          border-radius: 10px;
+        }
+        
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+          /*background: #555; */
+        }
+        </style>
 </head>
 <body id="remove-all-scroll">
     <div id="app"></div>

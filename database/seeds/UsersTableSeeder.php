@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
         $newUser->name = "Francesco Celso";
         $newUser->email = "tigellabella@gmail.com";
         $newUser->password = Hash::make('prova123');
-        $newUser->activity = "tigella bella";
+        $newUser->activity = "gella bella";
         $newUser->p_iva = "12345678934";
         $newUser->address = "Via nuova casa , 32";
         $newUser->save();

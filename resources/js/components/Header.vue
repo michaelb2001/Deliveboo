@@ -17,6 +17,7 @@
                 <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
                   <div class="image">
                     <img v-if="user.img" :src="`../storage/${user.img}`">
+                    <img v-else :src="require(`../../../public/img/${user.id}.jpg`)">
                   </div>
                   <div class="name">
                     {{user.activity}}

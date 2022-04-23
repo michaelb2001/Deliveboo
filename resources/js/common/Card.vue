@@ -1,9 +1,8 @@
 <template>
       <div class="card d-flex flex-column">
           <div class="bg_image">
-              
               <img v-if="user.img" :src="`../storage/${user.img}`">
-              <img v-else src="https://consumer-component-library.roocdn.com/25.27.6/static/images/placeholder.svg">
+              <img v-else :src="require(`../../../public/img/${user.id}.jpg`)">
           </div>
           <div class="card_name d-flex">
             {{user.activity}}

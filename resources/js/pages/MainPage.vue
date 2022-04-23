@@ -173,6 +173,7 @@ export default {
     padding: 0 30px;
 
     .all-types{
+      border-bottom: 2px solid #dcdcdca3;
       padding: 0 10px;
       max-height: 480px;
       overflow-y: auto;

@@ -17,7 +17,8 @@
                             @if(isset($LoggedUser->img))
                                 <img src="{{ asset("storage/".$LoggedUser->img) }}" class="img_profile">
                             @else
-                                <img src="https://media-cdn.tripadvisor.com/media/photo-s/1a/16/32/e3/wine-room-dari-ristorante.jpg" class="img_profile">
+                                <img src="{{asset(`img/.$LoggedUser->id.jpg`)}}">
+                               
                             @endif
                             <li>
                                 nome: {{$LoggedUser->name}}
