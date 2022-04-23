@@ -1,0 +1,26 @@
+.box-order{
+    width: 40%;
+    border: 3px solid $primary-color;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin-top: 10px;
+
+    .order-from , .order-address, .order-plate, .plate, .phone{
+        font-size: 25px;
+        font-style: italic;
+        border-bottom: 1px solid lightgrey;
+        margin-top: 10px;
+    }
+
+    h3{
+        margin-top: 10px;
+    }
+
+    h4{
+        font-size: 17px;
+        margin-top: 20px;
+        font-style: normal;
+    }
+}
