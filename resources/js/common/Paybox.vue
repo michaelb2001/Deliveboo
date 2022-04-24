@@ -6,7 +6,11 @@
         @success="onSuccess"
         @error="onError"
     >
-
+    <template #button="slotProps">
+      <div class="" @click="slotProps.submit">
+        nuovo button
+      </div>
+    </template>
     </v-braintree>
   </div>
 </template>
@@ -64,5 +68,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+button.btn.btn-primary{
+  color: yellow;
+}
 </style>
