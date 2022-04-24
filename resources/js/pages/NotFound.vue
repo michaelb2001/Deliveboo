@@ -1,13 +1,13 @@
 <template>
-  <div class="container">
+  <div class="main-container">
     <div class="not-found">
       <div class="image-error"></div>
-      <div class="text">
+    </div>
+    <div class="text">
         <h1>Pagina Non Trovata</h1>
         <p>La pagina che stai cercando non esiste</p>
         <router-link class="back" :to="{ name: 'main'}">Torna alla Home </router-link>
       </div>
-    </div>
   </div>
 </template>
 
@@ -19,10 +19,18 @@ export default {
 
 <style lang="scss" scoped>
 
+.main-container{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+}
+
 .not-found{
     background: url('https://deliveroo.it/assets/images/error-pages/background-7edaa013aceff22965bdb7fbf274b4a2.svg');
     text-align: center;
-    padding: 137px 16px 32px;
     position: relative;
     height: 300px;
 
@@ -36,14 +44,15 @@ export default {
     position: absolute;
     width: 200px;
     height: 145px;
-    left: 450px;
-    top: 200px;
+    left: 50%;
+    top: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: translate(-50% , 40%);
 }
 
 .text{
-    position: absolute;
-    top: 390px;
-    left: 390px;
+    padding-top: 100px;
     text-align: center;
 
   p{
