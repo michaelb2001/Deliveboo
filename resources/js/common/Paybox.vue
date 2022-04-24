@@ -7,8 +7,8 @@
         @error="onError"
     >
     <template #button="slotProps">
-      <div class="" @click="slotProps.submit">
-        nuovo button
+      <div class="text-center" @click="slotProps.submit">
+        <button type="button" class="btn option-btn">Paga</button>
       </div>
     </template>
     </v-braintree>
@@ -68,7 +68,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-button.btn.btn-primary{
-  color: yellow;
+@import '../../sass/_variables.scss';
+
+
+.option-btn{
+  color: $light-color;
+  background-color: $primary-color;
+  border: 1px solid $primary-color;
+  &:hover{
+    color: $primary-color;
+    background-color: $third-color;
+    border: 1px solid $third-color;
+  }
 }
+
 </style>

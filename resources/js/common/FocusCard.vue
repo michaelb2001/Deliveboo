@@ -15,7 +15,7 @@
                <div>
                 <h4>{{plate.name}}</h4>
               </div>
-              <div>
+              <div class="ingredient-box">
                 <p>{{plate.ingredients}}</p>
               </div>
             </div>
@@ -96,6 +96,17 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../sass/front.scss';
+
+@media screen and (max-width:576px) {
+  .focus-cards{
+    width: 100%!important;
+  }
+
+  .img-class{
+    height: 255px!important;
+  }
+}
+
 .focus-new-cart{
   background-color: $light-color;
   height: 300px;
@@ -199,6 +210,12 @@ export default {
       border: 1px solid #8f3d82 ;
     }
   }
+}
+
+.ingredient-box{
+  overflow-wrap: break-word;
+  max-height: 100px;
+  overflow-y: scroll;
 }
 
 </style>
