@@ -7,6 +7,7 @@ use App\Order;
 use App\Plate;
 use App\Type;
 use App\User;
+use Braintree\Gateway;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class PlatesController extends Controller
 {
     //
     public function index(){
-        $plates =Plate::all();
+        $plates = Plate::all();
         return response()->json($plates);
     }
 
@@ -187,5 +188,35 @@ class PlatesController extends Controller
             "mess" => 'creato',
             "status" => true,
         ]);
+    }
+
+    public function generate(Request $request, Gateway $gateway)
+    {
+        
+        $token = $gateway->clientToken()->generate();
+
+        $data = [
+            'success' => true,
+            'token' => $token
+        ];
+
+        return response()->json($data);
+    }
+
+    public function makePayment(Request $request, Gateway $gateway)
+    {
+        $data = $request->all();
+        
+       $result = $gateway->transaction()->sale([
+            'amount' => "2200.00",
+            'paymentMethodNonce' => $data['tokenClient'],
+            'options' => [
+                'submitForSettlement' => true
+            ]
+        ]);
+
+
+
+        return response()->json($result);
     }
 }

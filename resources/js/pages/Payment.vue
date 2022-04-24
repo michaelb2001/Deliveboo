@@ -40,7 +40,7 @@
               </div>
               <!-- Box pagamento BrainTree-->
               <div class="border">
-                
+                <Paybox @payed="isPayed()"/>
               </div>
               <!-- Box pulsanti -->
               <div class="text-center mt-3">
@@ -75,8 +75,10 @@
 </template>
 
 <script>
+import Paybox from '../common/Paybox.vue';
 export default {
     name:"Payment",
+    components: { Paybox },
     created(){
       if(this.$route.params.user)
         this.user = this.$route.params.user;
@@ -119,6 +121,9 @@ export default {
       }
     },
     methods:{
+      isPayed(){
+        this.payed = true
+      },
       pay(){
         this.controlInput();
 

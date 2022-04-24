@@ -34,3 +34,6 @@ Route::post("/payment","Api\PlatesController@payment");
 Route::get("/card-user/{activity}","Api\PlatesController@getUser"); //prende lo specifico ristorante
 
 Route::get("/types/{typeArr}","Api\PlatesController@getUserFromType"); //prende i ristoranti filtrando per categoria
+
+Route::get('/order/generate', 'Api\PlatesController@generate');
+Route::post('/order/make/payment', 'Api\PlatesController@makePayment');

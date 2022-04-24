@@ -5,6 +5,7 @@
  */
 
  window.axios = require('axios');
+ require("./braintree");
 
  window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  

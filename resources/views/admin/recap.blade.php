@@ -17,7 +17,7 @@
                             @if(isset($LoggedUser->img))
                                 <img src="{{ asset("storage/".$LoggedUser->img) }}" class="img_profile">
                             @else
-                                <img src="{{asset(`img/.$LoggedUser->id.jpg`)}}">
+                                <img class="img_profile" src="{{asset("img/$LoggedUser->id.jpg")}}">
                                
                             @endif
                             <li>
