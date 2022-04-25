@@ -143,19 +143,20 @@ class PlatesController extends Controller
         $data = $request->all();
 
         $validator = Validator::make($data , [
-            'name' => 'required',
-            'surname' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
+            'name' => 'required|string|max:30',
+            'surname' => 'required|string|max:30',
+            'email' => 'required|string|email|max:255',
+            'phone' => 'required|numeric|digits_between:8,11',
+            'address' => 'required|string',
             'status' => 'required',
             'total' => 'required',
         ]);
 
-        if($validator->fails()){
+        $control = $validator->fails();
+        if($control){
             return response()->json([
                 "mess" => 'ERRORE MADORNALE',
-                "old" => $data,
+                "old" => $validator->errors(),
                 "status" => false,
             ]);
         }
@@ -208,15 +209,23 @@ class PlatesController extends Controller
         $data = $request->all();
         
        $result = $gateway->transaction()->sale([
-            'amount' => "2200.00",
+            'amount' => $data['total'],
             'paymentMethodNonce' => $data['tokenClient'],
             'options' => [
                 'submitForSettlement' => true
             ]
         ]);
 
+        if(isset($result->success))
+            if($result->success)
+                return response()->json([
+                    "data" => $result, 
+                    "success" => true,
+                ]);
 
-
-        return response()->json($result);
+        return response()->json([
+            "data" => $result, 
+            "success" => false,
+        ]);
     }
 }

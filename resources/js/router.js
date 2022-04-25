@@ -7,6 +7,7 @@ import Vue from "vue";
         import CardUser from "./pages/CardUser";
         import Payment from "./pages/Payment";
         import NotFound from "./pages/NotFound";
+        import SuccessPayment from "./pages/SuccessPayment";
 
         const router = new VueRouter({
             mode: "history",
@@ -25,6 +26,11 @@ import Vue from "vue";
                     path: "/payment",
                     name: "Payment",
                     component: Payment
+                },
+                {
+                    path: "/payment/success",
+                    name: "SuccessPayment",
+                    component: SuccessPayment
                 },
 				{
 		            path: "*",

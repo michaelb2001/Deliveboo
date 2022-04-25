@@ -1,7 +1,6 @@
 <template>
-  <div>
+  <div v-if="tokenGenerate" class="payment-box">
       <v-braintree 
-        v-if="tokenGenerate"
         :authorization="Token"
         @success="onSuccess"
         @error="onError"
@@ -22,10 +21,12 @@ export default {
     return{
       Token: null,
       tokenGenerate: false,
-      form: {
-        tokenClient: "",
-        }
     }
+  },
+  props:{
+    formData: Object,
+    user: Object,
+    cart: Array,
   },
   created(){
   axios
@@ -40,23 +41,40 @@ export default {
       .catch(function (error) {});
   },
   methods: {
+    pay(){
+      axios.post('../api/payment/' , this.formData)
+              .then((response) => {
+          // handle success
+              console.log(response.data);
+              if(response.data.status){
+                localStorage.setItem('storedData1', null);
+                localStorage.setItem('storedData2', null);
+                localStorage.setItem('storedData3', null);
+                //this.$emit('clearCart');
+                console.log(this.user);
+                this.$router.push({
+                  name: 'SuccessPayment', 
+                  params: { user: this.user , cart: this.cart }
+                });
+              }
+          });
+    },
     onSuccess (payload) {
       let nonce = payload.nonce;
-      this.form.tokenClient = nonce;
-      console.log(this.form.tokenClient);
+      this.formData.tokenClient = nonce;
       axios
-        .post("../api/order/make/payment" , this.form)
+        .post("../api/order/make/payment" , this.formData)
         .then((response) => {
           console.log(response.data, 'dopo pagamento');
-       //   console.log(this.form.client);
-         // this.dataShared.client = this.form.client;
-         // console.log(this.dataShared.client);
+          if(response.data.success)
+            this.pay();
+          else
+            console.log('NON PAGATO');
+
        //   self.clearCart();
          // self.redirect();
         })
         .catch(function (error) {});
-      this.$emit('payed');
-
       // Do something great with the nonce...
     },
     onError (error) {
@@ -69,7 +87,11 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../sass/_variables.scss';
-
+.payment-box{
+  padding-bottom: 20px;
+  border-top: 1px solid $primary-color;
+  border-bottom: 1px solid $primary-color;
+}
 
 .option-btn{
   color: $light-color;
