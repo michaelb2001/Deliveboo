@@ -63,6 +63,11 @@ export default {
 
   a{
     color: white;
+
+    &:hover{
+      text-decoration: none;
+      color: #00B8A9;
+    }
   }
 
   span{
