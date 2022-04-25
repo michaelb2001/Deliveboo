@@ -58,11 +58,15 @@
                         </a>
         
                         <a class="d-sm-block d-md-none d-lg-none navbar-link " href="{{ url('/admin/types') }}">
-                            Cateogories
+                            Cateogorie
                         </a>
                         
                         <a class="d-sm-block d-md-none d-lg-none navbar-link " href="{{ url('/admin/plate') }}">
-                            Plates
+                            Piatti
+                        </a>
+
+                        <a class="d-sm-block d-md-none d-lg-none navbar-link " href="{{ url('/admin/order') }}">
+                            Ordini in arrivo
                         </a>
                     </ul>
 
