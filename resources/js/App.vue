@@ -2,7 +2,7 @@
     <div>
         <Header :tot="tot" :user="user"/>
         <Main :prevUser="user" :prevOrder="order" @add="add"/>
-       <!-- <Footer /> -->
+        <Footer /> 
     </div>
 
 </template>
