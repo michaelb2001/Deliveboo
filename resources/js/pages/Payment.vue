@@ -20,7 +20,7 @@
                       </div>
 
                       <div class="form-group">
-                          <label for="surname">surname</label>
+                          <label for="surname">cognome</label>
                           <input :disabled="formComplete" v-model="surname" type="text" class="form-control" id="surname" name="surname" placeholder="surname">
                           <div v-if="!validation.surname.success" class="alert alert-danger">
                             {{validation.surname.message}}

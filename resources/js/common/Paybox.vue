@@ -7,7 +7,8 @@
     >
     <template #button="slotProps">
       <div class="text-center" @click="slotProps.submit">
-        <button type="button" class="btn option-btn">Paga</button>
+        <button type="button" id="btn_pay" class="btn option-btn">Paga</button>
+        <router-link class="btn back_to_home d-none" id="back_to_home" :to="{ name: 'main'}">Torna alla Home</router-link>
       </div>
     </template>
     </v-braintree>
@@ -66,8 +67,12 @@ export default {
         .post("../api/order/make/payment" , this.formData)
         .then((response) => {
           console.log(response.data, 'dopo pagamento');
-          if(response.data.success)
+          if(response.data.success){
             this.pay();
+            document.getElementById("btn_pay").classList.add("d-none");
+            document.getElementById("back_to_home").classList.remove("d-none");
+            document.getElementById("back_to_home").classList.add("d-flex");
+          }
           else
             console.log('NON PAGATO');
 
@@ -104,4 +109,15 @@ export default {
   }
 }
 
+.back_to_home{
+    background-color: #00ccbb;
+    color: white;
+    font-size: 15px;
+    padding: 9px;
+    border-radius: 10px;
+    text-align: center!important;
+    &:hover{
+      text-decoration: none;
+    }
+}
 </style>
