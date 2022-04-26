@@ -23,11 +23,28 @@ class PlatesController extends Controller
 
     public function users(){
         $users = User::all();
+        $newUsers = User::orderBy('created_at' ,'DESC')->take(3)->get();
+        $ratedUsers = User::orderBy('activity' ,'ASC')->take(3)->get();
+
         foreach($users as $user){
             $user->types;
             $user->plates;
         }
-        return response()->json($users);
+
+        foreach($newUsers as $user){
+            $user->types;
+            $user->plates;
+        }
+
+        foreach($ratedUsers as $user){
+            $user->types;
+            $user->plates;
+        }
+        return response()->json([
+            "users" => $users,
+            "newUsers" => $newUsers,
+            "ratedUsers" => $ratedUsers,
+        ]);
     }
 
     public function user($id = null){

@@ -6,18 +6,15 @@
           <i class="fa-solid fa-utensils"></i>
         </div>
         <div @click="showTypes = false" v-show="showTypes" class="hidden-close-sub create"></div>   
-        <TypeBox v-if="showTypes" @searchType="searchType" :typesArr="typesArr" />
+        <TypeBox v-if="showTypes" @searchType="searchType" :address="address" :typesArr="typesArr" />
       </div>
 
       <div class="d-none d-lg-block">
-        <TypeBox @searchType="searchType" :typesArr="typesArr" />
+        <TypeBox @searchType="searchType" :address="address" :typesArr="typesArr" />
       </div>
 
       <div class="users-box">
         <div class="header-users-box">
-          <h1>
-            Ristoranti :
-          </h1>
           <div class="checked-types">
             <div class="type" v-for="(type,index) in checkedType" :key="'checked'+index">
               {{type.name}} 
@@ -25,8 +22,31 @@
             </div>
           </div>
       </div>
+      
         <div class="main-users-box w-100 flex-wrap d-flex" v-if="usersArr.length > 0" >
-          <div v-for="(user,index) in usersArr" :key="'users'+index" class="user mt-3">
+          <h1 class="w-100">
+            In primo piano
+          </h1>
+          <div v-for="(user,index) in ratedUsers" :key="'users'+index" class="user mt-3">
+            <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
+              <Card :user="user"/>
+            </router-link>
+          </div>
+
+
+          <h1 class="w-100">
+            Nuovi su Deliveroo
+          </h1>
+          <div v-for="(user,index) in newUsers" :key="'newUsers'+index" class="user mt-3">
+            <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
+              <Card :user="user"/>
+            </router-link>
+          </div>
+
+          <h1 class="w-100">
+            Ristoranti
+          </h1>
+          <div v-for="(user,index) in usersArr" :key="'usersArr'+index" class="user mt-3">
             <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
               <Card :user="user"/>
             </router-link>
@@ -53,6 +73,7 @@ export default {
     name:"MainPage",
     data(){
       return{
+        address: null,
         showTypes: false,
         urlAllUsers : '/api/users',
         usersArr: [],
@@ -68,6 +89,13 @@ export default {
       }
     },
     created(){
+      console.log(this.$route.params.address);
+      if(!this.$route.params.address)
+        this.$router.push({
+          name:"home",
+        });
+      
+      this.address = this.$route.params.address;
       this.loadAxios = 0;
       this.getAllUsers();
       this.getAllTypes();
@@ -82,9 +110,9 @@ export default {
         axios.get(this.urlAllUsers)
           .then((response) => {
         // handle success
-          this.usersArr.push (...response.data);
-          this.newUsers.push();
-          this.ratedUsers.push();
+          this.usersArr.push(...response.data.users);
+          this.newUsers.push(...response.data.newUsers);
+          this.ratedUsers.push(...response.data.ratedUsers);
           console.log(this.usersArr);
           setTimeout(() => {
             this.loadAxios++;

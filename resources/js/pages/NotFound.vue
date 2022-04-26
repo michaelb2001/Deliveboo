@@ -26,6 +26,7 @@ export default {
   z-index: 10000;
   top: 0;
   left: 0;
+  background-color: white;
 }
 
 .not-found{
@@ -54,7 +55,6 @@ export default {
 .text{
     padding-top: 100px;
     text-align: center;
-    background-color: white;
 
   p{
     margin-bottom: 50px;
