@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendNewMail;
 use App\Order;
 use App\Plate;
 use App\Type;
@@ -10,6 +11,7 @@ use App\User;
 use Braintree\Gateway;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PlatesController extends Controller
 {
@@ -187,6 +189,9 @@ class PlatesController extends Controller
             $sync_data[$plates_id[$i]] = ['quantity' => $plates_quantity[$i]];
 
         $order->plates()->sync($sync_data);
+
+        Mail::to($data['email'])->send(new SendNewMail());
+        Mail::to($data['user_email'])->send(new SendNewMail());
 
         return response()->json([
             "mess" => 'creato',

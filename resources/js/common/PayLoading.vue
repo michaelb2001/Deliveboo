@@ -58,6 +58,7 @@ export default {
 .text{
     padding-top: 160px;
     text-align: center;
+    background-color: white;
 
   p{
     margin-bottom: 50px;

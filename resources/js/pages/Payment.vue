@@ -280,6 +280,7 @@ export default {
       this.formData.total = this.tot;
       this.formData.user_id = this.user.id;
       this.formData.plates = this.cart;
+      this.formData.user_email = this.user.email;
 
       this.formComplete = true;
       },
