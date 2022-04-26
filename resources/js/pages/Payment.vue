@@ -291,6 +291,10 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../sass/front.scss';
+h4{
+  display: inline;
+}
+
 .pay-container {
     padding: 30px 0;
 }
