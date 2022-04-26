@@ -190,9 +190,10 @@ class PlatesController extends Controller
 
         $order->plates()->sync($sync_data);
 
-        if(isset($data['email']) && isset($data['user_email']))
-        Mail::to($data['email'])->send(new SendNewMail());
-        Mail::to($data['user_email'])->send(new SendNewMail());
+        if(isset($data['email']) && isset($data['user_email'])){
+            Mail::to($data['email'])->send(new SendNewMail());
+            Mail::to($data['user_email'])->send(new SendNewMail());
+    }
 
         return response()->json([
             "mess" => 'creato',
