@@ -1,12 +1,19 @@
 <template>
   <div class="card_container">
       <div class="col">
-        <div class="m-2 ms_margin">
-          <p class="ms_name_plate">{{plate.name}}</p>
-          <p class="ms_ingredients">{{plate.ingredients}}</p>
-          <p class="ms_price">{{plate.price}}€</p>
+        <div class="m-2 ms_margin d-flex justify-content-between">
+          <div>
+            <p class="ms_name_plate">{{plate.name}}</p>
+            <p class="ms_ingredients">{{plate.ingredients}}</p>
+            <p class="ms_price">{{plate.price}}€</p>
+          </div>
+
+          <div class="image">
+            qua va l'image
+          </div>
         </div>
       </div>
+      
   </div>
 </template>
 

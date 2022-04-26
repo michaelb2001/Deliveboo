@@ -194,6 +194,10 @@ export default {
     height: 300px;
     display: flex;
     justify-content: center;
+
+    a{
+      width: 100%;
+    }
   }
 }
 
