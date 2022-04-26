@@ -151,6 +151,7 @@ export default {
           total: null,
           user_id: null,
           plates: null,
+          user_email: null,
         },
         validation: {
           name: {
