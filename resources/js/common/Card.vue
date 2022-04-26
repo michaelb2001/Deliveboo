@@ -5,12 +5,13 @@
               <img v-else :src="require(`../../../public/img/${user.id}.jpg`)">
           </div>
           <div class="card_name d-flex">
-            {{user.activity}}
+              <span>{{user.activity}}</span>
           </div>
           <div class="card_mail">
-              {{user.email}}
+              <span>{{user.email}}</span>
           </div>
           <div class="types">
+              tipologia ristorante
               <span v-for="(type,index) in user.types" :key="'type'+index" class="type">{{type.name}} <span v-if="index != user.types.length - 1"> · </span></span>
           </div>
       </div>
@@ -51,13 +52,41 @@ export default {
         }
 
         .card_name{
-            text-transform: uppercase;
-            font-weight:bold ;
+            span{
+                color: $light-color;
+                background-color: $third-color;
+                padding: 0 5px;
+                margin: 5px;
+                border-radius: 25px;
+                text-transform: uppercase;
+                font-weight:bold ;
+            }
+
+
         }
-        .card_name{
+        .card_mail{
             width: auto;
             word-wrap: none;
-        };
+            span{
+                color: $light-color;
+                background-color: $primary-color;
+                padding: 0 5px;
+                margin: 5px;
+                border-radius: 25px;
+            };
 
     }
+    .types{
+        margin:5px;
+        .type{
+                color: $dark-color;
+                background-color: $secondary-color;
+                padding: 0 5px;
+                margin: 5px;
+                border-radius: 25px;
+            }
+    }
+    
+
+}
 </style>
