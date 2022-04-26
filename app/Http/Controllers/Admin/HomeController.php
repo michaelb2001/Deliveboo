@@ -91,9 +91,11 @@ class HomeController extends Controller
 
     public function order(){
         $LoggedUser = User::where('id',Auth::user()->id)->first();
-        $orders = Order::where('user_id',$LoggedUser->id)->get();
+        $orders = Order::orderBy('created_at', 'DESC')->where('user_id',$LoggedUser->id)->get();
+        
         foreach($orders as $order)
             $order->plates;
+            
         return view('admin.order',compact("orders"));
     }
 

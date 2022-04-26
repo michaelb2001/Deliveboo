@@ -56,6 +56,8 @@ export default {
         showTypes: false,
         urlAllUsers : '/api/users',
         usersArr: [],
+        ratedUsers: [],
+        newUsers: [],
       
         urlAllTypes : '/api/allTypes',
         typesArr : [],
@@ -81,6 +83,7 @@ export default {
           .then((response) => {
         // handle success
           this.usersArr.push (...response.data);
+          thi
           console.log(this.usersArr);
           setTimeout(() => {
             this.loadAxios++;

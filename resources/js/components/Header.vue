@@ -56,46 +56,7 @@
            <i class="fa-solid fa-basket-shopping"></i> 
             <span class="price"> {{(tot.toFixed(2))}} </span> €
             </router-link>
-        </li>
-
-        <!-- Visualizza ordini -->
-        <!--<li>
-          <button @click="open()" class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">IL MIO ORDINE</button>
-          <div class="d-none offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-            <div class="offcanvas-header">
-              <div class="text-center mt-3">
-                <h5 id="offcanvasRightLabel ">IL MIO ORDINE</h5>
-              </div>
-              <div class="d-flex justify-content-around">
-                <p>Margherita (esempio)</p>
-                
-                <div class="col btn-add-remove d-flex align-items-center">
-                  <div @click="(quantity - 1 >= 1 ) ? quantity-- : null" class="btn btn-three">
-                    <span>-</span>
-                  </div>
-
-                  <div class="quantity">
-                    {{quantity}}
-                  </div>
-
-                  <div @click="quantity++" class="btn btn-three">
-                    <span>+</span>
-                  </div>
-                </div>
-
-                <span>4,50 €</span>
-              </div>
-              <div class="box-btn-close text-center p-3">
-                <button type="button" class="btn-close btn-close-option text-reset" data-bs-dismiss="offcanvas" aria-label="Close">Chiudi</button>
-              </div>
-              
-            </div>
-            <div class="offcanvas-body">
-              
-            </div>
-          </div>
-        </li>-->
-        
+        </li>        
       </ul>
     </div>
   </div>
@@ -126,6 +87,11 @@ export default {
       this.inputText = "";
     },
     search(){
+      if(this.inputText.length <= 0)
+        this.clean();
+      if(this.inputText.length < 3)
+        return;
+
       this.searchT();
       this.searchU();
     },
@@ -164,9 +130,6 @@ export default {
         console.log(error);
       });
     },
-    open(){
-    document.getElementById("offcanvasRight").classList.remove("d-none");
-    }
   }
 
 }

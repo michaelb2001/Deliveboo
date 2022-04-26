@@ -9,10 +9,10 @@
                 <div class="row">
                     <div class="receipt-header receipt-header-mid">
                             <div class="receipt-right">
-                                <span class="date-order">Ordinato il: <br> <h4>{{$order->created_at}}</h4></span>
-                                <span class="order-from">Prenotazione da: <br> <h4>{{$order->name}} {{$order->surname}}</h4></span>
-                                   <span class="order-address">All'indirizzo: <br>  <h4>{{$order->address}}</h4></span>
-                                    <span class="phone">Numero di telefono: <br> <h4>{{$order->phone}}</h4></span>
+                                <span class="date-order">Ordinato il: <br> <h4>{{$order['created_at']}}</h4></span>
+                                <span class="order-from">Prenotazione da: <br> <h4>{{$order['name']}} {{$order['surname']}}</h4></span>
+                                   <span class="order-address">All'indirizzo: <br>  <h4>{{$order['address']}}</h4></span>
+                                    <span class="phone">Numero di telefono: <br> <h4>{{$order['phone']}}</h4></span>
                             </div>
                        </div>
                    </div>
@@ -29,17 +29,23 @@
                                <tr>
                                    <td class="col-md-9">
                                        <div class="order-plate">
-                                            @foreach ($order->plates as $plate)
-                                                <span class="plate"><h4> - {{$plate->name}}</h4></span>
+                                            @foreach ($order['plates'] as $plate)
+                                                <span class="plate"><h4> - {{$plate['name']}}</h4></span>
                                             @endforeach
                                         </div>
                                     </td>
-                                   <td class="col-md-3"><i class="fa fa-inr"></i></td>
+                                    <td class="col-md-9">
+                                        <div class="order-plate">
+                                             @foreach ($order['plates'] as $plate)
+                                                 <span class="plate"><h4> {{$plate['pivot']['quantity']}}x</h4></span>
+                                             @endforeach
+                                        </div>
+                                    </td>
                                </tr>
                                <tr>
                                   
                                    <td class="text-right"><h2><strong>Totale: </strong></h2></td>
-                                   <td class="text-left text-danger"><h2><strong><i class="fa fa-inr"></i>{{$order->total}}</strong></h2></td>
+                                   <td class="text-left text-danger"><h2><strong><i class="fa fa-inr"></i>{{$order['total']}} €</strong></h2></td>
                                </tr>
                            </tbody>
                        </table>
