@@ -20,7 +20,7 @@
                 <h1>Comfort food</h1>
             </div>
             <div class="text-info">
-                <span>I nostri classici che scaldano il cuore, perfetti in ogni momento.</span>
+                <p>I nostri classici che scaldano il cuore, perfetti in ogni momento.</p>
                 <p><a href="">Scopri Comfort food</a></p>
             </div>
         </div>
