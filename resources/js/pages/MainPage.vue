@@ -83,7 +83,8 @@ export default {
           .then((response) => {
         // handle success
           this.usersArr.push (...response.data);
-          thi
+          this.newUsers.push();
+          this.ratedUsers.push();
           console.log(this.usersArr);
           setTimeout(() => {
             this.loadAxios++;
