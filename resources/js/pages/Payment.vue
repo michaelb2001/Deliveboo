@@ -20,8 +20,8 @@
                       </div>
 
                       <div class="form-group">
-                          <label for="surname">cognome</label>
-                          <input :disabled="formComplete" v-model="surname" type="text" class="form-control" id="surname" name="surname" placeholder="surname">
+                          <label for="surname">Cognome</label>
+                          <input :disabled="formComplete" v-model="surname" type="text" class="form-control" id="surname" name="surname" placeholder="Cognome">
                           <div v-if="!validation.surname.success" class="alert alert-danger">
                             {{validation.surname.message}}
                           </div>
@@ -29,7 +29,7 @@
 
                       <div class="form-group">
                           <label for="email">Email</label>
-                          <input :disabled="formComplete" v-model="email" id="email" type="email" class="form-control" name="email" placeholder="Inserisi l'indirizzo email">
+                          <input :disabled="formComplete" v-model="email" id="email" type="email" class="form-control" name="email" placeholder="Inserisci Email">
                           <div v-if="!validation.email.success" class="alert alert-danger">
                             {{validation.email.message}}
                           </div>
@@ -37,7 +37,7 @@
 
                       <div class="form-group">
                           <label for="phone">Telefono</label>
-                          <input :disabled="formComplete" v-model="phone" id="phone" type="text" class="form-control" name="phone" placeholder="Insierisci il numero di telefono">
+                          <input :disabled="formComplete" v-model="phone" id="phone" type="text" class="form-control" name="phone" placeholder="Inserisci numero di telefono">
                           <div v-if="!validation.phone.success" class="alert alert-danger">
                             {{validation.phone.message}}
                           </div>
@@ -45,7 +45,7 @@
 
                       <div class="form-group">
                           <label for="address">Indirizzo</label>
-                          <input :disabled="formComplete" v-model="address" id="address" type="text" class="form-control" name="address" placeholder="Inserisci l'indirizzo per il recapito">
+                          <input :disabled="formComplete" v-model="address" id="address" type="text" class="form-control" name="address" placeholder="Inserisci indirizzo per il recapito">
                           <div v-if="!validation.address.success" class="alert alert-danger">
                             {{validation.address.message}}
                           </div>
@@ -81,15 +81,30 @@
               <div class="box-cart border">
                 <div class="w-100 d-flex flex-column align-items-center">
                     <h2 class="ml-5 mb-3 mt-3" style="color:black; align-self:flex-start;">Il Tuo Ordine</h2>
-                    <div class="px-5 w-100 d-flex justify-content-between" v-for="(item,index) in cart" :key="index">
+                    <div class="order-plate-box">
+                      <div class="px-5 w-100 d-flex justify-content-between" v-for="(item,index) in cart" :key="index">
                         <p class="order-plate-name">{{item.plate.name}}</p> 
                         <div class="quantity-box">
-                            <span class="me-3">{{item.quantity}}</span>
+                            <span class="mx-1">{{item.quantity}}</span>
+                            <span class="mx-1">{{(item.plate.price * item.quantity).toFixed(2)}} €</span>
                         </div>
-                        <div>
-                          <span>{{(item.plate.price * item.quantity).toFixed(2)}} €</span>
-                        </div>
-                    </div>
+                      </div>
+                  </div>
+
+                  <div class="px-5 w-100 d-flex justify-content-between footer-plate-box">
+                      <p> Subtotale </p>
+                      <p class="mx-1">{{(tot).toFixed(2)}} €</p>
+                  </div>
+
+                  <div class="px-5 w-100 d-flex justify-content-between">
+                      <p> Spese di consegna </p>
+                      <p class="mx-1">{{deliveryCosts}} €</p>
+                  </div>
+
+                  <div class="px-5 w-100 d-flex justify-content-between">
+                      <p> Totale </p>
+                      <p class="mx-1">{{(tot + deliveryCosts).toFixed(2)}} €</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -125,6 +140,11 @@ export default {
         if(!this.user || !this.tot)
           this.$router.push('/');
       }
+
+      if(this.tot > 15)
+        this.deliveryCosts = 0;
+      else
+        this.deliveryCosts = 2.50;
     },
     data(){
       return{
@@ -134,6 +154,7 @@ export default {
         user: null,
         cart: null,
         tot: null,
+        deliveryCosts: null,
         
         name: null,
         surname: null,
@@ -278,7 +299,7 @@ export default {
       this.formData.phone = this.phone;
       this.formData.address = this.address;
       this.formData.status = 0;
-      this.formData.total = this.tot;
+      this.formData.total = this.tot + this.deliveryCosts;
       this.formData.user_id = this.user.id;
       this.formData.plates = this.cart;
       this.formData.user_email = this.user.email;
@@ -291,17 +312,13 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../sass/front.scss';
-h4{
-  display: inline;
-}
-
 .pay-container {
     padding: 30px 0;
 }
 
 .form-is-complete{
 
-  h3{
+  h4{
     display: inline-block;
   }
 

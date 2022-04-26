@@ -23,11 +23,28 @@ class PlatesController extends Controller
 
     public function users(){
         $users = User::all();
+        $newUsers = User::orderBy('created_at' ,'DESC')->take(3)->get();
+        $ratedUsers = User::orderBy('activity' ,'ASC')->take(3)->get();
+
         foreach($users as $user){
             $user->types;
             $user->plates;
         }
-        return response()->json($users);
+
+        foreach($newUsers as $user){
+            $user->types;
+            $user->plates;
+        }
+
+        foreach($ratedUsers as $user){
+            $user->types;
+            $user->plates;
+        }
+        return response()->json([
+            "users" => $users,
+            "newUsers" => $newUsers,
+            "ratedUsers" => $ratedUsers,
+        ]);
     }
 
     public function user($id = null){
@@ -59,7 +76,7 @@ class PlatesController extends Controller
         if($input != null){
             $new_str = preg_replace("/\s+/", "*", $input);
             $input = $new_str;
-            $users = User::whereRaw("REPLACE(activity, ' ' ,'') LIKE ?", $input.'%')->get();
+            $users = User::whereRaw("REPLACE(activity, ' ' ,'') LIKE ?", '%'.$input.'%')->get();
             foreach($users as $user){
                 $user->plates;
                 $user->types;
