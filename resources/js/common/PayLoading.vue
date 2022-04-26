@@ -29,6 +29,7 @@ export default {
   z-index: 10000;
   top: 0;
   left: 0;
+  background-color: white;
 }
 
 .preloader-box{
