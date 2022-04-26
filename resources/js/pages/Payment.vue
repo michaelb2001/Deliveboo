@@ -318,7 +318,7 @@ export default {
 
 .form-is-complete{
 
-  h3{
+  h4{
     display: inline-block;
   }
 
