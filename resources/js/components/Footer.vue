@@ -72,6 +72,7 @@ export default {
   width: 100%;
   padding: 15px 0;
   color: white;
+  margin-top: 30px;
   //display: flex;
   //justify-content: center;
   //flex-wrap: wrap;
