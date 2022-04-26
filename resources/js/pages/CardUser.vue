@@ -19,7 +19,7 @@
 
     <h1>piatti</h1>
     <div class="d-flex justify-content-between plates-and-cart">
-        <div class="w-50 row row-cols-1 row-cols-sm-2 row-cols-md-2 ms_row_plate">
+        <div class="ms_row_plate">
             <div v-for="(plate,index) in user.plates" :key="'plate'+index">
                 <div @click="showFocusCard(plate)" class="card-plate-box">
                     <CardPlate :plate="plate"/>
@@ -27,47 +27,18 @@
             </div>
         </div>
 
-        <div class="cart-box">
-            <div v-if="cart ? cart.length <= 0 : !prevUser" class="h-100 d-flex flex-column justify-content-around align-items-center empty">
-                <div class="d-flex flex-column align-items-center">
-                    <i class="fa-solid fa-basket-shopping"></i>
-                    <p class="my-2">Il carrello è vuoto</p>
-                </div>
-                <button disabled type="button">
-                    Vai al pagamento
-                </button>
-            </div>
-
-            <div v-else-if="cart && cart.length > 0" class="h-100 d-flex flex-column justify-content-around align-items-center no-empty">
-                <div class="w-100 d-flex flex-column align-items-center">
-                    <h2 class="ml-5 mb-3" style="color:black; align-self:flex-start;">Il Tuo Ordine</h2>
-                    <div class="px-5 w-100 d-flex justify-content-between" v-for="(item,index) in cart" :key="index">
-                        <p class="order-plate-name">{{item.plate.name}}</p> 
-                        <div class="quantity-box">
-                            <i @click="oneLess(index)" class="quantity-num fa-solid fa-minus"></i>
-                            <span class="mx-1">{{item.quantity}}</span>
-                            <i @click="oneMore(index)" class="quantity-num fa-solid fa-plus"></i>
-                            <span class="mx-1">{{(item.plate.price * item.quantity).toFixed(2)}} €</span>
-                        </div>
-                    </div>
-                </div>
-                <button type="button">
-                    <router-link class="nav-link" :to="{name : 'Payment' , params:{cart:cart,tot:tot,user:user} }">
-                        Vai al pagamento
-                    </router-link>
-                </button>
-            </div>
-
-            <div v-else class="h-100 d-flex flex-column justify-content-around align-items-center no-empty">
-                <div class="d-flex flex-column align-items-center">
-                    <i class="fa-solid fa-exclamation"></i>
-                    <p class="my-2">Attenzione, non puoi ordinare da due ristoranti diversi!</p>
-                </div>
-                <button disabled type="button">
-                    Vai al pagamento
-                </button>
-            </div>
+        <div class="d-lg-none">
+        <div v-if="!showCart" @click="showCart = true" class="button-open-types">
+          <i class="fa-solid fa-cart-shopping"></i>
         </div>
+        <div @click="showCart = false" v-show="showCart" class="hidden-close-sub create"></div>   
+            <CartBox @add="add" v-if="showCart" :cart="cart" :prevUser="prevUser" :user="user" :tot="tot" />
+      </div>
+
+      <div class="d-none d-lg-block">
+        <CartBox @add="add" :cart="cart" :prevUser="prevUser" :user="user" :tot="tot" />
+      </div>
+        
     </div>
 
     <div @click="focusVisibility = null" v-show="focusVisibility" class="hidden-close-sub create"></div>   
@@ -77,11 +48,14 @@
 
 <script>
 import CardPlate from '../common/CardPlate.vue';
+import CartBox from '../common/CartBox.vue';
 import FocusCard from '../common/FocusCard.vue';
+
 export default {
     name:"MainPage",
     data(){
       return{
+          showCart: false,
           user : null,
           focusVisibility : null,
           cart: null,
@@ -95,6 +69,7 @@ export default {
     components: { 
         FocusCard,
         CardPlate,
+        CartBox,
     },
     created(){
         if(this.$route.params.user)
@@ -180,6 +155,10 @@ export default {
                 .then((response) => {
             // handle success
                 this.user = response.data;
+                if(!this.user)
+                    this.$router.push({
+                        name:"main"
+                    });
                 console.log(response.data);
                 this.load=true;
                 if(this.user && this.prevUser){
@@ -201,6 +180,26 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../sass/front.scss';
+.button-open-types{
+  position: fixed;
+  bottom: 15px;
+  right: 10px;
+  height: 50px;
+  z-index: 9999;
+  opacity: 0.85;
+  display: flex;
+  width: 50px;
+  font-size: 1.9em;
+  background-color: $primary_color;
+  justify-content: center;
+  border-radius: 50%;
+  align-items: center;
+
+  &:hover{
+    opacity: 1;
+  }
+}
+
 .hidden-close-sub{
   position: fixed;
   top: 0;
@@ -216,59 +215,18 @@ export default {
 
 .plates-and-cart{
     min-height: 300px;
-    .order-plate-name{
-        font-size: 1.1em;
-        color: black;
-    }
-
-    .quantity-box{
-        
-        .quantity-num{
-            cursor: pointer;
-            color: $primary_color;
-            border: 1px solid $primary_color;
-            border-radius: 50%;
-            padding: 1px;
-
-            &:hover{
-                transform: scale(1.1);
-            }
-        }
-    }
-
 }
 
-.cart-box{
-    width: 480px;
-    height: 230px;
-    background-color: white;
-    color: $darkgrey-color;
-    border: 1px solid $grey-color;
-    border-radius: 5px;
-
-    button{
-        border: unset;
-        width: 90%;
-        height: 55px;
-        border-radius: 5px;
-        background-color: $primary-color;
-        color: white;
-    }
-
-    button:disabled{
-        cursor: no-drop;
-        color: unset;
-        background-color: $grey-color!important;
-    }
-
-    .fa-basket-shopping,.fa-exclamation{
-        font-size: 2.5em;
-    }
-}
-
-.w-50.row.row-cols-1.row-cols-sm-2.row-cols-md-2.ms_row_plate {
-    height: 300px;
+.ms_row_plate {
+    width: 100%;
+    height: 295px;
     overflow-y: auto;
+
+    @media screen and (min-width:992px) {
+      &{
+        width: 45%!important;
+      }
+    }
 }
 
 .image-info{

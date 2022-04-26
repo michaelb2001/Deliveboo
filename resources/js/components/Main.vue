@@ -1,5 +1,5 @@
 <template>
-<div class="">
+<div class="main-container">
   <router-view @add="add" :prevUser="prevUser" :prevOrder="prevOrder" :key="$route.path"></router-view>
 </div>
 </template>
@@ -20,5 +20,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>

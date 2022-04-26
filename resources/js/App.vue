@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div id="main-container">
         <Header :tot="tot" :user="user"/>
         <Main :prevUser="user" :prevOrder="order" @add="add"/>
-        <Footer /> 
+        <Footer />
     </div>
 
 </template>
@@ -86,5 +86,10 @@ export default{
     -moz-user-select: none;     /* Firefox all */
     -ms-user-select: none;      /* IE 10+ */
     user-select: none;          /* Likely future */    
+}
+
+#main-container{
+    //height: 100vh;
+   // overflow: hidden;
 }
 </style>

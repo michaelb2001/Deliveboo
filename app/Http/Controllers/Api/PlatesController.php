@@ -73,6 +73,9 @@ class PlatesController extends Controller
 
     public function getUser($activity = null){
         $user = User::all()->where('activity',$activity)->first();
+        if(!isset($user))
+            return response()->json(false);
+
         $user->plates;
         $user->types;
         return response()->json($user);

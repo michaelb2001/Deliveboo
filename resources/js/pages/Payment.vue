@@ -1,12 +1,12 @@
 <template>
-  <div class="pay-container">
+  <div v-if="!payloading" class="pay-container">
       <div v-if="tot" class="pay-box">
         
         <div class="container mt-3">
           <div class="row">
-            <div class="col-12 col-md-5 col-lg-8">
-              <h2>{{user.activity}}</h2>
-              <p>Recapito consegna</p>
+            <div class="col-12 col-lg-8">
+              <h1>Stai ordinando da : {{user.activity}}</h1>
+              <p>Inserisci i dati per la consegna</p>
               <!-- Box form -->
               <div class="form-edit-box">    
                 <div class="main-box">
@@ -52,18 +52,22 @@
                       </div>
                   </div>
 
-                  <div class="form-is-complete d-flex flex-column" v-else>
-                    <div> <h3>Nome</h3> : {{this.formData.name}}</div>
-                    <div> <h3>Cognome</h3> : {{this.formData.surname}}</div>
-                    <div> <h3>Email</h3> : {{this.formData.email}}</div>
-                    <div> <h3>Telefono</h3> : {{this.formData.phone}}</div>
-                    <div> <h3>Indirizzo</h3> : {{this.formData.address}}</div>
+                  <div class="form-is-complete d-flex flex-column" v-else-if="!waitToken">
+                    <div> <h4>Nome</h4> : {{this.formData.name}}</div>
+                    <div> <h4>Cognome</h4> : {{this.formData.surname}}</div>
+                    <div> <h4>Email</h4> : {{this.formData.email}}</div>
+                    <div> <h4>Telefono</h4> : {{this.formData.phone}}</div>
+                    <div> <h4>Indirizzo</h4> : {{this.formData.address}}</div>
                   </div>
                 </div>
               </div>
               <!-- Box pagamento BrainTree-->
-              <div class="">
-                <Paybox :user="user" :cart="cart" v-if="formComplete" :formData="formData" @payed="isPayed()"/>
+              <div v-if="formComplete" class="form-is-complete">
+                <Paybox @tokenReady="waitToken = false" @payload="payload" :user="user" :cart="cart" v-show="!waitToken" :formData="formData" @payed="isPayed()"/>
+                <div v-if="waitToken" class="d-flex wait-token align-items-center">
+                  <h2>CONTROLLANDO I DATI ...</h2>
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
               </div>
               <!-- Box pulsanti -->
               <div class="text-center mt-3">
@@ -73,7 +77,7 @@
               </div>
             </div>
 
-            <div class="col-12 col-md-5 col-lg-4 mt-3">
+            <div class="col-12 col-lg-4 mt-3">
               <div class="box-cart border">
                 <div class="w-100 d-flex flex-column align-items-center">
                     <h2 class="ml-5 mb-3 mt-3" style="color:black; align-self:flex-start;">Il Tuo Ordine</h2>
@@ -91,17 +95,20 @@
             </div>
           </div>
         </div>
-          
-        
       </div>
+  </div>
+
+  <div v-else>
+    <PayLoading />
   </div>
 </template>
 
 <script>
 import Paybox from '../common/Paybox.vue';
+import PayLoading from '../common/PayLoading.vue';
 export default {
     name:"Payment",
-    components: { Paybox },
+    components: { Paybox, PayLoading },
     created(){
       if(this.$route.params.user)
         this.user = this.$route.params.user;
@@ -121,6 +128,8 @@ export default {
     },
     data(){
       return{
+        payloading: false,
+        waitToken: false,
         formComplete: false,
         user: null,
         cart: null,
@@ -168,8 +177,8 @@ export default {
       }
     },
     methods:{
-      clearCart(){
-
+      payload(){
+        this.payloading = true;
       },
       controlInput(){
       // validazione nome
@@ -260,6 +269,8 @@ export default {
         return;
 
       //se tutto va bene
+      this.waitToken = true;
+
       this.formData.name = this.name;
       this.formData.surname = this.surname;
       this.formData.email = this.email;
@@ -278,10 +289,33 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../sass/front.scss';
+.pay-container {
+    padding: 30px 0;
+}
+
 .form-is-complete{
+
   h3{
     display: inline-block;
   }
+
+  .wait-token{
+
+      .fa-magnifying-glass{
+        font-size: 2em;
+        margin-left: 15px;
+        color: $primary_color;
+        animation: search 2s linear infinite;
+      }
+    }
+
+@keyframes search {
+  0%{ transform: translate(0 , -10px); }
+  25%{ transform: translate(10px , 0); }
+  50%{ transform: translate(0 , 10px); }
+  75%{ transform: translate(-10px , 0); }
+  100%{ transform: translate(0 , -10px); }
+}
 
   p{
     font-size: 1.3em;

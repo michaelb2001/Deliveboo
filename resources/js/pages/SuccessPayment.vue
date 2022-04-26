@@ -9,9 +9,12 @@
           </li>
       </ul>
 
-    <router-link class="back" :to="{ name: 'main'}">
+    <!-- <router-link class="back" :to="{ name: 'main'}">
         Torna alla Home 
-    </router-link>
+    </router-link> -->
+    <a href="/">
+        Torna alla Home
+    </a>
   </div>
 </template>
 

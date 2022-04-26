@@ -32,20 +32,21 @@ export default {
     .card{
         text-decoration: none;
         color: $dark-color;
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
         &:hover{
             text-decoration: none;
         }
-        width: 260px;
-        height: 300px;
-        border-radius: 15px;
         .bg_image{
+            width: 100%;
             overflow: hidden;
             display: flex;
             justify-content: center;
             
             img{
-                height:172px;
-                border-radius: 15px 15px 0px 0px;
+                width: 100%;
+                //border-radius: 15px 15px 0px 0px;
             }
         }
 

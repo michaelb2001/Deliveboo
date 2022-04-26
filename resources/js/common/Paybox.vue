@@ -7,8 +7,8 @@
     >
     <template #button="slotProps">
       <div class="text-center" @click="slotProps.submit">
-        <button type="button" id="btn_pay" class="btn option-btn">Paga</button>
-        <router-link class="btn back_to_home d-none" id="back_to_home" :to="{ name: 'main'}">Torna alla Home</router-link>
+        <button type="button" id="btn_pay" class="w-75 btn option-btn">Paga</button>
+       <!-- <router-link class="btn back_to_home d-none" id="back_to_home" :to="{ name: 'main'}">Torna alla Home</router-link> -->
       </div>
     </template>
     </v-braintree>
@@ -35,7 +35,10 @@ export default {
       .then((response) => {
         this.Token = response.data.token;
         console.log(response.data,'genera token');
-        this.tokenGenerate = true;
+          this.tokenGenerate = true;
+        setTimeout(() => {
+          this.$emit('tokenReady');
+        }, 1000);
         
        // dataShared.loaded = true;
       })
@@ -51,16 +54,18 @@ export default {
                 localStorage.setItem('storedData1', null);
                 localStorage.setItem('storedData2', null);
                 localStorage.setItem('storedData3', null);
-                //this.$emit('clearCart');
                 console.log(this.user);
-                this.$router.push({
-                  name: 'SuccessPayment', 
-                  params: { user: this.user , cart: this.cart }
-                });
+                setTimeout(() => {
+                  this.$router.push({
+                    name: 'SuccessPayment', 
+                    params: { user: this.user , cart: this.cart }
+                  });
+                }, 1000);
               }
           });
     },
     onSuccess (payload) {
+      this.$emit('payload');
       let nonce = payload.nonce;
       this.formData.tokenClient = nonce;
       axios
@@ -69,9 +74,9 @@ export default {
           console.log(response.data, 'dopo pagamento');
           if(response.data.success){
             this.pay();
-            document.getElementById("btn_pay").classList.add("d-none");
+           /* document.getElementById("btn_pay").classList.add("d-none");
             document.getElementById("back_to_home").classList.remove("d-none");
-            document.getElementById("back_to_home").classList.add("d-flex");
+            document.getElementById("back_to_home").classList.add("d-flex");*/
           }
           else
             console.log('NON PAGATO');
@@ -85,6 +90,7 @@ export default {
     onError (error) {
       let message = error.message;
       // Whoops, an error has occured while trying to get the nonce
+      console.log(message,'errore di mess in paybox');
     }
   }
 }

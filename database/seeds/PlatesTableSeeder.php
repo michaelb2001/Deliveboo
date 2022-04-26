@@ -16,8 +16,8 @@ class PlatesTableSeeder extends Seeder
             ['Margherita','Diavola','Capricciosa','Mimosa'],
             ['Quattro Stagioni','Filetto','Marinara','Diavola'],
             ['Big Bacon','Cheeseburger','Black truffle','Chicken crunchy'],
-            ['Biscotti artigianali','Biscotti con gocce di cioccolato','Biscotti senza zucchero','Crema Spalmabile Rock'],
             ['Edamame','Gyoza - pollo','Gyoza - maiale','Sushi misto nigiri e uramaki 9pz'],
+            ['Biscotti artigianali','Biscotti con gocce di cioccolato','Biscotti senza zucchero','Crema Spalmabile Rock'],
             ['Margherita','Quattro Formaggi','Salsiccia e friarelli','Ortolana']
         ];
         for($j = 0 ; $j <6; $j++){
