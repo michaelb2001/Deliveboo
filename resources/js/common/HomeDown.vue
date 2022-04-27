@@ -127,9 +127,9 @@ h1{
 
     .text-info p{
         color: black;
-        margin-top: 10px;
+        margin-top: 0;
         font-size: 16px;
-        line-height: 11px;
+        line-height: 20px;
     }
 
 }
