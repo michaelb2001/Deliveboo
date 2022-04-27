@@ -160,9 +160,18 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../sass/front.scss';
+a{
+  text-decoration: none!important;
+}
+
 .clear-cart{
   display: none;
   color: #00ccbb;
+
+  &:hover{
+    color: $primary_color;
+    transform: rotate(3deg);
+  }
 }
 
 .clear-cart-toggler:hover > .clear-cart{
