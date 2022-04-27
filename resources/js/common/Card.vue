@@ -1,5 +1,5 @@
 <template>
-      <div class="card d-flex flex-column">
+      <div :class="noBorder ? 'no-border' : null" class="card d-flex flex-column">
           <div class="bg_image">
               <img v-if="user.img" :src="`../storage/${user.img}`">
               <img v-else :src="require(`../../../public/img/${user.id}.jpg`)">
@@ -24,7 +24,8 @@ export default {
     name:"Card",
     props:{
         user: Object,
-        types : Array
+        types : Array,
+        noBorder: Boolean,
     }
 }
 </script>
@@ -38,12 +39,18 @@ export default {
         width: 100%;
         height: 100%;
         border-radius: 15px;
+
+        &.no-border{
+            border: unset!important;
+        }
+
         &:hover{
             text-decoration: none;
         }
         .bg_image{
             width: 100%;
             overflow: hidden;
+            max-height: 160px;
             display: flex;
             justify-content: center;
             

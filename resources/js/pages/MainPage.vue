@@ -24,9 +24,10 @@
       </div>
       
         <div class="fluid-container main-users-box w-100 flex-wrap d-flex" v-if="usersArr.length > 0" >
-          <h1 v-if="ratedUsers && ratedUsers.length > 0" class="w-100">
+          <h3 v-if="ratedUsers && ratedUsers.length > 0" class="w-100">
             <strong>In primo piano</strong>
-          </h1>
+          </h3>
+          <span>Spazi pagati dai nostri partner</span>
           <div class="rated-users row w-80-xs row-cols-1 row-cols-sm-2 row-cols-lg-3">
             <div v-for="(user,index) in ratedUsers" :key="'users'+index" class="col user not-main mt-3">
               <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
@@ -36,9 +37,9 @@
           </div>
 
 
-          <h1 v-if="newUsers && newUsers.length > 0" class="w-100 mt-5">
+          <h3 v-if="newUsers && newUsers.length > 0" class="w-100 mt-5">
             <strong>Nuovi su Deliveboo</strong>
-          </h1>
+          </h3>
           <div class="new-users row w-80-xs row-cols-1 row-cols-sm-2 row-cols-lg-3">
             <div v-for="(user,index) in newUsers" :key="'newUsers'+index" class="col user not-main mt-3">
               <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
@@ -47,13 +48,13 @@
             </div>
           </div>
 
-          <h1 class="w-100 mt-5">
+          <h3 class="w-100 mt-5">
             <strong>Ristoranti</strong>
-          </h1>
+          </h3>
           <div class="all-users row w-80-xs row-cols-1 row-cols-sm-2 row-cols-lg-3">
             <div v-for="(user,index) in usersArr" :key="'usersArr'+index" class="col user mt-3">
               <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
-                <Card :user="user"/>
+                <Card :noBorder="true" :user="user"/>
               </router-link>
             </div>
           </div>
