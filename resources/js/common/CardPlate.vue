@@ -9,7 +9,7 @@
           </div>
 
           <div class="image">
-            qua va l'image
+            <img class="img-fluid img-class" v-if="plate.img" :src="`../storage/${plate.img}`">
           </div>
         </div>
       </div>
@@ -45,6 +45,7 @@ export default {
   background: rgba( 255, 255, 255, 0.9 );
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.2 );
   border-radius: 5px;
+  height: 100px;
   transition: all 0.7s ease;
   cursor: pointer;
 }
@@ -62,4 +63,11 @@ export default {
 .col{
   padding: 0;
 }
+
+.img-class{
+  height: 100%;
+  width: 100px;
+}
+
+
 </style>
