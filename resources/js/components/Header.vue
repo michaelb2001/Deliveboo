@@ -1,12 +1,13 @@
 <template>
-<nav class="main-nav navbar navbar-expand-lg navbar-light bg-light">
+<nav v-if="where" :class="inHome ? 'in-home' : null" class="main-nav navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
-    <div class="nav-box w-100 d-flex">
+    <div :class="inHome ? 'justify-content-center' : '' " class="nav-box w-100 d-flex">
       <a class="logo navbar-brand" href="/">
-        <img class="logo" src="https://consumer-component-library.roocdn.com/25.27.6/static/images/logo-teal.svg" alt="">
+        <img v-if="!inHome" class="logo" src="https://consumer-component-library.roocdn.com/25.27.6/static/images/logo-teal.svg" alt="">
+        <img v-else class="logo" src="https://consumer-component-library.roocdn.com/25.27.9/static/images/logo-white.svg" alt="">
       </a>
 
-      <div class="input-box d-flex justify-content-center align-items-center">
+      <div v-if="!inHome" class="input-box d-flex justify-content-center align-items-center">
         <i class="fa-solid fa-magnifying-glass"></i>
         <div class="input-form">
           <input @keyup="search()" v-model="inputText" class="form-control" type="text" placeholder="Ristoranti, Tipologie" aria-label="Search">
@@ -26,7 +27,6 @@
               </div>
             </div>
           </div>
-
       </div>
       </div>
     <!--<router-link class="title" :to="{name : 'home'}">Isntagram</router-link>-->
@@ -39,14 +39,13 @@
     <div class="nav-item-box collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="d-flex justify-content-center navbar-nav me-auto mb-2 mb-lg-0">
 
-        <li class="nav-item">
+        <li class="nav-item" :class="inHome ? 'bg-light' : null">
           <a href="/admin/recap" class="nav-link"> 
             <i class="fa-solid fa-house"></i> Registrati o Accedi
           </a>
         </li>
 
-        <li class="nav-item">
-
+        <li class="nav-item" :class="inHome ? 'bg-light' : null">
           <a v-if="!user" class="nav-link" href="">
             <i class="fa-solid fa-basket-shopping"></i> 
             <span class="price"> 0.00 </span> €
@@ -75,11 +74,26 @@ export default {
       usersArr: [],
       load: false,
       quantity: 1,
+      inHome: false,
     }
   },
   props:{
     tot: Number,
     user: Object,
+  },
+  created(){
+    this.where;
+  },
+  computed:{
+    where(){
+      console.log(this.$route.name,'lOOOL');
+      if(this.$route.name == 'home')
+        this.inHome = true;
+      else
+        this.inHome = false;
+
+      return true;
+    }
   },
   methods: {
     clean(){
@@ -156,6 +170,11 @@ export default {
 
 .main-nav{
   border-bottom: 1px solid $grey-color;
+
+  &.in-home{
+    border-bottom: unset;
+    background-color: #00ccbc;
+  }
 
   .nav-item-box{
     width: 60%;

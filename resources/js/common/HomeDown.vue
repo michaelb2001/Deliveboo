@@ -115,6 +115,4 @@ export default {
     flex-direction: column;
     margin-right: 20px;
 }
-
-/*transform: skewY(-6deg);*/
 </style>
