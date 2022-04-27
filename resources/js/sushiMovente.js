@@ -24,6 +24,18 @@ window.addEventListener("resize", function(){
     lanciasushi();
 });
 
+cambiaStyle.addEventListener("click", function(){
+    clearInterval(sushino);
+    cambiaStyle.style.transform = "none";
+    setTimeout(() => {
+        cambiaStyle.style.transition =`all 600ms linear`;
+        cambiaStyle.style.transform = "scale(0)";
+    }, 500);
+    setTimeout(() => {
+        cambiaStyle.remove();
+    }, 1100);
+});
+
 let lastPosX = 0;
 let lastPosY = 0;
 let randomX = 0;
@@ -31,7 +43,7 @@ let randomY = 0;
 let privilegiaPositivi = true;
 let positivi = 0;
 function lanciasushi(){
-    console.log(maxW,maxH);// qua leggo la cosa giù decrementata
+    //console.log(maxW,maxH);// qua leggo la cosa giù decrementata
     //e a volte il dinosauro supera la with
     const elemento = document.getElementById('sushiMovente');
     //(maxW - 60)
@@ -46,7 +58,7 @@ function lanciasushi(){
 
     if(privilegiaPositivi){
         if(randomX < lastPosX){
-            console.log('privilegio i positivi');
+            //console.log('privilegio i positivi');
             while(randomX < lastPosX || randomY < lastPosY){
                 randomX += 20;
                 randomY += 10;
@@ -54,7 +66,7 @@ function lanciasushi(){
         } 
     } else {
         if(randomX > lastPosX){
-            console.log('privilegio i negativi');
+            //console.log('privilegio i negativi');
             while(randomX > lastPosX || randomY > lastPosY){
                 randomX -= 20;
                 randomY -= 10;
@@ -64,19 +76,19 @@ function lanciasushi(){
 
     if(randomX < minW){
         randomX = minW + 100;
-        console.log('randomX < minW')
+        //console.log('randomX < minW')
     }
     if(randomX > maxW){
         randomX = maxW - 100;
-        console.log('randomX > maxW')
+        //console.log('randomX > maxW')
     }
     if(randomY < minH){
         randomY = minH + 100;
-        console.log('randomY < minH')
+        //console.log('randomY < minH')
     }
     if(randomY > maxH){
         randomY = maxH - 100;
-        console.log('randomY > maxH')
+        //console.log('randomY > maxH')
     }
 
     let time = (Math.abs(randomX - lastPosX) + Math.abs(randomY - lastPosY))/100;
@@ -88,8 +100,8 @@ function lanciasushi(){
     if(randomX < (maxW/2) - 100)
         document.getElementById('sushiMovente').style.transform ="rotateY(0deg)";
     document.getElementById('sushiMovente').style.transition =`top ${time}s, left ${time}s`;
-    console.log('time',time)
-    console.log(randomX,randomY,lastPosX,lastPosY);
+    //console.log('time',time)
+    //console.log(randomX,randomY,lastPosX,lastPosY);
     lastPosX =randomX;
     lastPosY =randomY;
     elemento.style.left = `${randomX}px`;

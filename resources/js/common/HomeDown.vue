@@ -1,8 +1,8 @@
 <template>
   <div class="home-down">
     <h1>La selezione di Deliveboo</h1>
-    <div class="selection row row-cols-2">
-        <div @click="scrollUp()" class="container-info col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
+    <div class="selection row ">
+        <div @click="scrollUp()" class="container-info col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
             <div class="comfort-food d-flex justify-content-center align-items-center">
                 <h1>Comfort food</h1>
             </div>
@@ -11,7 +11,7 @@
                 <p><a href="">Scopri Comfort food</a></p>
             </div>
         </div>
-        <div @click="scrollUp()" class="container-info col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+        <div @click="scrollUp()" class="container-info col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
             <div class="dessert d-flex justify-content-center align-items-center">
                 <h1>Dolci e dessert</h1>
             </div>
@@ -20,7 +20,7 @@
                 <p><a href="">Scopri Dolci e dessert</a></p>
             </div>
         </div>
-        <div @click="scrollUp()" class="container-info col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+        <div @click="scrollUp()" class="container-info col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
             <div class="share d-flex justify-content-center align-items-center">
                 <h1>Perfetti da condividere</h1>
             </div>
@@ -29,7 +29,7 @@
                 <p><a href="">Scopri Perfetti da condividere</a></p>
             </div>
         </div>
-        <div @click="scrollUp()" class="container-info col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+        <div @click="scrollUp()" class="container-info col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5">
             <div class="exclusive d-flex justify-content-center align-items-center">
                 <h1>Esclusiva Deliveboo</h1>
             </div>
@@ -71,7 +71,7 @@ export default {
 <style lang="scss" scoped>
 
 .home-down{
-    width: 82%;
+    width: 80%;
     margin: auto;
     margin-top: 30px;
 }
@@ -89,6 +89,7 @@ h1{
 .selection{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 
     .comfort-food{
         //width: 100%;
@@ -131,6 +132,7 @@ h1{
         h1{
             font-family: sans-serif;
             font-weight: bold;
+            text-align: center;
         }
     }
 
