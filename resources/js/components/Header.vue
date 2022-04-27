@@ -56,7 +56,7 @@
             <span class="price"> {{(tot.toFixed(2))}} </span> €
             </router-link>
 
-            <a v-if="tot && user" href="" @click="clearCart()" class="clear-cart">
+            <a v-if="tot && user" href="" @click="clearCart()" class="clear-cart"><i class="fas fa-cart-arrow-down"></i>
               Svuota Carrello
             </a>  
         </li>    
