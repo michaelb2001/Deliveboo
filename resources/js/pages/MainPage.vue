@@ -24,7 +24,7 @@
       </div>
       
         <div class="main-users-box w-100 flex-wrap d-flex" v-if="usersArr.length > 0" >
-          <h1 class="w-100">
+          <h1 v-if="ratedUsers && ratedUsers.length > 0" class="w-100">
             In primo piano
           </h1>
           <div v-for="(user,index) in ratedUsers" :key="'users'+index" class="user mt-3">
@@ -34,7 +34,7 @@
           </div>
 
 
-          <h1 class="w-100">
+          <h1 v-if="newUsers && newUsers.length > 0" class="w-100">
             Nuovi su Deliveroo
           </h1>
           <div v-for="(user,index) in newUsers" :key="'newUsers'+index" class="user mt-3">
@@ -75,12 +75,12 @@ export default {
       return{
         address: null,
         showTypes: false,
-        urlAllUsers : '/api/users',
+        urlAllUsers : '../api/users',
         usersArr: [],
         ratedUsers: [],
         newUsers: [],
       
-        urlAllTypes : '/api/allTypes',
+        urlAllTypes : '../api/allTypes',
         typesArr : [],
 
         checkedType: [],
@@ -144,6 +144,8 @@ export default {
         console.log(this.checkedType,'new2',check);
         this.empty = false;
         this.usersArr = [];
+        this.ratedUsers = [];
+        this.newUsers = [];
         if(this.checkedType.length <= 0){
           this.getAllUsers();
           return;
@@ -152,11 +154,12 @@ export default {
         for(let i=0; i<this.checkedType.length; i++)
           onlyTypeId.push(this.checkedType[i].id);
 
-        axios.get(`api/types/${onlyTypeId}`)
+console.log(onlyTypeId,'test da rimuovere');
+        axios.get(`../api/types/${onlyTypeId}`)
           .then((response) => {
         // handle success
           this.usersArr.push(...response.data);
-          console.log(response.data,'qua');
+          console.log(response.data,'qua PAPEE');
           this.empty = true;
         })
         .catch(function (error) {

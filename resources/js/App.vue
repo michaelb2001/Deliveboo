@@ -1,6 +1,6 @@
 <template>
     <div id="main-container">
-        <Header :tot="tot" :user="user"/>
+        <Header @clearCart="clearCart" :tot="tot" :user="user"/>
         <Main :prevUser="user" :prevOrder="order" @add="add"/>
         <Footer />
     </div>
@@ -69,6 +69,11 @@ export default{
     },
     },
     methods:{
+        clearCart(){
+            this.tot = null;
+            this.order = null;
+            this.user = null;
+        },
         add(tot,user,order){        
             this.tot = tot;
             this.user = user;

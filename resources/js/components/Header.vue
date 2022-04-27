@@ -14,7 +14,7 @@
           
           <div v-show="load" class="input-toggle">
             <div class="users">
-              <div @click="clean()" class="user" v-for="(user,index) in usersArr"  :key="'userSearched'+index">
+              <div @click="clear()" class="user" v-for="(user,index) in usersArr"  :key="'userSearched'+index">
                 <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
                   <div class="image">
                     <img v-if="user.img" :src="`../storage/${user.img}`">
@@ -45,7 +45,7 @@
           </a>
         </li>
 
-        <li class="nav-item" :class="inHome ? 'bg-light' : null">
+        <li class="d-flex justify-content-between align-items-center nav-item clear-cart-toggler" :class="inHome ? 'bg-light' : null">
           <a v-if="!user" class="nav-link" href="">
             <i class="fa-solid fa-basket-shopping"></i> 
             <span class="price"> 0.00 </span> €
@@ -55,7 +55,13 @@
            <i class="fa-solid fa-basket-shopping"></i> 
             <span class="price"> {{(tot.toFixed(2))}} </span> €
             </router-link>
-        </li>        
+
+            <a v-if="tot && user" href="" @click="clearCart()" class="clear-cart">
+              Svuota Carrello
+            </a>  
+        </li>    
+
+          
       </ul>
     </div>
   </div>
@@ -96,13 +102,16 @@ export default {
     }
   },
   methods: {
-    clean(){
+    clearCart(){
+      this.$emit('clearCart');
+    },
+    clear(){
       this.usersArr = [],
       this.inputText = "";
     },
     search(){
       if(this.inputText.length <= 0)
-        this.clean();
+        this.clear();
       if(this.inputText.length < 3)
         return;
 
@@ -151,8 +160,15 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../sass/front.scss';
+.clear-cart{
+  display: none;
+  color: #00ccbb;
+}
 
-.offcanvas{
+.clear-cart-toggler:hover > .clear-cart{
+  display: block!important;
+}
+/*.offcanvas{
   position:absolute;
   top:75px;
   right:0px;
@@ -162,7 +178,7 @@ export default {
   border-radius: 5px;
   z-index:1500;
   background: $light-color;
-}
+}*/
 
 .navbar-light .navbar-toggler {
     margin: 0 20px;
