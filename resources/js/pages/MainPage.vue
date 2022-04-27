@@ -25,7 +25,7 @@
       
         <div class="main-users-box w-100 flex-wrap d-flex" v-if="usersArr.length > 0" >
           <h1 v-if="ratedUsers && ratedUsers.length > 0" class="w-100">
-            In primo piano
+            <strong>In primo piano</strong>
           </h1>
           <div v-for="(user,index) in ratedUsers" :key="'users'+index" class="user mt-3">
             <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
@@ -34,8 +34,8 @@
           </div>
 
 
-          <h1 v-if="newUsers && newUsers.length > 0" class="w-100">
-            Nuovi su Deliveroo
+          <h1 v-if="newUsers && newUsers.length > 0" class="w-100 mt-5">
+            <strong>Nuovi su Deliveboo</strong>
           </h1>
           <div v-for="(user,index) in newUsers" :key="'newUsers'+index" class="user mt-3">
             <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
@@ -43,8 +43,8 @@
             </router-link>
           </div>
 
-          <h1 class="w-100">
-            Ristoranti
+          <h1 class="w-100 mt-5">
+            <strong>Ristoranti</strong>
           </h1>
           <div v-for="(user,index) in usersArr" :key="'usersArr'+index" class="user mt-3">
             <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
