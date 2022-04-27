@@ -122,6 +122,10 @@ export default {
     padding: unset;
   }
 
+  ul span{
+    font-size: 18px;
+  }
+
   a{
     color: white;
 
