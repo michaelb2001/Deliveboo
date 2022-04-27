@@ -11,7 +11,6 @@
               <span>{{user.email}}</span>
           </div>
           <div class="types">
-              <strong>Tipologia ristorante:</strong>
               <span v-for="(type,index) in user.types" :key="'type'+index" class="type">{{type.name}}</span>
           </div>
       </div>
@@ -53,11 +52,9 @@ export default {
 
         .card_name{
             span{
-                color: $light-color;
-                background-color: $third-color;
+                color: $third-color;
                 padding: 0 5px;
                 margin: 5px;
-                border-radius: 25px;
                 text-transform: uppercase;
                 font-weight:bold ;
             }
@@ -69,8 +66,9 @@ export default {
             word-wrap: none;
             span{
                 font-style: italic;
-                margin: 5px;
+                margin: 10px;
                 border-radius: 25px;
+                color: #00B8A9;
             };
 
     }
@@ -80,7 +78,6 @@ export default {
                 color: $dark-color;
                 margin: 5px;
                 border-radius: 25px;
-                font-style: italic;
             }
     }
     
