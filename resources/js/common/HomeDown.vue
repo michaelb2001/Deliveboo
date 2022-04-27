@@ -7,7 +7,7 @@
                 <h1>Comfort food</h1>
             </div>
             <div class="text-info">
-                <p>I nostri classici che scaldano il cuore, perfetti in ogni momento.</p>
+                <p>I grandi classici che scaldano il cuore, perfetti in ogni momento.</p>
                 <p><a href="">Scopri Comfort food</a></p>
             </div>
         </div>
@@ -51,6 +51,22 @@ export default {
 
 <style lang="scss" scoped>
 
+.home-down{
+    width: 82%;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.home-down, .selection{
+    font-family: plex-sans, "Helvetica Neue", Helvetica, Arial, "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+}
+
+h1{
+    font-family: sans-serif;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
 .selection{
     display: flex;
     flex-wrap: wrap;
@@ -63,14 +79,14 @@ export default {
         background-size: cover;
     }
     .dessert{
-        min-width: 700px;
+        width: 40vw;
         height: 150px;
         background: url('https://f.roocdn.com/images/menu_tags/328/menu-tag-image.jpg?width=660&height=150&auto=webp&format=jpg&fit=crop&v=1548761261');
         background-repeat: no-repeat;
         background-size: cover;
     }
     .share{
-        min-width: 100%;
+        width: 40vw;
         height: 150px;
         background: url('https://f.roocdn.com/images/menu_tags/291/menu-tag-image.jpg?width=660&height=150&auto=webp&format=jpg&fit=crop&v=1547125828');
         background-repeat: no-repeat;
@@ -99,6 +115,11 @@ export default {
         }
     }
 
+    .text-info{
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+
     .text-info a{
         color: #00B8A9;
         text-decoration: none;
@@ -106,6 +127,9 @@ export default {
 
     .text-info p{
         color: black;
+        margin-top: 10px;
+        font-size: 16px;
+        line-height: 11px;
     }
 
 }
@@ -115,4 +139,6 @@ export default {
     flex-direction: column;
     margin-right: 20px;
 }
+
+/*transform: skewY(-6deg);*/
 </style>
