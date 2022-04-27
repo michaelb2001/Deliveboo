@@ -6,6 +6,7 @@
 
  window.axios = require('axios');
  require("./braintree");
+ require("./sushiMovente");
 
  window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  

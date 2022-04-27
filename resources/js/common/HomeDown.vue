@@ -2,7 +2,7 @@
   <div class="home-down">
     <h1>La selezione di Deliveboo</h1>
     <div class="selection row row-cols-2">
-        <div class="container-info col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
+        <div @click="scrollUp()" class="container-info col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
             <div class="comfort-food d-flex justify-content-center align-items-center">
                 <h1>Comfort food</h1>
             </div>
@@ -11,7 +11,7 @@
                 <p><a href="">Scopri Comfort food</a></p>
             </div>
         </div>
-        <div class="container-info col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+        <div @click="scrollUp()" class="container-info col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
             <div class="dessert d-flex justify-content-center align-items-center">
                 <h1>Dolci e dessert</h1>
             </div>
@@ -20,7 +20,7 @@
                 <p><a href="">Scopri Dolci e dessert</a></p>
             </div>
         </div>
-        <div class="container-info col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+        <div @click="scrollUp()" class="container-info col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
             <div class="share d-flex justify-content-center align-items-center">
                 <h1>Perfetti da condividere</h1>
             </div>
@@ -29,7 +29,7 @@
                 <p><a href="">Scopri Perfetti da condividere</a></p>
             </div>
         </div>
-        <div class="container-info col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+        <div @click="scrollUp()" class="container-info col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
             <div class="exclusive d-flex justify-content-center align-items-center">
                 <h1>Esclusiva Deliveboo</h1>
             </div>
@@ -46,6 +46,25 @@
 <script>
 export default {
     name:"HomeDown",
+    methods:{
+        scrollUp(){
+            console.log(document.documentElement.scrollTop,'ciao');
+            let prev = document.documentElement.scrollTop;
+
+           
+            let scrollEffect = setInterval(() => {
+                document.documentElement.scrollTop = prev;
+                prev -= 3.5;
+                if(prev <= 0){
+                    clearInterval(scrollEffect);
+                    document.getElementById('scrollUp').className += ' shake';
+                    setTimeout(() => {
+                        document.getElementById('scrollUp').classList.remove('shake');
+                    }, 200);
+                    }
+            }, 1);
+        }
+    }
 }
 </script>
 

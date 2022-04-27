@@ -93,9 +93,4 @@ export default{
     user-select: none;          /* Likely future */    
     font-family: plex-sans, "Helvetica Neue", Helvetica, Arial, "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
 }
-
-#main-container{
-    //height: 100vh;
-   // overflow: hidden;
-}
 </style>

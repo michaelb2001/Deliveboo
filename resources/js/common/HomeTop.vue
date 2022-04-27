@@ -2,7 +2,7 @@
   <div class="home-top">
     <div class="input-box-main">
         <h1>I piatti che ami, a domicilio</h1>
-        <div class="input d-flex flex-column align-items-center justify-content-around">
+        <div id="scrollUp" class="input d-flex flex-column align-items-center justify-content-around">
             <p class="m-0"> Inserisci il tuo indirizzo per trovare ristoranti nei dintorni </p>
             
             <div class="input-and-button">
@@ -47,7 +47,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../sass/front.scss';
-
 .input-and-button{
     width: 100%;
     display: flex;
@@ -182,6 +181,15 @@ a{
             }
         }
 
+@keyframes shake {
+    0%{
+        transform: rotate(3deg);
+    }
+    100%{
+        transform: rotate(-3deg);
+    }
+}
+
         .input{
             border-radius: 6px;
             background-color: white;
@@ -203,6 +211,10 @@ a{
                     margin-top: 20px;
                     height: 180px;
                     width: 500px;
+                }
+
+                &.shake{
+                    animation: shake 50ms linear infinite;
                 }
             }
         }
