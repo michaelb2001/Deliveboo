@@ -156,6 +156,7 @@ h1{
 }
 
 .container-info{
+    cursor: pointer;
     display: flex;
     flex-direction: column;
 }

@@ -99,4 +99,8 @@ class HomeController extends Controller
         return view('admin.order',compact("orders"));
     }
 
+    public function statistics(){            
+        return view('admin.plates.statistics');
+    }
+
 }

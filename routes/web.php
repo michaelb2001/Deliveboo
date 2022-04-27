@@ -27,6 +27,7 @@ Route::middleware('auth')->namespace('Admin')->name('admin.')->prefix('admin')->
     Route::delete('/d_type/{id}/{where}', "HomeController@delete_type")->name('delete_type');
     Route::resource('/plate',"PlatesController");
     Route::get('/recap', "HomeController@recap")->name("recap");
+    Route::get('/statistics', "HomeController@statistics")->name("statistics");
 });
 
 //Route::get('/home', 'HomeController@index')->name('home');

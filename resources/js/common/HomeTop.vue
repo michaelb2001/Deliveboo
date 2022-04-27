@@ -2,7 +2,7 @@
   <div class="home-top">
     <div class="input-box-main">
         <h1>I piatti che ami, a domicilio</h1>
-        <div id="scrollUp" class="input d-flex flex-column align-items-center justify-content-around">
+        <div id="scrollUp" class="input d-flex flex-column align-items-center justify-content-evenly">
             <p class="m-0"> Inserisci il tuo indirizzo per trovare ristoranti nei dintorni </p>
             
             <div class="input-and-button">
@@ -48,7 +48,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../sass/front.scss';
 .input-and-button{
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -124,7 +124,7 @@ a{
 
     @media screen and (min-width: 992px) {
         &{
-            height: 445px;
+            height: 395px;
         }
     }
     
@@ -196,6 +196,10 @@ a{
             width: 90%;
             margin: 0 auto;
             height: 180px;
+
+            p{
+                font-size: 1.2em;
+            }
 
             @media screen and (min-width:567px) {
                 &{
