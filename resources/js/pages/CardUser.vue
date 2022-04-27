@@ -17,7 +17,7 @@
     </div>
     <hr>
 
-    <h1>piatti</h1>
+    <h1>Piatti</h1>
     <div class="d-flex justify-content-between plates-and-cart">
         <div class="ms_row_plate">
             <div v-for="(plate,index) in user.plates" :key="'plate'+index">
