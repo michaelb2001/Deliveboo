@@ -23,33 +23,39 @@
           </div>
       </div>
       
-        <div class="main-users-box w-100 flex-wrap d-flex" v-if="usersArr.length > 0" >
+        <div class="fluid-container main-users-box w-100 flex-wrap d-flex" v-if="usersArr.length > 0" >
           <h1 v-if="ratedUsers && ratedUsers.length > 0" class="w-100">
             <strong>In primo piano</strong>
           </h1>
-          <div v-for="(user,index) in ratedUsers" :key="'users'+index" class="user mt-3">
-            <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
-              <Card :user="user"/>
-            </router-link>
+          <div class="rated-users row w-80-xs row-cols-1 row-cols-sm-2 row-cols-lg-3">
+            <div v-for="(user,index) in ratedUsers" :key="'users'+index" class="col user not-main mt-3">
+              <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
+                <Card :user="user"/>
+              </router-link>
+            </div>
           </div>
 
 
           <h1 v-if="newUsers && newUsers.length > 0" class="w-100 mt-5">
             <strong>Nuovi su Deliveboo</strong>
           </h1>
-          <div v-for="(user,index) in newUsers" :key="'newUsers'+index" class="user mt-3">
-            <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
-              <Card :user="user"/>
-            </router-link>
+          <div class="new-users row w-80-xs row-cols-1 row-cols-sm-2 row-cols-lg-3">
+            <div v-for="(user,index) in newUsers" :key="'newUsers'+index" class="col user not-main mt-3">
+              <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
+                <Card :user="user"/>
+              </router-link>
+            </div>
           </div>
 
           <h1 class="w-100 mt-5">
             <strong>Ristoranti</strong>
           </h1>
-          <div v-for="(user,index) in usersArr" :key="'usersArr'+index" class="user mt-3">
-            <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
-              <Card :user="user"/>
-            </router-link>
+          <div class="all-users row w-80-xs row-cols-1 row-cols-sm-2 row-cols-lg-3">
+            <div v-for="(user,index) in usersArr" :key="'usersArr'+index" class="col user mt-3">
+              <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
+                <Card :user="user"/>
+              </router-link>
+            </div>
           </div>
         </div>
 
@@ -208,12 +214,16 @@ console.log(onlyTypeId,'test da rimuovere');
   .main-users-box{
     flex-direction: row;
     padding: 0 2rem;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: unset;
 
-    .user{
-      width: 45%;
-    }
+    /*.user{
+      //width: 45%;
+
+      &.not-main{
+       // max-width: 265px!important;
+      }
+    }*/
   } 
 }
 
@@ -299,7 +309,6 @@ console.log(onlyTypeId,'test da rimuovere');
       margin: 5px 10px;
     }
   }
-
   /*.button-open-types{
   position: fixed;
   bottom: 0;

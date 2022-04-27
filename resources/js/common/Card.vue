@@ -10,9 +10,12 @@
           <div class="card_mail">
               <span>{{user.email}}</span>
           </div>
-          <div class="types">
-              <span v-for="(type,index) in user.types" :key="'type'+index" class="type">{{type.name}}</span>
-          </div>
+          <ul class="p-0 types d-flex flex-wrap w-100">
+              <li v-for="(type,index) in user.types" :key="'type'+index" class="type">
+                  {{type.name}}
+                  <span v-if="index != user.types.length - 1" span> · </span>
+             </li> 
+          </ul>
       </div>
 </template>
 
@@ -73,11 +76,16 @@ export default {
 
     }
     .types{
-        margin:5px;
+        margin: 5px;
+        list-style: none;
         .type{
                 color: $dark-color;
-                margin: 5px;
+                margin: 0 5px;
                 border-radius: 25px;
+
+                span{
+                    font-weight: bold;
+                }
             }
     }
     

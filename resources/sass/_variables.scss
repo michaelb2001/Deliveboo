@@ -30,3 +30,9 @@ $darkgrey-color:#828585;
 .justify-content-evenly {
     justify-content: space-evenly !important;
   }
+
+  @media screen and (max-width: 576px) {
+    .w-80-xs{
+      width: 80%!important;
+    }
+  }
