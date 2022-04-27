@@ -11,8 +11,8 @@
               <span>{{user.email}}</span>
           </div>
           <div class="types">
-              tipologia ristorante
-              <span v-for="(type,index) in user.types" :key="'type'+index" class="type">{{type.name}} <span v-if="index != user.types.length - 1"> · </span></span>
+              <strong>Tipologia ristorante:</strong>
+              <span v-for="(type,index) in user.types" :key="'type'+index" class="type">{{type.name}}</span>
           </div>
       </div>
 </template>
@@ -68,9 +68,7 @@ export default {
             width: auto;
             word-wrap: none;
             span{
-                color: $light-color;
-                background-color: $primary-color;
-                padding: 0 5px;
+                font-style: italic;
                 margin: 5px;
                 border-radius: 25px;
             };
@@ -80,10 +78,9 @@ export default {
         margin:5px;
         .type{
                 color: $dark-color;
-                background-color: $secondary-color;
-                padding: 0 5px;
                 margin: 5px;
                 border-radius: 25px;
+                font-style: italic;
             }
     }
     
