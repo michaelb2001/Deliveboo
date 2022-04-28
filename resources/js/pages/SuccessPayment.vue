@@ -1,20 +1,14 @@
 <template>
   <div v-if="show" class="main-container d-flex align-items-center flex-column">
     <div class="back text-center">
-        <!-- <h1> {{user.activity}} </h1> -->
         <div>
-            <h1> Nome attività </h1>
+            <h1> {{user.activity}} </h1>
             <p>Grazie per averci scelto !</p> 
             <h3>Il tuo ordine :</h3>            
         </div>
-        <!-- <ul v-if="cart">  il v-if VA TOLTO ALLA FINE DI LUCA 
+        <ul>
             <li v-for="(elem,index) in cart" :key="index">
                 {{elem.plate.name}} - {{elem.quantity}}x
-            </li>
-        </ul> -->
-        <ul>
-            <li v-for="(elem,index) in 3" :key="index">
-                piatto{{index}} - {{index + 1}}x
             </li>
         </ul>
 
@@ -36,10 +30,10 @@ export default {
         return{
             user: null,
             cart: null,
-            show: true, //VA MESSO FALSE ALLA FINE DI LUCA
+            show: false, //VA MESSO FALSE ALLA FINE DI LUCA
         }
     },
-    /*created(){
+    created(){
         console.log(this.$route)
         this.user = this.$route.params.user;
         this.cart = this.$route.params.cart;
@@ -49,7 +43,7 @@ export default {
             this.$router.push({
                 name: 'main', 
             });
-    },*/
+    },
 }
 </script>
 
