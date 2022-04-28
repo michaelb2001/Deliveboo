@@ -1,6 +1,7 @@
 <template>
-<div class="footer-container">
-  <div class="discover-deliveboo">
+<div class="d-flex justify-content-center Bcolor">
+  <div class="footer-container d-flex align-items-center">
+    <div class="discover-deliveboo">
     <ul><span>Scopri Deliveboo</span>
       <li><a href="#">Investitori</a></li>
       <li><a href="#">Chi siamo</a></li>
@@ -13,43 +14,44 @@
       <li><a href="#">Lavora con noi</a></li>
       <li><a href="#">Diventa nostro partner</a></li>
     </ul>
-  </div>
-  <div class="legal-notices">
-    <ul><span>Note legali</span>
-      <li><a href="#">Termini & Condizioni</a></li>
-      <li><a href="#">Informativa sulla privacy</a></li>
-      <li><a href="#">Cookies</a></li>
-    </ul>
-  </div>
-  <div class="help">
-    <ul><span>Aiuto</span>
-      <li><a href="#">Contatti</a></li>
-      <li><a href="#">FAQ</a></li>
-      <li><a href="#">Tipi di cucina</a></li>
-    </ul>
-  </div>
-  <div class="take-deliveboo">
-    <ul><span>Porta Deliveboo con te</span>
-    <li> 
-      <a href="#">
-        <img :src="require('../../../public/img/app_store.png')" alt="">
-      </a> 
-    </li>
-    <li> 
-      <a href="#">
-        <img :src="require('../../../public/img/g_play.png')" alt="">
-      </a> 
-    </li>
-    </ul>
-  </div>
-  <div class="icons">
-    <div class="social">
-      <i class="fab fa-facebook"></i>
-      <i class="fab fa-twitter"></i>
-      <i class="fab fa-instagram"></i>
     </div>
-    <div class="copyright">
-      <em>© 2022 Deliveboo</em>
+    <div class="legal-notices">
+      <ul><span>Note legali</span>
+        <li><a href="#">Termini & Condizioni</a></li>
+        <li><a href="#">Informativa sulla privacy</a></li>
+        <li><a href="#">Cookies</a></li>
+      </ul>
+    </div>
+    <div class="help">
+      <ul><span>Aiuto</span>
+        <li><a href="#">Contatti</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Tipi di cucina</a></li>
+      </ul>
+    </div>
+    <div class="take-deliveboo">
+      <ul><span>Porta Deliveboo con te</span>
+      <li> 
+        <a href="#">
+          <img :src="require('../../../public/img/app_store.png')" alt="">
+        </a> 
+      </li>
+      <li> 
+        <a href="#">
+          <img :src="require('../../../public/img/g_play.png')" alt="">
+        </a> 
+      </li>
+      </ul>
+    </div>
+    <div class="icons">
+      <div class="social">
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-instagram"></i>
+      </div>
+      <div class="copyright">
+        <em>© 2022 Deliveboo</em>
+      </div>
     </div>
   </div>
 </div>
@@ -63,13 +65,14 @@ export default {
 
 <style lang="scss" scoped>
 
+.Bcolor{
+  background-color: #2e3333;
+}
+
 .footer-container{
   min-height: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: #2E3333;
-  width: 100%;
+  width: 60%;
   padding: 15px 0;
   color: white;
   //margin-top: 30px;
@@ -181,4 +184,6 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+
 </style>
