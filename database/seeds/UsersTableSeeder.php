@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
         $newUser->name = "Francesco Celso";
         $newUser->email = "tigellabella@gmail.com";
         $newUser->password = Hash::make('prova123');
-        $newUser->activity = "gella bella";
+        $newUser->activity = "Gella bella";
         $newUser->p_iva = "12345678934";
         $newUser->address = "Via nuova casa , 32";
         $newUser->save();
@@ -36,7 +36,7 @@ class UsersTableSeeder extends Seeder
         $newUser->name = "Francesco Grassi";
         $newUser->email = "hamburger@gmail.com";
         $newUser->password = Hash::make('prova123');
-        $newUser->activity = "hamburger goloso";
+        $newUser->activity = "Hamburger goloso";
         $newUser->p_iva = "12345678956";
         $newUser->address = "Via nuova casa , 32";
         $newUser->save();
@@ -45,7 +45,7 @@ class UsersTableSeeder extends Seeder
         $newUser->name = "Francesco Franchetti";
         $newUser->email = "gelatoayo@gmail.com";
         $newUser->password = Hash::make('prova123');
-        $newUser->activity = "gelato ayo";
+        $newUser->activity = "Gelato ayo";
         $newUser->p_iva = "12345678912";
         $newUser->address = "Via nuova perla , 92";
         $newUser->save();
@@ -55,7 +55,7 @@ class UsersTableSeeder extends Seeder
         $newUser->name = "mia jaki";
         $newUser->email = "sushiwow@gmail.com";
         $newUser->password = Hash::make('prova123');
-        $newUser->activity = "sushi wow";
+        $newUser->activity = "SushiWow";
         $newUser->p_iva = "12345678934";
         $newUser->address = "Via nuova casa , 32";
         $newUser->save();
@@ -64,7 +64,7 @@ class UsersTableSeeder extends Seeder
         $newUser->name = "Ciruzzu il Grande";
         $newUser->email = "ciropizza@gmail.com";
         $newUser->password = Hash::make('prova123');
-        $newUser->activity = "ciro pizza";
+        $newUser->activity = "ciruzzo pizza";
         $newUser->p_iva = "12345678956";
         $newUser->address = "Via nuova casa , 32";
         $newUser->save();
