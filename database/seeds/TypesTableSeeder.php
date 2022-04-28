@@ -16,9 +16,9 @@ class TypesTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         $types = ['Italiano','Sushi','Giapponese',
-                'Internazionale','Cinese','Americano','Hawaiano',
-                'Arabo','Turco','Brasiliano','Tedesco','Francese',
-                'Vegan','Gluten free','Vegetariano','Celiaci'];
+                'Internazionale','Cinese','Americano','Poke',
+                'FastFood','Smoothie','Gelato','Sandwitch','Hamburgher',
+                'Vegan','Gluten free','Vegetariano','Pizza'];
 
         for($i = 0 ; $i <count($types) ; $i++){
             $newType = new Type();
