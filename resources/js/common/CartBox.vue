@@ -1,5 +1,5 @@
 <template>
-  <div class="cart-box">
+  <div class="cart-box" :class="(cart && cart.length > 0 ) ? 'not-empty' : null">
     <div v-if="cart ? cart.length <= 0 : !prevUser" class="w-100 h-100 d-flex flex-column justify-content-around align-items-center empty">
         <div class="d-flex flex-column align-items-center">
             <i class="fa-solid fa-basket-shopping"></i>
@@ -179,6 +179,7 @@ a{
       &{
         all: inherit;
         width: 480px;
+        height: 0;
         min-height: 230px;
         max-height: 295px;
         background-color: white;
@@ -186,6 +187,10 @@ a{
         overflow-y: auto;
         border: 1px solid $grey-color;
         border-radius: 5px;
+      }
+
+      &.not-empty{
+          height: unset;
       }
     }
 

@@ -1,13 +1,13 @@
 <template>
-<nav v-if="where" :class="inHome ? 'in-home' : null" class="main-nav navbar navbar-expand-lg navbar-light">
+<nav v-if="where" :class="inHome ? 'in-home' : inPayment ? 'in-payment' : null" class="main-nav navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
     <div :class="inHome ? 'justify-content-center' : '' " class="nav-box w-100 d-flex">
       <a class="logo navbar-brand" href="/">
-        <img v-if="!inHome" class="logo" src="https://consumer-component-library.roocdn.com/25.27.6/static/images/logo-teal.svg" alt="">
+        <img v-if="!inHome && !inPayment" class="logo" src="https://consumer-component-library.roocdn.com/25.27.6/static/images/logo-teal.svg" alt="">
         <img v-else class="logo" src="https://consumer-component-library.roocdn.com/25.27.9/static/images/logo-white.svg" alt="">
       </a>
 
-      <div v-if="!inHome" class="input-box d-flex justify-content-center align-items-center">
+      <div :class="inPayment ? 'bg-light' : null" v-if="!inHome" class="input-box d-flex justify-content-center align-items-center">
         <i class="fa-solid fa-magnifying-glass"></i>
         <div class="input-form">
           <input @keyup="search()" v-model="inputText" class="form-control" type="text" placeholder="Ristoranti, Tipologie" aria-label="Search">
@@ -39,13 +39,13 @@
     <div class="nav-item-box collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="d-flex justify-content-center navbar-nav me-auto mb-2 mb-lg-0">
 
-        <li class="nav-item" :class="inHome ? 'bg-light' : null">
+        <li class="nav-item" :class="inHome ? 'bg-light' : inPayment ? 'bg-light' : null ">
           <a href="/admin/recap" class="nav-link"> 
             <i class="fa-solid fa-house"></i> Registrati o Accedi
           </a>
         </li>
 
-        <li class="d-flex justify-content-between align-items-center nav-item clear-cart-toggler" :class="inHome ? 'bg-light' : null">
+        <li class="d-flex justify-content-between align-items-center nav-item clear-cart-toggler" :class="inHome ? 'bg-light' : inPayment ? 'bg-light' : null">
           <a v-if="!user" class="nav-link" href="">
             <i class="fa-solid fa-basket-shopping"></i> 
             <span class="price"> 0.00 </span> €
@@ -81,6 +81,7 @@ export default {
       load: false,
       quantity: 1,
       inHome: false,
+      inPayment: false,
     }
   },
   props:{
@@ -95,8 +96,13 @@ export default {
       console.log(this.$route.name,'lOOOL');
       if(this.$route.name == 'home')
         this.inHome = true;
-      else
+      else {
         this.inHome = false;
+        if(this.$route.name == 'Payment')
+          this.inPayment = true;
+        else
+          this.inPayment = false;
+      }
 
       return true;
     }
@@ -199,6 +205,11 @@ a{
   &.in-home{
     border-bottom: unset;
     background-color: #00ccbc;
+  }
+
+  &.in-payment{
+    border-bottom: unset;
+    background-color: #006D68;
   }
 
   .nav-item-box{

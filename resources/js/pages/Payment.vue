@@ -1,14 +1,13 @@
 <template>
   <div v-if="!payloading" class="pay-container">
       <div v-if="tot" class="pay-box">
-        
         <div class="container mt-3">
           <div class="row">
             <div class="col-12 col-lg-8">
-              <h1>Stai ordinando da : {{user.activity}}</h1>
-              <p>Inserisci i dati per la consegna</p>
+              <h1 class="text-light">Stai ordinando da : {{user.activity}}</h1>
+              <p class="text-light">Inserisci i dati per la consegna</p>
               <!-- Box form -->
-              <div class="form-edit-box">    
+              <div class="form-edit-box" :class="(!waitToken && formComplete) ? 'form-complete' : null">    
                 <div class="main-box">
                   <div v-if="!formComplete" class="main-form-box">
                       <div class="form-group">
@@ -62,7 +61,7 @@
                 </div>
               </div>
               <!-- Box pagamento BrainTree-->
-              <div v-if="formComplete" class="form-is-complete">
+              <div v-if="formComplete" class="form-is-complete" :class="waitToken ? 'token-not-ready' : null">
                 <Paybox @tokenReady="waitToken = false" @payload="payload" :user="user" :cart="cart" v-show="!waitToken" :formData="formData" @payed="isPayed()"/>
                 <div v-if="waitToken" class="d-flex wait-token align-items-center">
                   <h2>CONTROLLANDO I DATI ...</h2>
@@ -78,32 +77,36 @@
             </div>
 
             <div class="col-12 col-lg-4 mt-3">
-              <div class="box-cart border">
+              <div class="px-4 box-cart border">
                 <div class="w-100 d-flex flex-column align-items-center">
-                    <h2 class="ml-5 mb-3 mt-3" style="color:black; align-self:flex-start;">Il Tuo Ordine</h2>
-                    <div class="order-plate-box">
-                      <div class="px-5 w-100 d-flex justify-content-between" v-for="(item,index) in cart" :key="index">
+                    <h3 class="pt-3 " style="font-weight:bold; color:black; align-self:flex-start;">
+                      Il Tuo Ordine
+                    </h3>
+                    <div class="px-1 order-plate-box w-100">
+                      <div class=" d-flex justify-content-between" v-for="(item,index) in cart" :key="index">
                         <p class="order-plate-name">{{item.plate.name}}</p> 
                         <div class="quantity-box">
-                            <span class="mx-1">{{item.quantity}}</span>
+                            <span class="mx-1">{{item.quantity}}x</span>
                             <span class="mx-1">{{(item.plate.price * item.quantity).toFixed(2)}} €</span>
                         </div>
                       </div>
+                    </div>
+
+                  <div class="w-100 footer-plate-box mt-2 pt-2">
+                    <div class="d-flex justify-content-between">
+                        <p> Subtotale </p>
+                        <p class="mx-1">{{(tot).toFixed(2)}} €</p>
+                    </div>
+
+                    <div class="w-100 d-flex justify-content-between">
+                        <p> Spese di consegna </p>
+                        <p class="mx-1">{{deliveryCosts}} €</p>
+                    </div>
                   </div>
 
-                  <div class="px-5 w-100 d-flex justify-content-between footer-plate-box">
-                      <p> Subtotale </p>
-                      <p class="mx-1">{{(tot).toFixed(2)}} €</p>
-                  </div>
-
-                  <div class="px-5 w-100 d-flex justify-content-between">
-                      <p> Spese di consegna </p>
-                      <p class="mx-1">{{deliveryCosts}} €</p>
-                  </div>
-
-                  <div class="px-5 w-100 d-flex justify-content-between">
-                      <p> Totale </p>
-                      <p class="mx-1">{{(tot + deliveryCosts).toFixed(2)}} €</p>
+                  <div class="mt-2 w-100 d-flex justify-content-between">
+                      <p> <strong> Totale </strong> </p>
+                      <p class="mx-1"> <strong> {{(tot + deliveryCosts).toFixed(2)}} € </strong> </p>
                   </div>
                 </div>
               </div>
@@ -314,9 +317,34 @@ export default {
 @import '../../sass/front.scss';
 .pay-container {
     padding: 30px 0;
+    position: relative;
+
+    &::before{
+      content: "";
+      width: 100%;
+      height: 256px;
+      position: absolute;
+      top: 0;
+      z-index: -1;
+      left: 0;
+      background-color: #006D68;
+      transform: skewY(-4deg);
+      transform-origin: left;
+  }
 }
 
 .form-is-complete{
+
+  &.token-not-ready{
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .wait-token{
+      margin-top: 150px;
+    }
+  }
 
   h4{
     display: inline-block;
@@ -346,14 +374,51 @@ export default {
 }
 
 .form-edit-box{
-  margin-bottom: 30px;
+  //margin-bottom: 30px;
+  background-color: white;
+  border-radius: 5px;
+
+  &.form-complete{
+    border-radius: unset;
+    padding: 8px 15px;
+    border-width: 1px 1px 0px 1px;
+    border-style: solid;
+    border-color: $primary-color;
+  }
+
+  .main-form-box{
+    background-color: white;
+    border-radius: 5px;
+    padding: 12px 25px;
+    border: 1px solid $primary-color;
+  }
+
+  .form-group{
+
+    & label{
+      font-weight: bold;
+    }
+  }
 }
 
 .box-cart{
-  max-height: calc(calc(100vh - (24px * 2) - (73px + 72px)) - 80px);
-  background: rgba( 255, 255, 255, 0.9 );
+  //max-height: calc(calc(100vh - (24px * 2) - (73px + 72px)) - 80px);
+  max-height: 375px;
+  background: rgba( 255, 255, 255, 1 );
   box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.2 );
   border-radius: 5px;
+  overflow: hidden;
+
+  .footer-plate-box{
+    border-top: 1px solid $grey-color;
+    border-bottom: 1px solid $grey-color;
+  }
+
+  .order-plate-box{
+    line-height: 0.7;
+    max-height: 180px;
+    overflow-y: auto;
+  }
 }
 
 .deniend-button{
