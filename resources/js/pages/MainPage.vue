@@ -27,7 +27,8 @@
           <h3 v-if="ratedUsers && ratedUsers.length > 0" class="w-100">
             <strong>In primo piano</strong>
           </h3>
-          <span>Spazi pagati dai nostri partner</span>
+          <span class="w-100" v-if="ratedUsers && ratedUsers.length > 0">Spazi pagati dai nostri partner</span>
+          
           <div class="rated-users row w-80-xs row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4">
             <div v-for="(user,index) in ratedUsers" :key="'users'+index" class="col user not-main mt-3">
               <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
@@ -213,9 +214,7 @@ console.log(onlyTypeId,'test da rimuovere');
 
 @media screen and (max-width: 576px){
   .main-users-box{
-    h3{
       text-align: center;
-    }
   }
 }
 
@@ -223,7 +222,7 @@ console.log(onlyTypeId,'test da rimuovere');
   .main-users-box{
     flex-direction: row;
     padding: 0 2rem;
-    justify-content: flex-start;
+    //justify-content: flex-start;
     align-items: unset;
 
     /*.user{
