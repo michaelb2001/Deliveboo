@@ -211,6 +211,14 @@ console.log(onlyTypeId,'test da rimuovere');
   }
 }
 
+@media screen and (max-width: 576px){
+  .main-users-box{
+    h3{
+      text-align: center;
+    }
+  }
+}
+
 @media screen and (min-width: 576px) {
   .main-users-box{
     flex-direction: row;

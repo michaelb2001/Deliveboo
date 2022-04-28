@@ -79,6 +79,22 @@ export default {
   //display: flex;
   //justify-content: center;
   //flex-wrap: wrap;
+  @media screen and (max-width:576px) {
+      &{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+      }
+
+      & > div:not(:last-child){
+        width: 100%!important;
+      }
+
+      & > div:nth-child(2){
+        height: 360px;
+      }
+  }
+
   @media screen and (min-width:576px) {
       &{
         flex-direction: row;
