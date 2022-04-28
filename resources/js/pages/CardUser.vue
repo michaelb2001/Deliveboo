@@ -1,5 +1,5 @@
 <template>
-  <div v-if="user" class="container">
+  <div v-if="user" class="main-container">
       <div class="image-info">
           <div class="image">
             <img v-if="user.img" :src="`../storage/${user.img}`">
@@ -17,10 +17,10 @@
     </div>
     <hr>
 
-    <h1>Piatti</h1>
+    <h1>NOVITA' E PROMOZIONI</h1>
     <div class="d-flex justify-content-between plates-and-cart">
-        <div class="ms_row_plate">
-            <div v-for="(plate,index) in user.plates" :key="'plate'+index">
+        <div class="ms_row_plate row row-cols-1 row-cols-xl-2">
+            <div class="col" v-for="(plate,index) in user.plates" :key="'plate'+index">
                 <div @click="showFocusCard(plate)" class="card-plate-box">
                     <CardPlate :plate="plate"/>
                 </div>
@@ -180,6 +180,11 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../sass/front.scss';
+.main-container{
+    width: 90%;
+    margin: 0 auto;
+}
+
 .button-open-types{
   position: fixed;
   bottom: 15px;
@@ -214,18 +219,18 @@ export default {
 }
 
 .plates-and-cart{
-    min-height: 300px;
+    max-height: 400px;
+    margin-bottom: 25px;
 }
 
 .ms_row_plate {
     width: 100%;
-    height: 295px;
+    max-height: 380px;
     overflow-y: auto;
+    padding: 0 10px;
 
-    @media screen and (min-width:992px) {
-      &{
-        width: 45%!important;
-      }
+    &::-webkit-scrollbar {
+        width: 0px;
     }
 }
 
@@ -235,13 +240,21 @@ export default {
 
     .image{
         margin-right: 30px;
-    }
-
-    img{
         width: 100%;
         max-width: 400px;
-        border-radius: 6px;
+        height: 225px;
+        overflow: hidden;
+        justify-content: center;
+        display: flex;
+
+        img{
+            min-width: 100%;
+            min-height: 100%;
+            flex-shrink: 0;
+        }
     }
+
+    
 
     .info-user{
         width: 40%;
@@ -299,4 +312,5 @@ export default {
     }
 }
 
+    
 </style>

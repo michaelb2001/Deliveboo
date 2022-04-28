@@ -1,15 +1,15 @@
 <template>
-  <div class="card_container">
+  <div class="card-container">
       <div class="col">
         <div class="m-2 ms_margin d-flex justify-content-between">
-          <div>
+          <div class="text" :class="!plate.img ? 'w-100' : null">
             <p class="ms_name_plate">{{plate.name}}</p>
-            <p class="ms_ingredients">{{plate.ingredients}}</p>
+            <!-- <p class="ms_ingredients">{{plate.ingredients}}</p> -->
             <p class="ms_price">{{plate.price}}€</p>
           </div>
 
-          <div class="image">
-            <img class="img-fluid img-class" v-if="plate.img" :src="`../storage/${plate.img}`">
+          <div v-if="plate.img" class="image">
+            <img class="img-class" v-if="plate.img" :src="`../storage/${plate.img}`">
           </div>
         </div>
       </div>
@@ -27,9 +27,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.card-container{
+
+  .text{
+    width: 65%;
+    line-height: 2;
+  }
+}
+
 .ms_name_plate{
   font-weight: bold;
   margin-bottom: 0;
+  line-height: 1;
+  font-size: 1.1em;
 }
 
 .ms_ingredients{
@@ -50,24 +60,29 @@ export default {
   cursor: pointer;
 }
 
-
 .ms_margin:hover{
-    transform: scale(.9);
+    transform: scale(.95);
 }
-
-.ms_margin:active{
-    transform: scale(.8);
-}
-
 
 .col{
   padding: 0;
 }
 
-.img-class{
-  height: 100%;
-  width: 100px;
+.image{
+  overflow: hidden;
+  justify-content: center;
+  display: flex;
+  width: 35%;
+
+  .img-class{
+    width: unset;
+    flex-shrink: 0;
+    min-height: 100%;
+    min-width: 100%;
+  }
 }
+
+
 
 
 </style>

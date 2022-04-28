@@ -28,7 +28,7 @@
                       <span>-</span>
                     </div>
 
-                    <div class="quantity">
+                    <div class="mx-3 quantity">
                       {{quantity}}
                     </div>
 
@@ -38,7 +38,9 @@
                 
                 </div>
                 <div class="col">
-                  <button @click="(prevUser) ? (prevUser.id == user.id) ? add() : createNewCartShow = true : add()" type="button" class="btn btn-price">{{(plate.price * quantity).toFixed(2)}}€</button>
+                  <button @click="(prevUser) ? (prevUser.id == user.id) ? add() : createNewCartShow = true : add()" type="button" class="btn btn-price">
+                    {{(plate.price * quantity).toFixed(2)}}€
+                  </button>
                 </div>
               </div>
             </div>
@@ -116,14 +118,14 @@ export default {
   left: 50%;
   position: fixed;
   transform: translate(-50%, -50%);
-  border-radius: 5%;
+  border-radius: 10px;
 
  .btn-price{
     width: 45%;
     margin-bottom: 15px;
     color: $light-color;
-    background-color: $third-color;
-    border: 1px solid $third-color;
+    background-color: $primary-color;
+    border: 1px solid $primary-color;
     &:hover{
       background-color: #8f3d82;
       border: 1px solid #8f3d82;
@@ -144,14 +146,14 @@ export default {
   left: 50%;
   position: fixed;
   transform: translate(-50%, -50%);
-  border-radius: 5%;
+  border-radius: 10px;
 
   .img-class{
     width: 560px;
     height: 315px;
     object-fit: cover;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;  
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;  
     }
 
 
@@ -159,7 +161,7 @@ export default {
   .btn-add-remove{
     margin-bottom: 25px;
       .btn-three {
-	color: $third-color;
+	color: $primary-color;
 	transition: all 0.5s;
 	position: relative;
   font-size: 25px;
@@ -189,7 +191,7 @@ export default {
       z-index: 1;
       opacity: 0;
       transition: all 0.3s;
-      border: 2px solid $third-color;
+      border: 2px solid $primary-color;
       transform: scale(1.2,1.2);
     }
     &:hover::after{
@@ -200,14 +202,13 @@ export default {
   }
 
   .btn-price{
-    width: 100%;
+    width: 90%;
     margin-bottom: 15px;
     color: $light-color;
-    background-color: $third-color;
-    border: 1px solid $third-color;
+    background-color: $primary-color;
+    border: 1px solid $primary-color;
     &:hover{
-      background-color: #8f3d82;
-      border: 1px solid #8f3d82 ;
+      transform: scale(1.1);
     }
   }
 }
@@ -215,7 +216,7 @@ export default {
 .ingredient-box{
   overflow-wrap: break-word;
   max-height: 100px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 </style>

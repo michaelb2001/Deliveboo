@@ -130,6 +130,7 @@ a{
 .order-plate-box{
     width: 100%;
     border-bottom: 1px solid $grey_color;
+    margin-bottom: 15px;
 }
 
 .order-plate-name{
@@ -180,8 +181,6 @@ a{
         width: 480px;
         min-height: 230px;
         max-height: 295px;
-        display: flex;
-        align-items: center;
         background-color: white;
         color: $darkgrey-color;
         overflow-y: auto;
