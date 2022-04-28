@@ -13,12 +13,12 @@ class TypesUsersTableSeeder extends Seeder
     public function run(){     
         $type = [
             [null],
-            ['Italiano','Celiaci','Gluten free'],
-            ['Vegan','Gluten free','Vegetariano','Celiaci'],
-            ['Italiano','Americano','Vegan','Gluten free','Vegetariano','Celiaci'],
-            ['Gluten free','Celiaci'],
-            ['Sushi','Hawaiano','Celiaci'],
-            ['Italiano','Vegan','Gluten free'],
+            [1,16,14],
+            [13,14,15,16],
+            [1,6,13,14,15,16],
+            [14,16],
+            [2,7,16],
+            [1,13,14],
         ];
 
         for($j = 1; $j < 7 ; $j++){
