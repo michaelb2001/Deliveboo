@@ -10,11 +10,20 @@ class TypesUsersTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {     
-        for($i = 0; $i < 6 ; $i++){
-            $user = User::all()->where('id',$i + 1)->first();
-            $user->types()->sync([rand(1,6) ,rand(7,12) ,rand(13,16)]);
+    public function run(){     
+        $type = [
+            [null],
+            [1,2,3,4],
+            [5,6,7,8],
+            [1,2,3,4],
+            [1,2,3,4],
+            [1,2,3,4],
+            [1,2,3,4],
+        ];
+
+        for($j = 1; $j < 7 ; $j++){
+            $user = User::all()->where('id',$j)->first();
+            $user->types()->sync($type[$j]);
         }
     }
 }

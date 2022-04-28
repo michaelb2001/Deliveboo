@@ -28,6 +28,7 @@ cambiaStyle.addEventListener("click", function(){
     clearInterval(sushino);
     cambiaStyle.style.transform = "none";
     setTimeout(() => {
+        clearInterval(sushino);
         cambiaStyle.style.transition =`all 600ms linear`;
         cambiaStyle.style.transform = "scale(0)";
     }, 500);

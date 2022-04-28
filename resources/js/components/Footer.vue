@@ -72,7 +72,7 @@ export default {
 .footer-container{
   min-height: 0;
   background-color: #2E3333;
-  width: 60%;
+  width: 90%;
   padding: 15px 0;
   color: white;
   //margin-top: 30px;
@@ -133,8 +133,6 @@ export default {
     line-height: 2;
     width: 90%;
   }
-
-    
 
   ul{
     list-style: none;
