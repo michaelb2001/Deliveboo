@@ -62,7 +62,7 @@
               </div>
               <!-- Box pagamento BrainTree-->
               <div v-if="formComplete" class="form-is-complete" :class="waitToken ? 'token-not-ready' : null">
-                <Paybox @tokenReady="waitToken = false" @payload="payload" :user="user" :cart="cart" v-show="!waitToken" :formData="formData" @payed="isPayed()"/>
+                <Paybox @tokenReady="waitToken = false" @payload="payload" :tot="tot" :user="user" :cart="cart" v-show="!waitToken" :formData="formData" @payed="isPayed()"/>
                 <div v-if="waitToken" class="d-flex wait-token align-items-center">
                   <h2>CONTROLLANDO I DATI ...</h2>
                   <i class="fa-solid fa-magnifying-glass"></i>
@@ -202,8 +202,8 @@ export default {
       }
     },
     methods:{
-      payload(){
-        this.payloading = true;
+      payload(result){
+        this.payloading = result;
       },
       controlInput(){
       // validazione nome

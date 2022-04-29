@@ -94,7 +94,7 @@ export default {
   computed:{
     where(){
       console.log(this.$route.name,'lOOOL');
-      if(this.$route.name == 'home')
+      if(this.$route.name == 'home' || this.$route.name == 'SuccessPayment')
         this.inHome = true;
       else {
         this.inHome = false;
@@ -204,10 +204,12 @@ a{
 
   &.in-home{
     border-bottom: unset;
+    z-index: 3;
     background-color: #00ccbc;
   }
 
   &.in-payment{
+    z-index: 3;
     border-bottom: unset;
     background-color: #006D68;
   }

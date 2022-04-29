@@ -72,9 +72,10 @@ export default {
         CartBox,
     },
     created(){
-        if(this.$route.params.user)
+        if(this.$route.params.user){
             this.user = this.$route.params.user;
-        else
+            this.removePlate();
+        } else
             this.getUser();
 
         if(this.prevOrder)
@@ -149,6 +150,15 @@ export default {
         showFocusCard(plate){
             this.focusVisibility = plate;
         },
+        removePlate(){
+            let plates = this.user.plates;
+            for(let i=0; i<plates.length; i++){
+                if(plates[i].visible == 0){
+                    //console.log('rimuovo',this.user.plates[i]);
+                    this.user.plates.splice(i,1);
+                }
+            }
+        },
         getUser(){
             console.log('axios');
             axios.get('/api'+this.$route.path)
@@ -160,10 +170,12 @@ export default {
                         name:"main"
                     });
                 console.log(response.data);
+                this.removePlate();
                 this.load=true;
                 if(this.user && this.prevUser){
                     if(this.user.id == this.prevUser.id){
                         this.user = JSON.parse(localStorage.getItem('storedData2'));
+                        this.removePlate();
                         this.cart = JSON.parse(localStorage.getItem('storedData3'));
                         this.tot = JSON.parse(localStorage.getItem('storedData1'));
                     }

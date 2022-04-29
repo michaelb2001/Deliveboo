@@ -24,8 +24,8 @@ class PlatesTableSeeder extends Seeder
         $ingredient = [
             ['Costine di maiale affumicato, salsa BBQ'],
             ['Petto di pollo','rucola','pomodorini'],
-            ['Big Bacon','Cheeseburger','Black truffle','Chicken crunchy'],
-            ['Biscotti artigianali','Gelato PeacePop','Biscotti AYO','Crema Spalmabile Rock'],
+            ['Petto di pollo intero con panatura' , 'perfettamente croccante e delizioso'],
+            ['100% italian beef', 'circa 220gr'],
 
             ['Costine di maiale affumicato, salsa BBQ'],
             ['Petto di pollo','rucola','pomodorini'],
@@ -47,10 +47,10 @@ class PlatesTableSeeder extends Seeder
             ['Oshi-Zushi pressato' , 'salmone teriyaki alla piastra', 'cipolla fritta'],
             ['2 california', '2 philadelphia', '2 spicy toro', '2 hot salmon', '2 Zushi roll', '2 rainbow'],
 
-            ['Gambero fritto in tempura', 'tartare di gamberi rossi'],
-            ['burrata', 'uova di aringa affumicata', 'avocado' , 'foglie di shiso'],
-            ['Big Bacon','Cheeseburger','Black truffle','Chicken crunchy'],
-            ['Biscotti artigianali','Gelato PeacePop','Biscotti AYO','Crema Spalmabile Rock'],
+            ['Gambero fritto in tempura, tartare di gamberi rossi'],
+            ['burrata, uova di aringa affumicata, avocado , foglie di shiso'],
+            ['Big Bacon,Cheeseburger,Black truffle,Chicken crunchy'],
+            ['Biscotti artigianali,Gelato PeacePop,Biscotti AYO,Crema Spalmabile Rock'],
         ];
 
         $index = 0;
@@ -60,7 +60,8 @@ class PlatesTableSeeder extends Seeder
                 $newPlate->name = $name[$j][$i];
                 $newPlate->ingredients = implode(",",$ingredient[$index]);
                 $newPlate->price = $faker->randomFloat(2,0,50);
-                $newPlate->visible = $faker->boolean();
+                //$newPlate->visible = $faker->boolean();
+                $newPlate->visible = 1;
                 $newPlate->img = NULL;
                 $newPlate->user_id = $j+1;
                 $newPlate->save();

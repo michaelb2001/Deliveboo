@@ -27,6 +27,7 @@ export default {
   props:{
     formData: Object,
     user: Object,
+    tot: Number,
     cart: Array,
   },
   created(){
@@ -45,11 +46,12 @@ export default {
       .catch(function (error) {});
   },
   methods: {
-    pay(){
+    pay(dataPayment){
       axios.post('../api/payment/' , this.formData)
               .then((response) => {
           // handle success
-              console.log(response.data);
+              console.log(dataPayment,'si è qui');
+              console.log(dataPayment.data.transaction,'si è qui22');
               if(response.data.status){
                 localStorage.setItem('storedData1', null);
                 localStorage.setItem('storedData2', null);
@@ -58,14 +60,14 @@ export default {
                 setTimeout(() => {
                   this.$router.push({
                     name: 'SuccessPayment', 
-                    params: { user: this.user , cart: this.cart }
+                    params: { user: this.user , cart: this.cart , tot: this.tot , transaction:dataPayment.data.transaction}
                   });
                 }, 1000);
               }
           });
     },
     onSuccess (payload) {
-      this.$emit('payload');
+      this.$emit('payload' , true);
       let nonce = payload.nonce;
       this.formData.tokenClient = nonce;
       axios
@@ -73,13 +75,15 @@ export default {
         .then((response) => {
           console.log(response.data, 'dopo pagamento');
           if(response.data.success){
-            this.pay();
+            this.pay(response.data);
            /* document.getElementById("btn_pay").classList.add("d-none");
             document.getElementById("back_to_home").classList.remove("d-none");
             document.getElementById("back_to_home").classList.add("d-flex");*/
           }
-          else
+          else{
+            this.$emit('payload' , false);
             console.log('NON PAGATO');
+            }
 
        //   self.clearCart();
          // self.redirect();
