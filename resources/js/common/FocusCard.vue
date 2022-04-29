@@ -81,15 +81,13 @@ export default {
           plate: this.plate,
           quantity: this.quantity,
         });
-
     if(this.prevUser && this.user)
-      if(this.prevUser.name == this.user.name)
+      if(this.prevUser.id == this.user.id)
         if(this.prevOrder)
           if(this.prevOrder.length > 0)
             for (let i = 0; i < this.prevOrder.length; i++)
               this.order.push(this.prevOrder[i]);
 
-        console.log('provo a fare emit',this.order);
         this.$emit('add',this.order);
       },
     },

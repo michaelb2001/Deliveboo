@@ -5,7 +5,7 @@
           <div class="text" :class="!plate.img ? 'w-100' : null">
             <p class="ms_name_plate">{{plate.name}}</p>
             <!-- <p class="ms_ingredients">{{plate.ingredients}}</p> -->
-            <p class="ms_price">{{plate.price}}€</p>
+            <p class="ms_price">{{(plate.price).toFixed(2)}}€</p>
           </div>
 
           <div v-if="plate.img" class="image">

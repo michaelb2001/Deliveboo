@@ -118,7 +118,7 @@ export default {
     search(){
       if(this.inputText.length <= 0)
         this.clear();
-      if(this.inputText.length < 3)
+      if(this.inputText.length < 2)
         return;
 
       this.searchT();

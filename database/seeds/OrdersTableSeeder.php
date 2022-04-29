@@ -20,7 +20,7 @@ class OrdersTableSeeder extends Seeder
             $newOrder->email = $faker->email();
             $newOrder->phone = $faker->e164PhoneNumber();
             $newOrder->address = $faker->address();
-            $newOrder->total = $faker->randomFloat(2,0,300);
+            $newOrder->total = $faker->randomFloat(2,0,100);
             $newOrder->status = $faker->boolean();
             $newOrder->save();
         }

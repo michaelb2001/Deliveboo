@@ -219,6 +219,9 @@ a{
 
                 &.shake{
                     animation: shake 50ms linear infinite;
+                    input{
+                        outline: 3px solid black;
+                    }
                 }
             }
         }

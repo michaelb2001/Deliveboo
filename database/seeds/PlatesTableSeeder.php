@@ -59,7 +59,7 @@ class PlatesTableSeeder extends Seeder
                 $newPlate = new Plate();
                 $newPlate->name = $name[$j][$i];
                 $newPlate->ingredients = implode(",",$ingredient[$index]);
-                $newPlate->price = $faker->randomFloat(2,0,50);
+                $newPlate->price = $faker->randomFloat(2,0,25);
                 //$newPlate->visible = $faker->boolean();
                 $newPlate->visible = 1;
                 $newPlate->img = NULL;
