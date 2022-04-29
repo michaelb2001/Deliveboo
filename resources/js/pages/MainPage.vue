@@ -52,7 +52,7 @@
           <h3 v-if="checkedType && checkedType.length > 0" class="w-100 mt-5">
             <strong>Ristoranti</strong>
           </h3>
-          <div v-if="checkedType && checkedType.length > 0" class="all-users row w-80-xs row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4">
+          <div v-if="checkedType && checkedType.length > 0" class="w-100 all-users row w-80-xs row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xxl-4">
             <div v-for="(user,index) in usersArr" :key="'usersArr'+index" class="col user mt-3">
               <router-link class="link-card" :to="{name : 'CardUser' , params:{activity:user.activity,user:user} }">
                 <Card :noBorder="true" :user="user"/>
