@@ -25,10 +25,10 @@
             <div class="container">
                 <!--<a class="navbar-brand" href="{{ url('/') }}">
                     HomePage
-                </a>-->
+                </a>
                 <a class="navbar-hover d-none d-xs-none d-sm-none d-md-block d-xl-block navbar-brand " href="{{ url('/admin/statistics') }}">
                     Statistics
-                </a>
+                </a>-->
 
                 <a class="navbar-hover d-none d-xs-none d-sm-none d-md-block d-xl-block navbar-brand " href="{{ url('/') }}">
                     Homepage
