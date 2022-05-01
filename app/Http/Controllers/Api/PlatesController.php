@@ -11,11 +11,13 @@ use App\User;
 use Braintree\Gateway;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class PlatesController extends Controller
 {
     //
+    
     public function index(){
         $plates = Plate::all();
         return response()->json($plates);
@@ -254,6 +256,61 @@ class PlatesController extends Controller
         return response()->json([
             "data" => $result, 
             "success" => false,
+        ]);
+    }
+
+    public function statisticsData(){
+        $LoggedUser = User::where('id',Auth::user()->id)->first();
+        $orders = Order::orderBy('created_at', 'DESC')->where('user_id',$LoggedUser->id)->get();
+        $plates = $LoggedUser->plates;
+
+        foreach($orders as $order)
+           $temp[] = $order->plates;
+        
+        foreach($temp as $item){
+            foreach($item as $plate){
+                $orderPlates[] = ['id' => $plate->id , 'quantity' => $plate->pivot->quantity];
+            }
+        }
+
+        foreach($plates as $plate)
+            $data[] = 0;
+
+        foreach($plates as $i => $plate){
+            foreach($orderPlates as $j => $orderPlate){
+                if($plate->id == $orderPlate['id']){
+                    $data[$i] += $orderPlate['quantity'];
+                }
+            }
+        }
+
+        return response()->json([
+            "data" => $data, 
+            "plates" => $plates, 
+        ]);
+    }
+
+    public function lastMonth(){
+        $LoggedUser = User::where('id',Auth::user()->id)->first();
+
+        $number = cal_days_in_month(CAL_GREGORIAN, date("d"), date("Y")); // 31
+        //date("Y.m.d")
+
+        for($i = 0; $i < $number ; $i++){
+            if($i < 10)
+                $day = '0'.($i + 1);
+            else
+                $day = $i + 1;
+            $orders = Order::where('user_id',$LoggedUser->id)->where('created_at', 'like', '%'  . '-' . date("m") . '-' . $day . '%')->get();
+            $howMuchOrder[] = count($orders);
+            $howMuchMoney[] = 0;
+            foreach($orders as $order)
+                $howMuchMoney[$i] += $order->total;
+        }
+
+        return response()->json([
+            "howMuchOrder" => $howMuchOrder, 
+            "howMuchMoney" => $howMuchMoney, 
         ]);
     }
 }

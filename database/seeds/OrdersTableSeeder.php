@@ -13,15 +13,20 @@ class OrdersTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for($i = 0 ; $i <10; $i++){
+        $fakeTotal = [
+            50,66,80,26,50
+        ];
+
+        for($i = 0 ; $i <5; $i++){
             $newOrder = new Order();
             $newOrder->name = $faker->firstName(20);
             $newOrder->surname = $faker->lastName(20);
             $newOrder->email = $faker->email();
             $newOrder->phone = $faker->e164PhoneNumber();
             $newOrder->address = $faker->address();
-            $newOrder->total = $faker->randomFloat(2,0,100);
+            $newOrder->total = $fakeTotal[$i];
             $newOrder->status = $faker->boolean();
+            $newOrder->user_id = 1;
             $newOrder->save();
         }
     }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\PlatesController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +15,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-/*Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});*/
 
 Route::get("/plates","Api\PlatesController@index");
 Route::get("/users","Api\PlatesController@users"); //prende tutti i ristoranti
@@ -37,3 +34,4 @@ Route::get("/types/{typeArr}","Api\PlatesController@getUserFromType"); //prende 
 
 Route::get('/order/generate', 'Api\PlatesController@generate');
 Route::post('/order/make/payment', 'Api\PlatesController@makePayment');
+

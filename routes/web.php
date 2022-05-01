@@ -20,6 +20,12 @@ Route::get('/', function () {
 });*/
 
 Auth::routes();
+
+Route::prefix('api')->middleware('auth')->group(function () {
+    Route::get('/statistics', 'Api\PlatesController@statisticsData');
+    Route::get('/lastMonth', 'Api\PlatesController@lastMonth');
+});
+
 Route::middleware('auth')->namespace('Admin')->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', "HomeController@index");
     Route::get('/types', "HomeController@form_checkbox")->name('types');

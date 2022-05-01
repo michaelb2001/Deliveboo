@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/admin.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -25,11 +26,7 @@
             <div class="container">
                 <!--<a class="navbar-brand" href="{{ url('/') }}">
                     HomePage
-                </a>
-                <a class="navbar-hover d-none d-xs-none d-sm-none d-md-block d-xl-block navbar-brand " href="{{ url('/admin/statistics') }}">
-                    Statistics
                 </a>-->
-
                 <a class="navbar-hover d-none d-xs-none d-sm-none d-md-block d-xl-block navbar-brand " href="{{ url('/') }}">
                     Homepage
                 </a>
@@ -49,6 +46,10 @@
                 <a class="navbar-hover d-none d-xs-none d-sm-none d-md-block d-xl-block navbar-brand " href="{{ url('/admin/order') }}">
                     Ordini In Arrivo
                 </a>
+                
+                <a class="navbar-hover d-none d-xs-none d-sm-none d-md-block d-xl-block navbar-brand " href="{{ url('/admin/statistics') }}">
+                    Statistiche
+                </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -57,12 +58,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <a class="d-sm-block d-md-none d-lg-none navbar-link " href="{{ url('/') }}">
+                            Homepage
+                        </a>
+
                         <a class="d-sm-block d-md-none d-lg-none navbar-link " href="{{ url('/admin/recap') }}">
-                            Recap
+                            Profilo
                         </a>
         
                         <a class="d-sm-block d-md-none d-lg-none navbar-link " href="{{ url('/admin/types') }}">
-                            Cateogorie
+                            Categorie
                         </a>
                         
                         <a class="d-sm-block d-md-none d-lg-none navbar-link " href="{{ url('/admin/plate') }}">
@@ -71,6 +76,10 @@
 
                         <a class="d-sm-block d-md-none d-lg-none navbar-link " href="{{ url('/admin/order') }}">
                             Ordini in arrivo
+                        </a>
+
+                        <a class="d-sm-block d-md-none d-lg-none navbar-link " href="{{ url('/admin/statistics') }}">
+                            Statistiche
                         </a>
                     </ul>
 
@@ -111,45 +120,13 @@
         </nav>
         <div class="space-after-navbar"></div> <!-- css in globals.scss -->
 
-        <main class="py-3">
+        <main class="">
+            <div class="bg-effect-layout"></div>
             @yield('content')
         </main>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>
-<script>
-    const labels = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-    ];
-
-    const data = {
-      labels: labels,
-      datasets: [{
-        label: 'My First dataset',
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
-        data: [0, 10, 5, 2, 20, 30, 45],
-      }]
-    };
-  
-    const config = {
-      type: 'line',
-      data: data,
-      options: {}
-    };
-  </script>
-  <script>
-    const myChart = new Chart(
-      document.getElementById('myChart'),
-      config
-    );
-  </script>
 <script>
     let count = 0;
     let start = 0;
@@ -187,3 +164,7 @@
             }
     }
 </script>
+
+<style>
+    
+</style>
