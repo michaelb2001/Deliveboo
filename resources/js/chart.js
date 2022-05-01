@@ -31,7 +31,6 @@ if (thisURL.endsWith("/admin/statistics")){
               'orange',
               'lightcoral',
               'yellow',
-              'lightyellow',
               'green',
               'lightgreen',
               'blue',

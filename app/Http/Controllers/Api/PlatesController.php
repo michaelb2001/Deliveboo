@@ -264,6 +264,13 @@ class PlatesController extends Controller
         $orders = Order::orderBy('created_at', 'DESC')->where('user_id',$LoggedUser->id)->get();
         $plates = $LoggedUser->plates;
 
+        if(!isset($orders) || count($orders) <= 0){
+            return response()->json([
+                "data" => [], 
+                "plates" => $plates, 
+            ]);
+        }
+
         foreach($orders as $order)
            $temp[] = $order->plates;
         
